@@ -7,7 +7,7 @@ import view.SearchPhoto;
 import controller.PhotoController;
 
 
-public class Photo {
+public class Photo extends FModel {
 
 	/**
 	 * @uml.property  name="tag"

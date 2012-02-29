@@ -7,7 +7,7 @@ import view.PartsListView;
 import view.PhotoSubView;
 
 
-public class PhotoController {
+public class PhotoController extends FController {
 
 		
 		/**

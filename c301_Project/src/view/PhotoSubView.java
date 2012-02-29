@@ -6,7 +6,7 @@ import controller.PhotoController;
 /**
  * @uml.dependency   supplier="model.Photo"
  */
-public class PhotoSubView {
+public class PhotoSubView extends FView {
 
 	/**
 	 * @uml.property  name="photoController"

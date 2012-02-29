@@ -5,7 +5,7 @@ import java.util.Collection;
 import controller.PhotoController;
 
 
-public class PartsListView {
+public class PartsListView extends FView {
 
 	/**
 	 * @uml.property  name="photo"
