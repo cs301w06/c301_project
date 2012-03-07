@@ -1,6 +1,7 @@
 package view;
 
 import controller.PhotoController;
+import model.Photo;
 
 
 /**
@@ -30,6 +31,30 @@ public class PhotoSubView implements FView {
 	 */
 	public void setPhotoController(PhotoController photoController) {
 		this.photoController = photoController;
+	}
+
+	/**
+	 * @uml.property  name="photo"
+	 * @uml.associationEnd  inverse="photoSubView:model.Photo"
+	 */
+	private Photo photo;
+
+	/**
+	 * Getter of the property <tt>photo</tt>
+	 * @return  Returns the photo.
+	 * @uml.property  name="photo"
+	 */
+	public Photo getPhoto() {
+		return photo;
+	}
+
+	/**
+	 * Setter of the property <tt>photo</tt>
+	 * @param photo  The photo to set.
+	 * @uml.property  name="photo"
+	 */
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
 	}
 
 }

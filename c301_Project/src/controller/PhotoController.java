@@ -5,6 +5,7 @@ import view.SearchPhoto;
 import view.PhotoReview;
 import view.PartsListView;
 import view.PhotoSubView;
+import view.photocompare;
 
 
 public class PhotoController implements FController {
@@ -178,6 +179,35 @@ public class PhotoController implements FController {
 					 */
 					public void setPhotoSubView(PhotoSubView photoSubView) {
 						this.photoSubView = photoSubView;
+					}
+
+
+
+					/**
+					 * @uml.property  name="photocompare"
+					 * @uml.associationEnd  inverse="photoController:view.photocompare"
+					 */
+					private photocompare photocompare;
+
+
+
+					/**
+					 * Getter of the property <tt>photocompare</tt>
+					 * @return  Returns the photocompare.
+					 * @uml.property  name="photocompare"
+					 */
+					public photocompare getPhotocompare() {
+						return photocompare;
+					}
+
+
+					/**
+					 * Setter of the property <tt>photocompare</tt>
+					 * @param photocompare  The photocompare to set.
+					 * @uml.property  name="photocompare"
+					 */
+					public void setPhotocompare(photocompare photocompare) {
+						this.photocompare = photocompare;
 					}
 
 }

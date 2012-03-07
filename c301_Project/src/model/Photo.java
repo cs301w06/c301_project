@@ -5,6 +5,13 @@ import view.PartsListView;
 import view.PhotoReview;
 import view.SearchPhoto;
 import controller.PhotoController;
+import controller.setphoto;
+import controller.searchphoto;
+import controller.grabphoto;
+import controller.comparephoto;
+import view.PhotoSubView;
+import view.CameraView;
+import controller.TakePhoto;
 
 
 public class Photo implements FModel {
@@ -174,6 +181,174 @@ public class Photo implements FModel {
 	 */
 	public void setPhotoController(PhotoController photoController) {
 		this.photoController = photoController;
+	}
+
+	/**
+	 * @uml.property  name="setphoto"
+	 * @uml.associationEnd  inverse="photo:controller.setphoto"
+	 */
+	private setphoto setphoto;
+
+	/**
+	 * Getter of the property <tt>setphoto</tt>
+	 * @return  Returns the setphoto.
+	 * @uml.property  name="setphoto"
+	 */
+	public setphoto getSetphoto() {
+		return setphoto;
+	}
+
+	/**
+	 * Setter of the property <tt>setphoto</tt>
+	 * @param setphoto  The setphoto to set.
+	 * @uml.property  name="setphoto"
+	 */
+	public void setSetphoto(setphoto setphoto) {
+		this.setphoto = setphoto;
+	}
+
+	/**
+	 * @uml.property  name="searchphoto"
+	 * @uml.associationEnd  inverse="photo:controller.searchphoto"
+	 */
+	private searchphoto searchphoto;
+
+	/**
+	 * Getter of the property <tt>searchphoto</tt>
+	 * @return  Returns the searchphoto.
+	 * @uml.property  name="searchphoto"
+	 */
+	public searchphoto getSearchphoto() {
+		return searchphoto;
+	}
+
+	/**
+	 * Setter of the property <tt>searchphoto</tt>
+	 * @param searchphoto  The searchphoto to set.
+	 * @uml.property  name="searchphoto"
+	 */
+	public void setSearchphoto(searchphoto searchphoto) {
+		this.searchphoto = searchphoto;
+	}
+
+	/**
+	 * @uml.property  name="grabphoto"
+	 * @uml.associationEnd  inverse="photo:controller.grabphoto"
+	 */
+	private grabphoto grabphoto;
+
+	/**
+	 * Getter of the property <tt>grabphoto</tt>
+	 * @return  Returns the grabphoto.
+	 * @uml.property  name="grabphoto"
+	 */
+	public grabphoto getGrabphoto() {
+		return grabphoto;
+	}
+
+	/**
+	 * Setter of the property <tt>grabphoto</tt>
+	 * @param grabphoto  The grabphoto to set.
+	 * @uml.property  name="grabphoto"
+	 */
+	public void setGrabphoto(grabphoto grabphoto) {
+		this.grabphoto = grabphoto;
+	}
+
+	/**
+	 * @uml.property  name="comparephoto"
+	 * @uml.associationEnd  inverse="photo:controller.comparephoto"
+	 */
+	private comparephoto comparephoto;
+
+	/**
+	 * Getter of the property <tt>comparephoto</tt>
+	 * @return  Returns the comparephoto.
+	 * @uml.property  name="comparephoto"
+	 */
+	public comparephoto getComparephoto() {
+		return comparephoto;
+	}
+
+	/**
+	 * Setter of the property <tt>comparephoto</tt>
+	 * @param comparephoto  The comparephoto to set.
+	 * @uml.property  name="comparephoto"
+	 */
+	public void setComparephoto(comparephoto comparephoto) {
+		this.comparephoto = comparephoto;
+	}
+
+	/**
+	 * @uml.property  name="photoSubView"
+	 * @uml.associationEnd  inverse="photo:view.PhotoSubView"
+	 */
+	private PhotoSubView photoSubView;
+
+	/**
+	 * Getter of the property <tt>photoSubView</tt>
+	 * @return  Returns the photoSubView.
+	 * @uml.property  name="photoSubView"
+	 */
+	public PhotoSubView getPhotoSubView() {
+		return photoSubView;
+	}
+
+	/**
+	 * Setter of the property <tt>photoSubView</tt>
+	 * @param photoSubView  The photoSubView to set.
+	 * @uml.property  name="photoSubView"
+	 */
+	public void setPhotoSubView(PhotoSubView photoSubView) {
+		this.photoSubView = photoSubView;
+	}
+
+	/**
+	 * @uml.property  name="cameraView"
+	 * @uml.associationEnd  inverse="photo:view.CameraView"
+	 */
+	private CameraView cameraView;
+
+	/**
+	 * Getter of the property <tt>cameraView</tt>
+	 * @return  Returns the cameraView.
+	 * @uml.property  name="cameraView"
+	 */
+	public CameraView getCameraView() {
+		return cameraView;
+	}
+
+	/**
+	 * Setter of the property <tt>cameraView</tt>
+	 * @param cameraView  The cameraView to set.
+	 * @uml.property  name="cameraView"
+	 */
+	public void setCameraView(CameraView cameraView) {
+		this.cameraView = cameraView;
+	}
+
+	/**
+	 * @uml.property  name="takePhoto"
+	 * @uml.associationEnd  inverse="photo:controller.TakePhoto"
+	 */
+	private TakePhoto takePhoto;
+
+	/**
+	 * Getter of the property <tt>takePhoto</tt>
+	 * @return  Returns the takePhoto.
+	 * @uml.property  name="takePhoto"
+	 */
+	public TakePhoto getTakePhoto() {
+		return takePhoto;
+	}
+
+	/**
+	 * Setter of the property <tt>takePhoto</tt>
+	 * @param takePhoto  The takePhoto to set.
+	 * @uml.property  name="takePhoto"
+	 */
+	public void setTakePhoto(TakePhoto takePhoto) {
+		this.takePhoto = takePhoto;
 	}
 
 }
