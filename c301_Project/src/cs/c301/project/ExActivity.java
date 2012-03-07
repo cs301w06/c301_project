@@ -8,5 +8,6 @@ public class ExActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.group_list);
     }
 }
