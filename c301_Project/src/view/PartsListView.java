@@ -5,7 +5,10 @@ import java.util.Collection;
 import controller.PhotoController;
 
 
-public class PartsListView extends FView {
+/**
+ * @uml.dependency   supplier="view.FView"
+ */
+public class PartsListView implements FView {
 
 	/**
 	 * @uml.property  name="photo"

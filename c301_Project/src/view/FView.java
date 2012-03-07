@@ -1,6 +1,6 @@
 package view;
 
 
-public abstract class FView {
+public interface FView {
 
 }

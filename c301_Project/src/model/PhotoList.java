@@ -3,7 +3,7 @@ package model;
 import java.util.Collection;
 
 
-public class PhotoList extends FModel {
+public class PhotoList implements FModel {
 
 	/**
 	 * @uml.property  name="photo"

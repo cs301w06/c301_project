@@ -5,7 +5,7 @@ import model.Photo;
 import controller.PhotoController;
 
 
-public class SearchPhoto extends FView {
+public class SearchPhoto implements FView {
 
 	/**
 	 * @uml.property  name="photo"

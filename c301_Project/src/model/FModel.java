@@ -1,6 +1,6 @@
 package model;
 
 
-public abstract class FModel {
+public interface FModel {
 
 }
