@@ -5,13 +5,13 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/group_title"
+        android:id="@+id/camera_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/camera" />
 
     <ImageView
-        android:id="@+id/group_list"
+        android:id="@+id/camera_image"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.50"
@@ -24,14 +24,14 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/group_back"
+            android:id="@+id/camera_back"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/back" />
 
         <Button
-            android:id="@+id/group_search"
+            android:id="@+id/camera_take"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"

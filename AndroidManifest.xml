@@ -18,13 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity 
-            android:name="CameraView"></activity>
-        <activity 
-            android:name="SearchPhoto"></activity>
-        <activity 
-            android:name="PhotoList"></activity>
+        <activity android:name="CameraView" >
+        </activity>
+        <activity android:name="SearchPhoto" >
+        </activity>
+        <activity android:name="PartsListView" >
+        </activity>
     </application>
 
 </manifest>

@@ -128,14 +128,14 @@ public class Photo implements FModel {
 	 * @uml.property  name="searchPhoto"
 	 * @uml.associationEnd  inverse="photo:view.SearchPhoto"
 	 */
-	private SearchPhoto searchPhoto;
+	private SearchPhotoView searchPhoto;
 
 	/**
 	 * Getter of the property <tt>searchPhoto</tt>
 	 * @return  Returns the searchPhoto.
 	 * @uml.property  name="searchPhoto"
 	 */
-	public SearchPhoto getSearchPhoto() {
+	public SearchPhotoView getSearchPhoto() {
 		return searchPhoto;
 	}
 
@@ -144,7 +144,7 @@ public class Photo implements FModel {
 	 * @param searchPhoto  The searchPhoto to set.
 	 * @uml.property  name="searchPhoto"
 	 */
-	public void setSearchPhoto(SearchPhoto searchPhoto) {
+	public void setSearchPhoto(SearchPhotoView searchPhoto) {
 		this.searchPhoto = searchPhoto;
 	}
 
@@ -200,14 +200,14 @@ public class Photo implements FModel {
 	 * @uml.property  name="searchphoto"
 	 * @uml.associationEnd  inverse="photo:controller.searchphoto"
 	 */
-	private SearchPhoto searchphoto;
+	private SearchPhotoView searchphoto;
 
 	/**
 	 * Getter of the property <tt>searchphoto</tt>
 	 * @return  Returns the searchphoto.
 	 * @uml.property  name="searchphoto"
 	 */
-	public SearchPhoto getSearchphoto() {
+	public SearchPhotoView getSearchphoto() {
 		return searchphoto;
 	}
 
@@ -216,7 +216,7 @@ public class Photo implements FModel {
 	 * @param searchphoto  The searchphoto to set.
 	 * @uml.property  name="searchphoto"
 	 */
-	public void setSearchphoto(SearchPhoto searchphoto) {
+	public void setSearchphoto(SearchPhotoView searchphoto) {
 		this.searchphoto = searchphoto;
 	}
 

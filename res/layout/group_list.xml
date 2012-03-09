@@ -34,14 +34,14 @@
             android:text="@string/back" />
 
         <Button
-            android:id="@+id/group_search"
+            android:id="@+id/group_add"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
             android:text="@string/add" />
 
         <Button
-            android:id="@+id/group_add"
+            android:id="@+id/group_search"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"

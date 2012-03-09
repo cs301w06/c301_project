@@ -2,7 +2,7 @@ package cs.c301.project;
 
 
 
-public class photocompare implements FView {
+public class PhotoCompare implements FView {
 
 	/**
 	 * @uml.property  name="photoController"

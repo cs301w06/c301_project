@@ -2,12 +2,49 @@ package cs.c301.project;
 
 import java.util.Collection;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
 
 /**
  * @uml.dependency   supplier="view.FView"
  */
-public class PartsListView implements FView {
+public class PartsListView extends Activity implements FView {
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.group_list);
 
+		/* Back button to direct to MainView page */
+		Button backButton = (Button) findViewById(R.id.group_back);
+		backButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(PartsListView.this, MainView.class);
+				startActivity(intent);				
+			}
+
+		});
+
+		/* TODO: Add button needs to be directed to adding subgroup */
+		
+		/* Search button to direct to Search page */
+		Button searchButton = (Button) findViewById(R.id.group_search);
+		searchButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(PartsListView.this, SearchPhotoView.class);
+				startActivity(intent);				
+			}
+
+		});
+		
+	}
 	/**
 	 * @uml.property  name="photo"
 	 * @uml.associationEnd  inverse="partsListView:model.Photo"

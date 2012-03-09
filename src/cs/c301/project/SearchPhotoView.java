@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
-public class SearchPhoto extends Activity implements FView {
+public class SearchPhotoView extends Activity implements FView {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,11 +21,13 @@ public class SearchPhoto extends Activity implements FView {
 		backButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Intent intent = new Intent(SearchPhoto.this, MainView.class);
+				Intent intent = new Intent(SearchPhotoView.this, MainView.class);
 				startActivity(intent);				
 			}
 
 		});
+		
+		/* TODO: Link to advanced search screen */
 	}
 	/**
 	 * @uml.property  name="photo"

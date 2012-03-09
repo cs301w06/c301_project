@@ -34,14 +34,14 @@ public class comparephoto implements FController {
 	 * @uml.property  name="comparePhotoResult"
 	 * @uml.associationEnd  inverse="comparephoto:view.ComparePhotoResult"
 	 */
-	private ComparePhotoResult comparePhotoResult;
+	private ComparePhotoView comparePhotoResult;
 
 	/**
 	 * Getter of the property <tt>comparePhotoResult</tt>
 	 * @return  Returns the comparePhotoResult.
 	 * @uml.property  name="comparePhotoResult"
 	 */
-	public ComparePhotoResult getComparePhotoResult() {
+	public ComparePhotoView getComparePhotoResult() {
 		return comparePhotoResult;
 	}
 
@@ -50,7 +50,7 @@ public class comparephoto implements FController {
 	 * @param comparePhotoResult  The comparePhotoResult to set.
 	 * @uml.property  name="comparePhotoResult"
 	 */
-	public void setComparePhotoResult(ComparePhotoResult comparePhotoResult) {
+	public void setComparePhotoResult(ComparePhotoView comparePhotoResult) {
 		this.comparePhotoResult = comparePhotoResult;
 	}
 

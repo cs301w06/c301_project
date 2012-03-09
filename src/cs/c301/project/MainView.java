@@ -42,7 +42,7 @@ public class MainView extends Activity implements FView {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Intent intent = new Intent(MainView.this, SearchPhoto.class);
+				Intent intent = new Intent(MainView.this, SearchPhotoView.class);
 				startActivity(intent);				
 			}
 
@@ -53,14 +53,14 @@ public class MainView extends Activity implements FView {
 	 * @uml.property  name="searchphoto"
 	 * @uml.associationEnd  inverse="mainView:controller.searchphoto"
 	 */
-	private SearchPhoto searchphoto;
+	private SearchPhotoView searchphoto;
 
 	/**
 	 * Getter of the property <tt>searchphoto</tt>
 	 * @return  Returns the searchphoto.
 	 * @uml.property  name="searchphoto"
 	 */
-	public SearchPhoto getSearchphoto() {
+	public SearchPhotoView getSearchphoto() {
 		return searchphoto;
 	}
 
@@ -69,7 +69,7 @@ public class MainView extends Activity implements FView {
 	 * @param searchphoto  The searchphoto to set.
 	 * @uml.property  name="searchphoto"
 	 */
-	public void setSearchphoto(SearchPhoto searchphoto) {
+	public void setSearchphoto(SearchPhotoView searchphoto) {
 		this.searchphoto = searchphoto;
 	}
 
