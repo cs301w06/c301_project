@@ -1,9 +1,18 @@
 package cs.c301.project;
 
+import android.app.Activity;
+import android.os.Bundle;
 
 
-public class CameraView implements FView {
 
+public class CameraView extends Activity implements FView {
+
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.camera);
+        
+	}
 	/**
 	 * @uml.property  name="photo"
 	 * @uml.associationEnd  inverse="cameraView:model.Photo"

@@ -8,22 +8,47 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
-public class MainView extends Activity implements OnClickListener {
+public class MainView extends Activity implements FView {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		Button button = (Button) findViewById(R.id.main_camera);
-		button.setOnClickListener(this);
+		/* Camera button to direct to CameraView page */
+		Button cameraButton = (Button) findViewById(R.id.main_camera);
+		cameraButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(MainView.this, CameraView.class);
+				startActivity(intent);				
+			}
+
+		});
+		
+		/* List button to direct to PartsListView page */
+		Button listButton = (Button) findViewById(R.id.main_list);
+		listButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(MainView.this, PartsListView.class);
+				startActivity(intent);				
+			}
+
+		});
+		
+		/* Search button to direct to SearchPhoto page */
+		Button searchButton = (Button) findViewById(R.id.main_search);
+		searchButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(MainView.this, SearchPhoto.class);
+				startActivity(intent);				
+			}
+
+		});
 	}
 
-	public void onClick(View arg0) {
-		Intent intent = new Intent(this, CameraView.class);
-		startActivity(intent);
-	}
-	
 	/**
 	 * @uml.property  name="searchphoto"
 	 * @uml.associationEnd  inverse="mainView:controller.searchphoto"

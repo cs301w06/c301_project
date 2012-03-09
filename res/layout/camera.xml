@@ -14,7 +14,6 @@
         android:id="@+id/group_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/group_title"
         android:layout_weight="0.50"
         android:src="@drawable/ic_launcher" >
     </ImageView>
