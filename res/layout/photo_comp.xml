@@ -53,6 +53,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:gravity="center_vertical|center_horizontal"
             android:text="Date for Photo 1" />
 
         <TextView
@@ -60,6 +61,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:gravity="center_vertical|center_horizontal"
             android:text="Date for Photo 2" />
     </LinearLayout>
 
