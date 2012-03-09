@@ -20,8 +20,11 @@
         </activity>
         
         <activity 
-            android:name=".CameraView" >
-        </activity>
+            android:name="CameraView"></activity>
+        <activity 
+            android:name="SearchPhoto"></activity>
+        <activity 
+            android:name="PhotoList"></activity>
     </application>
 
 </manifest>
