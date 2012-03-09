@@ -1,6 +1,5 @@
-package controller;
+package cs.c301.project;
 
-import model.Photo;
 
 
 public class grabphoto implements FController {

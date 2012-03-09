@@ -1,6 +1,5 @@
-package view;
+package cs.c301.project;
 
-import controller.PhotoController;
 
 
 public class photocompare implements FView {

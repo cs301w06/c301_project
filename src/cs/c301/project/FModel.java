@@ -1,4 +1,4 @@
-package model;
+package cs.c301.project;
 
 
 public interface FModel {

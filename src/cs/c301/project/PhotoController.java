@@ -1,11 +1,5 @@
-package controller;
+package cs.c301.project;
 
-import model.Photo;
-import view.SearchPhoto;
-import view.PhotoReview;
-import view.PartsListView;
-import view.PhotoSubView;
-import view.photocompare;
 
 
 public class PhotoController implements FController {

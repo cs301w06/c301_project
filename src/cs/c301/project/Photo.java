@@ -1,17 +1,6 @@
-package model;
+package cs.c301.project;
 
 import java.util.Collection;
-import view.PartsListView;
-import view.PhotoReview;
-import view.SearchPhoto;
-import controller.PhotoController;
-import controller.setphoto;
-import controller.searchphoto;
-import controller.grabphoto;
-import controller.comparephoto;
-import view.PhotoSubView;
-import view.CameraView;
-import controller.TakePhoto;
 
 
 public class Photo implements FModel {
@@ -211,14 +200,14 @@ public class Photo implements FModel {
 	 * @uml.property  name="searchphoto"
 	 * @uml.associationEnd  inverse="photo:controller.searchphoto"
 	 */
-	private searchphoto searchphoto;
+	private SearchPhoto searchphoto;
 
 	/**
 	 * Getter of the property <tt>searchphoto</tt>
 	 * @return  Returns the searchphoto.
 	 * @uml.property  name="searchphoto"
 	 */
-	public searchphoto getSearchphoto() {
+	public SearchPhoto getSearchphoto() {
 		return searchphoto;
 	}
 
@@ -227,7 +216,7 @@ public class Photo implements FModel {
 	 * @param searchphoto  The searchphoto to set.
 	 * @uml.property  name="searchphoto"
 	 */
-	public void setSearchphoto(searchphoto searchphoto) {
+	public void setSearchphoto(SearchPhoto searchphoto) {
 		this.searchphoto = searchphoto;
 	}
 

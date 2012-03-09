@@ -1,13 +1,12 @@
-package view;
-
-import model.Photo;
+package cs.c301.project;
 
 
-public class CameraView implements FView {
+
+public class TakePhoto implements FController {
 
 	/**
 	 * @uml.property  name="photo"
-	 * @uml.associationEnd  inverse="cameraView:model.Photo"
+	 * @uml.associationEnd  inverse="takePhoto:model.Photo"
 	 */
 	private Photo photo;
 

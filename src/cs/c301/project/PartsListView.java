@@ -1,14 +1,16 @@
-package view;
+package cs.c301.project;
 
-import model.Photo;
-import controller.PhotoController;
+import java.util.Collection;
 
 
-public class PhotoReview implements FView {
+/**
+ * @uml.dependency   supplier="view.FView"
+ */
+public class PartsListView implements FView {
 
 	/**
 	 * @uml.property  name="photo"
-	 * @uml.associationEnd  inverse="photoReview:model.Photo"
+	 * @uml.associationEnd  inverse="partsListView:model.Photo"
 	 */
 	private Photo photo;
 
@@ -31,8 +33,32 @@ public class PhotoReview implements FView {
 	}
 
 	/**
+	 * @uml.property  name="photo1"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="partsListView1:model.Photo"
+	 */
+	private Collection<Photo> photo1;
+
+	/**
+	 * Getter of the property <tt>photo1</tt>
+	 * @return  Returns the photo1.
+	 * @uml.property  name="photo1"
+	 */
+	public Collection<Photo> getPhoto1() {
+		return photo1;
+	}
+
+	/**
+	 * Setter of the property <tt>photo1</tt>
+	 * @param photo1  The photo1 to set.
+	 * @uml.property  name="photo1"
+	 */
+	public void setPhoto1(Collection<Photo> photo1) {
+		this.photo1 = photo1;
+	}
+
+	/**
 	 * @uml.property  name="photoController"
-	 * @uml.associationEnd  inverse="photoReview:controller.PhotoController"
+	 * @uml.associationEnd  inverse="partsListView:controller.PhotoController"
 	 */
 	private PhotoController photoController;
 

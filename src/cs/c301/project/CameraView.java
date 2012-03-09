@@ -1,22 +1,21 @@
-package model;
-
-import java.util.Collection;
+package cs.c301.project;
 
 
-public class PhotoList implements FModel {
+
+public class CameraView implements FView {
 
 	/**
 	 * @uml.property  name="photo"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="photoList:model.Photo"
+	 * @uml.associationEnd  inverse="cameraView:model.Photo"
 	 */
-	private Collection<Photo> photo;
+	private Photo photo;
 
 	/**
 	 * Getter of the property <tt>photo</tt>
 	 * @return  Returns the photo.
 	 * @uml.property  name="photo"
 	 */
-	public Collection<Photo> getPhoto() {
+	public Photo getPhoto() {
 		return photo;
 	}
 
@@ -25,7 +24,7 @@ public class PhotoList implements FModel {
 	 * @param photo  The photo to set.
 	 * @uml.property  name="photo"
 	 */
-	public void setPhoto(Collection<Photo> photo) {
+	public void setPhoto(Photo photo) {
 		this.photo = photo;
 	}
 

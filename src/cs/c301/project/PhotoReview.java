@@ -1,24 +1,21 @@
-package view;
-
-import java.util.Collection;
-import model.Photo;
-import controller.PhotoController;
+package cs.c301.project;
 
 
-public class SearchPhoto implements FView {
+
+public class PhotoReview implements FView {
 
 	/**
 	 * @uml.property  name="photo"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="searchPhoto:model.Photo"
+	 * @uml.associationEnd  inverse="photoReview:model.Photo"
 	 */
-	private Collection<Photo> photo;
+	private Photo photo;
 
 	/**
 	 * Getter of the property <tt>photo</tt>
 	 * @return  Returns the photo.
 	 * @uml.property  name="photo"
 	 */
-	public Collection<Photo> getPhoto() {
+	public Photo getPhoto() {
 		return photo;
 	}
 
@@ -27,13 +24,13 @@ public class SearchPhoto implements FView {
 	 * @param photo  The photo to set.
 	 * @uml.property  name="photo"
 	 */
-	public void setPhoto(Collection<Photo> photo) {
+	public void setPhoto(Photo photo) {
 		this.photo = photo;
 	}
 
 	/**
 	 * @uml.property  name="photoController"
-	 * @uml.associationEnd  inverse="searchPhoto1:controller.PhotoController"
+	 * @uml.associationEnd  inverse="photoReview:controller.PhotoController"
 	 */
 	private PhotoController photoController;
 

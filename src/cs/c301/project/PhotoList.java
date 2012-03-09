@@ -1,22 +1,22 @@
-package controller;
+package cs.c301.project;
 
-import model.Photo;
+import java.util.Collection;
 
 
-public class TakePhoto implements FController {
+public class PhotoList implements FModel {
 
 	/**
 	 * @uml.property  name="photo"
-	 * @uml.associationEnd  inverse="takePhoto:model.Photo"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="photoList:model.Photo"
 	 */
-	private Photo photo;
+	private Collection<Photo> photo;
 
 	/**
 	 * Getter of the property <tt>photo</tt>
 	 * @return  Returns the photo.
 	 * @uml.property  name="photo"
 	 */
-	public Photo getPhoto() {
+	public Collection<Photo> getPhoto() {
 		return photo;
 	}
 
@@ -25,7 +25,7 @@ public class TakePhoto implements FController {
 	 * @param photo  The photo to set.
 	 * @uml.property  name="photo"
 	 */
-	public void setPhoto(Photo photo) {
+	public void setPhoto(Collection<Photo> photo) {
 		this.photo = photo;
 	}
 

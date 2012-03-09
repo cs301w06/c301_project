@@ -1,7 +1,5 @@
-package view;
+package cs.c301.project;
 
-import controller.PhotoController;
-import model.Photo;
 
 
 /**

@@ -1,8 +1,7 @@
-package controller;
+package cs.c301.project;
 
 import java.util.Collection;
-import model.Photo;
-import view.ComparePhotoResult;
+
 
 
 public class comparephoto implements FController {
