@@ -2,9 +2,31 @@ package cs.c301.project;
 
 import java.util.Collection;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class SearchPhoto implements FView {
 
+public class SearchPhoto extends Activity implements FView {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.search);
+
+		/* Camera button to direct to CameraView page */
+		Button backButton = (Button) findViewById(R.id.search_back);
+		backButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(SearchPhoto.this, MainView.class);
+				startActivity(intent);				
+			}
+
+		});
+	}
 	/**
 	 * @uml.property  name="photo"
 	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="searchPhoto:model.Photo"
@@ -54,3 +76,4 @@ public class SearchPhoto implements FView {
 	}
 
 }
+

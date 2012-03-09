@@ -12,5 +12,7 @@
     <string name="delete">Delete Photo</string>
     <string name="compare">Compare Photo</string>
     <string name="tag">Tag Photo</string>
+    <string name="advancesearch">Advanced Search</string>
+    <string name="photocompare">Photo Comparison</string>
 
 </resources>
