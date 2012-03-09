@@ -4,6 +4,7 @@ import java.util.Collection;
 import model.Photo;
 import view.MainView;
 import view.SearchPhotoResult;
+//import view.SearchPhotoResult;
 
 
 public class searchphoto implements FController {

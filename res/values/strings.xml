@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">CS301W06_Project</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
+    <string name="add">Add</string>
+    <string name="take">Take Photo</string>
+    <string name="camera">Camera</string>
+    <string name="detail">Photo Details</string>
+    <string name="delete">Delete Photo</string>
+    <string name="compare">Compare Photo</string>
+    <string name="tag">Tag Photo</string>
+
+</resources>
