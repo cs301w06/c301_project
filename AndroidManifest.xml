@@ -20,7 +20,7 @@
         </activity>
         <activity android:name="CameraView" >
         </activity>
-        <activity android:name="SearchPhoto" >
+        <activity android:name="SearchPhotoView" >
         </activity>
         <activity android:name="PartsListView" >
         </activity>
