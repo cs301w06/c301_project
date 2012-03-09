@@ -8,16 +8,15 @@
         android:id="@+id/group_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Group List" />
+        android:text="@string/camera" />
 
     <ImageView
         android:id="@+id/group_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/group_title"
-        android:layout_weight="0.50" >
+        android:layout_weight="0.50"
+        android:src="@drawable/ic_launcher" >
     </ImageView>
 
     <LinearLayout
