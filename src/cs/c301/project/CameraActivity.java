@@ -1,4 +1,4 @@
-package cs.c301.project;
+/*package cs.c301.project;
 
 import java.io.File;
 
@@ -17,7 +17,7 @@ public class CameraActivity extends Activity {
 	
 	Uri imageUri;
 	
-    /** Called when the activity is first created. */
+    /** Called when the activity is first created. 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         
@@ -72,3 +72,4 @@ public class CameraActivity extends Activity {
 		}
 	}
 }
+*/
