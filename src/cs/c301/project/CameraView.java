@@ -76,7 +76,7 @@ public class CameraView extends Activity implements FView {
 		}
 		
 		// create a path/name for new pics, in form of time.jpg
-		String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + "jpg";
+		String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
 		File imageFile = new File(imageFilePath);
 		//creating uri
 		imageUri = Uri.fromFile(imageFile);
@@ -102,6 +102,7 @@ public class CameraView extends Activity implements FView {
 				ImageView photoView = (ImageView) findViewById(R.id.camera_image);
 				// get image and show it on the image button
 				photoView.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
+				
 				
 				
 			}
