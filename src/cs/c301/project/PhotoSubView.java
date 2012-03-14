@@ -1,12 +1,44 @@
 package cs.c301.project;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.view.View;
 
 
 /**
  * @uml.dependency   supplier="model.Photo"
  */
-public class PhotoSubView implements FView {
+public class PhotoSubView extends Activity implements FView {
+	
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.sub_list);
+		
+		GridView gridview = (GridView) findViewById(R.id.sub_list);
+	    gridview.setAdapter(new ImageAdapter(this));
+
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	        	
+	        }
+	    });
+
+/*
+* TODO
+* 	A lot of things will have to be moved around
+* 	Likely that our bmp array will have to be moved out of the adapter into a controller
+* 	to work properly. Also it is untested and some of the code was taken from the
+* 	gridview tutorial, so there may be other issues to work out.
+* 	Linking issues, such as how will the subView be passed the folder name?
+* 	Where do we add the code to populate the bmp array?
+*/
+	}
+	
 	/**
 	 * @uml.property  name="photoController"
 	 * @uml.associationEnd  inverse="photoSubView:controller.PhotoController"
