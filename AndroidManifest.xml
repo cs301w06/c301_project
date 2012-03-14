@@ -24,6 +24,8 @@
         </activity>
         <activity android:name="PartsListView" >
         </activity>
+        <activity android:name="PhotoReview" >
+        </activity>
     </application>
 
 </manifest>

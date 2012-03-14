@@ -19,4 +19,21 @@
         android:layout_alignParentRight="true"
         android:text="Keep" />
 
+    <ImageView
+        android:id="@+id/rev_photo"
+        android:layout_width="300dp"
+        android:layout_height="225dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/rev_photoCompare"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/rev_photo"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/ic_launcher" />
+
 </RelativeLayout>
