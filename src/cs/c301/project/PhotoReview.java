@@ -1,16 +1,14 @@
 package cs.c301.project;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class PhotoReview extends Activity implements FView {
 
@@ -18,33 +16,42 @@ public class PhotoReview extends Activity implements FView {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
-		
-		/* ImageView of photo */
-		ImageView reviewPhoto = (ImageView) findViewById(R.id.rev_photo);
-		reviewPhoto.setImageDrawable(Drawable.createFromPath(Photo.getPhoto("tmp", "temp").getPath()));
+
+		/* Review of photo */
+		final String folderTmp = "tmp";
+		final String fileTemp = "temp";
+		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
+		reviewPhoto.setImageDrawable(Drawable.createFromPath(Photo.getPhoto(folderTmp, fileTemp).getPath()));
+
+		/* Comparasion photo */
+		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
+
 		/* Discard button */
-		Button discardButton = (Button) findViewById(R.id.rev_disc);
+		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				// TODO delete photo from sd card
+
 			}
-			
+
 		});
-		
+
 		/* Select group and keep button */
-		final Button keepButton = (Button) findViewById(R.id.rev_keep);
+		final Button keepButton = (Button) findViewById(R.id.review_keep);
 		keepButton.setText("Select Group");
 		keepButton.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View arg0) {
 				// TODO select group button
-				// TODO save the changes to a good place
+				String folderPath = "Group"; // Placeholder for now, will replace with actual group
+				String filePath = "Name";
+				Photo.savePhoto(folderPath, filePath);
+				Photo.deletePhoto(folderTmp, fileTemp);
 				keepButton.setText("Keep");
 			}
 		});
 	}
-	
+
 	/**
 	 * @uml.property  name="photo"
 	 * @uml.associationEnd  inverse="photoReview:model.Photo"

@@ -3,37 +3,42 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <Button
-        android:id="@+id/rev_disc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Discard" />
-
-    <Button
-        android:id="@+id/rev_keep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Keep" />
-
     <ImageView
-        android:id="@+id/rev_photo"
+        android:id="@+id/review_photo"
         android:layout_width="300dp"
-        android:layout_height="225dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_launcher" />
 
     <ImageView
-        android:id="@+id/rev_photoCompare"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/rev_photo"
+        android:id="@+id/review_photoCompare"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="25dp"
+        android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/review_disc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="@string/discard" />
+
+        <Button
+            android:id="@+id/review_keep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Select Group" />
+    </LinearLayout>
 
 </RelativeLayout>

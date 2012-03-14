@@ -32,6 +32,15 @@ public class Photo implements FModel {
 		Uri imageUri = Uri.fromFile(imageFile);
 	}
 	
+	public static void deletePhoto(String folderName, String fileName) {
+		
+		String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + folderName;
+		String imageFilePath = folder + "/" + fileName + ".jpg";
+		File imageFile = new File(imageFilePath);
+		imageFile.delete();
+		
+	}
+	
 	/**
 	 * @uml.property  name="tag"
 	 */
