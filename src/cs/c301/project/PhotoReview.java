@@ -43,10 +43,6 @@ public class PhotoReview extends Activity implements FView {
 
 			public void onClick(View arg0) {
 				// TODO select group button
-				String folderPath = "Group"; // Placeholder for now, will replace with actual group
-				String filePath = "Name";
-				Photo.savePhoto(folderPath, filePath);
-				Photo.deletePhoto(folderTmp, fileTemp);
 				keepButton.setText("Keep");
 			}
 		});
