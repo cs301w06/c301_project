@@ -1,10 +1,37 @@
 package cs.c301.project;
 
+import java.io.File;
 import java.util.Collection;
+import android.net.Uri;
+import android.os.Environment;
 
 
 public class Photo implements FModel {
+	
+	public static Uri getPhoto(String folderName, String fileName) {
+		
+		String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + folderName;
+		String imageFilePath = folder + "/" + fileName + ".jpg";
+		File imageFile = new File(imageFilePath);
+		Uri imageUri = Uri.fromFile(imageFile);
+		
+		return imageUri;
+	}
+	
+	public static void savePhoto(String folderName, String fileName) {
+		
+		String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + folderName;
+		File folderF = new File(folder);
 
+		if(!folderF.exists()){
+			folderF.mkdir();
+		}
+		
+		String imageFilePath = folder + "/" + fileName + ".jpg";
+		File imageFile = new File(imageFilePath);
+		Uri imageUri = Uri.fromFile(imageFile);
+	}
+	
 	/**
 	 * @uml.property  name="tag"
 	 */

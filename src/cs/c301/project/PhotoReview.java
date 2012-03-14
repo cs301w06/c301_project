@@ -1,17 +1,16 @@
 package cs.c301.project;
 
-import java.io.File;
-
 import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class PhotoReview extends Activity implements FView {
 
@@ -22,8 +21,7 @@ public class PhotoReview extends Activity implements FView {
 		
 		/* ImageView of photo */
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.rev_photo);
-		reviewPhoto.setImageDrawable(Drawable.createFromPath(getPhotoPath().getPath()));
-		
+		reviewPhoto.setImageDrawable(Drawable.createFromPath(Photo.getPhoto("tmp", "temp").getPath()));
 		/* Discard button */
 		Button discardButton = (Button) findViewById(R.id.rev_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
@@ -36,27 +34,17 @@ public class PhotoReview extends Activity implements FView {
 		
 		/* Select group and keep button */
 		final Button keepButton = (Button) findViewById(R.id.rev_keep);
+		keepButton.setText("Select Group");
 		keepButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View arg0) {
-				Intent intent = new Intent(PhotoReview.this, PartsListView.class);
-				keepButton.setText("Keep");
-				startActivity(intent);
+				// TODO select group button
 				// TODO save the changes to a good place
+				keepButton.setText("Keep");
 			}
 		});
 	}
 	
-	private Uri getPhotoPath() {
-		Uri imageUri;
-		String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
-		String imageFilePath = folder + "/" + "temp" + ".jpg";
-		File imageFile = new File(imageFilePath);
-		imageUri = Uri.fromFile(imageFile);
-		
-		return imageUri;
-		
-	}
 	/**
 	 * @uml.property  name="photo"
 	 * @uml.associationEnd  inverse="photoReview:model.Photo"

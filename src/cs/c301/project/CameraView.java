@@ -1,24 +1,15 @@
 package cs.c301.project;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
-
-
 
 public class CameraView extends Activity implements FView {
-	Uri imageUri;
-
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,17 +26,21 @@ public class CameraView extends Activity implements FView {
 
 		});
 		
-		
-		
+		/* Take photo button direct to camera page */
 		Button takePhotoButton = (Button) findViewById(R.id.camera_take);
-		OnClickListener listener = new OnClickListener(){
+		takePhotoButton.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
+			public void onClick(View arg0) {
+				
+				/* Save into temporary folder */
+				String folder = "tmp";
+				String file = "temp"; // change later
+				Photo.savePhoto(folder, file);
 				getPhoto();
 			}
 			
-		};
-		takePhotoButton.setOnClickListener(listener);
+		});
+		
 	}
 	/**
 	 * @uml.property  name="photo"
@@ -60,31 +55,14 @@ public class CameraView extends Activity implements FView {
 	 */
 	
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	protected void getPhoto() {
-		// TODO Auto-generated method stub
-		//Intent to capture a pic
+	
+    protected void getPhoto() {
+
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		// create abslute path
-		String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
 		
-		File folderF = new File(folder);
-		//check the folder exists, otherwise create one
-		if(!folderF.exists()){
-			
-			folderF.mkdir();
-			
-		}
-		
-		// create a path/name for new pics, in form of time.jpg
-		String imageFilePath = folder + "/" + "temp" + ".jpg";
-		File imageFile = new File(imageFilePath);
-		//creating uri
-		imageUri = Uri.fromFile(imageFile);
-		
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-		// start activity and get result
+		Photo.savePhoto("tmp", "temp");
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Photo.getPhoto("tmp", "temp"));
 		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);		
-			
 		
 	}
 
@@ -93,35 +71,16 @@ public class CameraView extends Activity implements FView {
 	 * @param photo  The photo to set.
 	 * @uml.property  name="photo"
 	 */
-	// handle result
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+		
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			
-			if (resultCode == RESULT_OK){
-				ImageView photoView = (ImageView) findViewById(R.id.camera_image);
-				// get image and show it on the image button
-				photoView.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
-				
-				/* added for debugging */
+			if (resultCode == RESULT_OK) {
 				Intent aIntent = new Intent(CameraView.this, PhotoReview.class);
 				startActivity(aIntent);
 			}
+			
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
