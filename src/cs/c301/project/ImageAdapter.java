@@ -68,6 +68,8 @@ public class ImageAdapter extends BaseAdapter {
 	          File image = imageFiles[i];
 	          imagePaths[i] = image.getAbsolutePath();
 	        }
+	        
+	        imageGallery(imagePaths);
 	    }
 	    
 	    /*
