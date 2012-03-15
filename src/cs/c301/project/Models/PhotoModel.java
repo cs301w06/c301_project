@@ -31,6 +31,7 @@ public class PhotoModel implements Serializable {
 		tracker = 0;
 		
 		try {
+			//TODO: check if the image still exists or not; purge otherwise
 			File file = new File("data");
 			
 			if (file.exists()) {

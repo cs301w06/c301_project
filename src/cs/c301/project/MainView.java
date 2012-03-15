@@ -3,6 +3,7 @@ package cs.c301.project;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,7 +33,8 @@ public class MainView extends Activity implements FView {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, GroupList.class);
-				startActivity(intent);				
+				intent.putExtra("path", Environment.getExternalStorageDirectory().getAbsolutePath());
+				startActivity(intent);
 			}
 
 		});
