@@ -92,49 +92,49 @@ public class Photo implements FModel {
 	 * @uml.property  name="partsListView"
 	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="photo:view.PartsListView"
 	 */
-	private Collection<PartsListView> partsListView;
+	//private Collection<PartsListView> partsListView;
 
 	/**
 	 * Getter of the property <tt>partsListView</tt>
 	 * @return  Returns the partsListView.
 	 * @uml.property  name="partsListView"
 	 */
-	public Collection<PartsListView> getPartsListView() {
+	/*public Collection<PartsListView> getPartsListView() {
 		return partsListView;
-	}
+	}*/
 
 	/**
 	 * Setter of the property <tt>partsListView</tt>
 	 * @param partsListView  The partsListView to set.
 	 * @uml.property  name="partsListView"
 	 */
-	public void setPartsListView(Collection<PartsListView> partsListView) {
+	/*public void setPartsListView(Collection<PartsListView> partsListView) {
 		this.partsListView = partsListView;
-	}
+	}*/
 
 	/**
 	 * @uml.property  name="partsListView1"
 	 * @uml.associationEnd  inverse="photo1:view.PartsListView"
 	 */
-	private PartsListView partsListView1;
+	//private PartsListView partsListView1;
 
 	/**
 	 * Getter of the property <tt>partsListView1</tt>
 	 * @return  Returns the partsListView1.
 	 * @uml.property  name="partsListView1"
 	 */
-	public PartsListView getPartsListView1() {
+	/*public PartsListView getPartsListView1() {
 		return partsListView1;
-	}
+	}*/
 
 	/**
 	 * Setter of the property <tt>partsListView1</tt>
 	 * @param partsListView1  The partsListView1 to set.
 	 * @uml.property  name="partsListView1"
 	 */
-	public void setPartsListView1(PartsListView partsListView1) {
+	/*public void setPartsListView1(PartsListView partsListView1) {
 		this.partsListView1 = partsListView1;
-	}
+	}*/
 
 	/**
 	 * @uml.property  name="photoReview"

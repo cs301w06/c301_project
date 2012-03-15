@@ -31,7 +31,7 @@ public class MainView extends Activity implements FView {
 		listButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Intent intent = new Intent(MainView.this, PartsListView.class);
+				Intent intent = new Intent(MainView.this, GroupList.class);
 				startActivity(intent);				
 			}
 

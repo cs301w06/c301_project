@@ -56,7 +56,7 @@ public class GroupList extends ListActivity implements PhotoModelListener {
 			}
 		});
 		
-		Button addGroupButton = (Button)findViewById(R.id.addgroup);
+		Button addGroupButton = (Button)findViewById(R.id.searchgroup);
 		addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 requestUserInput();
