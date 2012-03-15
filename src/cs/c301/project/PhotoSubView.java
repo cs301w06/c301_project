@@ -3,6 +3,7 @@ package cs.c301.project;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.view.View;
@@ -12,12 +13,20 @@ import android.view.View;
  * @uml.dependency   supplier="model.Photo"
  */
 public class PhotoSubView extends Activity implements FView {
-	
+	private String folderName = "tmp";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sub_list);
+		
+		Bundle extra = getIntent().getExtras();
+		
+		String filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
+		
+		TextView title = new TextView(this);
+		title = (TextView)findViewById(R.id.sub_group);
+		title.setText(folderName);
 		
 		GridView gridview = (GridView) findViewById(R.id.sub_list);
 	    gridview.setAdapter(new ImageAdapter(this));
