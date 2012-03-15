@@ -5,12 +5,8 @@
 
 package cs.c301.project;
 
-import java.io.File;
-
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -60,9 +56,5 @@ public class ImageAdapter extends BaseAdapter {
 	       //imageView.setImageBitmap(bm);
 	        return imageView;
 	    }
-	    
-	    /*
-	     * Given a folder path, finds the paths for all photos within the file and stores them
-	     */
 	    
 }
