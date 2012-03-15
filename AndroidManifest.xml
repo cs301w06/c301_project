@@ -28,7 +28,10 @@
         </activity>
         <activity android:name="PhotoReview" >
         </activity>
-        <activity android:name="GroupList"></activity>
+        <activity android:name="GroupList">      
+        </activity>
+        <activity android:name="PhotoSubView">
+        </activity>
     </application>
 
 </manifest>
