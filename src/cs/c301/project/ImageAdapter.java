@@ -22,10 +22,10 @@ public class ImageAdapter extends BaseAdapter {
 	 
 	 	// Empty array for containing the photos we will display
 	 	// Will probably want to move elsewhere, here as a place holder
-	    private Bitmap[] mThumbBmp = new Bitmap[2];
-	    private String folderName = "tmp"; 
+	    private Bitmap[] mThumbBmp;
 
-	    public ImageAdapter(Context c) {
+	    public ImageAdapter(Context c, Bitmap[] bmpArray) {
+	    	mThumbBmp = bmpArray;
 	        mContext = c;
 	    }
 
@@ -45,7 +45,7 @@ public class ImageAdapter extends BaseAdapter {
 	    // **Adapted from the gridView tutorial, may have issues
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        ImageView imageView;
-	        getPaths(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + folderName + File.separator);
+	        //getPaths(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + folderName + File.separator);
 	        if (convertView == null) {  // if it's not recycled, initialize some attributes
 	            imageView = new ImageView(mContext);
 	            imageView.setLayoutParams(new GridView.LayoutParams(100, 100));
@@ -64,28 +64,5 @@ public class ImageAdapter extends BaseAdapter {
 	    /*
 	     * Given a folder path, finds the paths for all photos within the file and stores them
 	     */
-	    public void getPaths(String path){
-	    	File folder = new File(path);
-	    	File[] imageFiles = folder.listFiles();
-	    	String[] imagePaths = new String[imageFiles.length];
-	    	
-	        for(int i = 0; i < imageFiles.length; i++)
-	        {
-	          File image = imageFiles[i];
-	          imagePaths[i] = image.getAbsolutePath();
-	        }
-	        
-	        imageGallery(imagePaths);
-	    }
 	    
-	    /*
-	     * Builds the photo gallery by creating an array of bmps
-	     * May currently be out of order, won't know until testing
-	     */
-	    public void imageGallery(String[] imagePaths){
-	    	//mThumbBmp = new Bitmap[imagePaths.length];
-	    	
-	    	for(int i = 0; i < imagePaths.length; i++)
-	    		mThumbBmp[i] = BitmapFactory.decodeFile(imagePaths[i]);
-	    }
 }
