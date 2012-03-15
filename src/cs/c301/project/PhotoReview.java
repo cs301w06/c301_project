@@ -1,17 +1,29 @@
 package cs.c301.project;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class PhotoReview extends Activity implements FView {
-
+	ListView partlist;
+	Button keepButton;
+	ProgressDialog p;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,16 +49,84 @@ public class PhotoReview extends Activity implements FView {
 		});
 
 		/* Select group and keep button */
-		final Button keepButton = (Button) findViewById(R.id.review_keep);
+		keepButton = (Button) findViewById(R.id.review_keep);
 		keepButton.setText("Select Group");
-		keepButton.setOnClickListener(new OnClickListener() {
+		keepButton.setOnClickListener(new Button.OnClickListener(){
 
-			public void onClick(View arg0) {
-				// TODO select group button
-				keepButton.setText("Keep");
+			public void onClick(View v) {
+		        System.out.println("asd");
+				Builder dialog = new AlertDialog.Builder(PhotoReview.this);
+				ShowLoginDialog();
 			}
+			
+			
+			
+			
 		});
 	}
+	
+	private void ShowLoginDialog()
+
+    {
+        System.out.println("123");
+
+        Builder builder = new AlertDialog.Builder(PhotoReview.this);
+
+        builder.setTitle("pickPart");
+
+        LayoutInflater factory = LayoutInflater.from(PhotoReview.this);
+
+        View dialogView  = factory.inflate(R.layout.dialog, null);
+
+        partlist =(ListView)dialogView.findViewById(R.id.listpart);
+
+        GetPart();
+
+        builder.setView(dialogView);
+
+        builder.show();
+
+    }
+	
+	private void GetPart()
+
+    {
+
+        System.out.println("asd");
+
+        ArrayList<HashMap<String, String>> listData = new ArrayList<HashMap<String,String>>();
+
+        HashMap<String, String> hmItem = new HashMap<String, String>();
+
+        hmItem.put("part", "Face");
+
+        listData.add(hmItem);
+
+        hmItem = new HashMap<String, String>();
+
+        hmItem.put("part", "Feet");
+
+        listData.add(hmItem);
+
+        hmItem = new HashMap<String, String>();
+
+        hmItem.put("part", "Hair");
+
+        listData.add(hmItem);
+
+        hmItem = new HashMap<String, String>();
+
+        hmItem.put("part", "Arm");
+
+        listData.add(hmItem);
+        
+        SimpleAdapter sim = new SimpleAdapter(this, listData, android.R.layout.simple_list_item_1, new String[]{"part"}, new int[]{android.R.id.text1});
+
+        partlist.setAdapter(sim);
+
+    }
+	
+	
 
 	/**
 	 * @uml.property  name="photo"
