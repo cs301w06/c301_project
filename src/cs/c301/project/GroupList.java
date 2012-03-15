@@ -53,14 +53,14 @@ public class GroupList extends ListActivity {
 			}
 		});
 		
-		Button addGroupButton = (Button)findViewById(R.id.addgroup);
+		Button addGroupButton = (Button)findViewById(R.id.searchgroup);
 		addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 requestUserInput();
             }
         });
 		
-		Button searchButton = (Button)findViewById(R.id.search);
+		Button searchButton = (Button)findViewById(R.id.searchgroup);
 		searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SearchPhotoView.class);

@@ -5,7 +5,6 @@
 package cs.c301.project;
 
 import java.io.File;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 

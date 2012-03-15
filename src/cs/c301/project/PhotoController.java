@@ -123,7 +123,7 @@ public class PhotoController implements FController {
 	 * @uml.property  name="partsListView"
 	 * @uml.associationEnd  inverse="photoController:view.PartsListView"
 	 */
-	private PartsListView partsListView;
+	//private PartsListView partsListView;
 
 
 
@@ -132,9 +132,9 @@ public class PhotoController implements FController {
 	 * @return  Returns the partsListView.
 	 * @uml.property  name="partsListView"
 	 */
-	public PartsListView getPartsListView() {
-		return partsListView;
-	}
+	//public PartsListView getPartsListView() {
+	//	return partsListView;
+	//}
 
 
 	/**
@@ -142,9 +142,9 @@ public class PhotoController implements FController {
 	 * @param partsListView  The partsListView to set.
 	 * @uml.property  name="partsListView"
 	 */
-	public void setPartsListView(PartsListView partsListView) {
-		this.partsListView = partsListView;
-	}
+	//public void setPartsListView(PartsListView partsListView) {
+	//	this.partsListView = partsListView;
+	//}
 
 
 
