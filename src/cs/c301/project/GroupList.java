@@ -1,13 +1,13 @@
 package cs.c301.project;
 
 import java.io.File;
+import java.util.Vector;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -16,15 +16,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Utilities.DirectoryFilter;
 
-public class GroupList extends ListActivity {
+public class GroupList extends ListActivity implements PhotoModelListener {
 	private File location;
 	private File[] items;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		//getApplication().addPhotoModelListener(this);
 		
 		//the filepath for the storage path is stored in this intent
 		Bundle extra = getIntent().getExtras();
@@ -60,7 +63,7 @@ public class GroupList extends ListActivity {
             }
         });
 		
-		Button searchButton = (Button)findViewById(R.id.search);
+		Button searchButton = (Button)findViewById(R.id.searchgroup);
 		searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SearchPhotoView.class);
@@ -90,8 +93,9 @@ public class GroupList extends ListActivity {
 						for (int i = 0; i < items.length; i++) {
 							names[i] = items[i].getName();
 						}
-	
-						setListAdapter(new ArrayAdapter<String>(this, R.layout.grouplist, R.id.grouplistview, names));
+						
+						//not sure why this doesnt work yet, must have something to do with the android version api
+						//setListAdapter(new ArrayAdapter<String>(this, R.layout.grouplist, R.id.grouplistview, names));
 	
 						Toast.makeText(getApplicationContext(), newGroupName + " has been successfully added to the group list.", Toast.LENGTH_SHORT).show();
 					} else {
@@ -113,5 +117,20 @@ public class GroupList extends ListActivity {
     	});
 	
 		newGroupDialog.show();
+	}
+
+	public void photosChanged(Vector<PhotoEntry> photos) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void tagsChanged(Vector<String> tags) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void groupsChanged(Vector<String> groups) {
+		// TODO Auto-generated method stub
+		
 	}
 }

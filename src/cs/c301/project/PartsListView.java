@@ -18,23 +18,23 @@ public class PartsListView extends Activity implements FView {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.group_list);
+		setContentView(R.layout.grouplist);
 
-		/* Back button to direct to MainView page */
-		Button backButton = (Button) findViewById(R.id.group_back);
-		backButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent = new Intent(PartsListView.this, MainView.class);
-				startActivity(intent);				
-			}
-
-		});
+//		/* Back button to direct to MainView page */
+//		Button backButton = (Button) findViewById(R.id.group_back);
+//		backButton.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+//				Intent intent = new Intent(PartsListView.this, MainView.class);
+//				startActivity(intent);				
+//			}
+//
+//		});
 
 		/* TODO: Add button needs to be directed to adding subgroup */
 		
 		/* Search button to direct to Search page */
-		Button searchButton = (Button) findViewById(R.id.group_search);
+		Button searchButton = (Button) findViewById(R.id.searchgroup);
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
