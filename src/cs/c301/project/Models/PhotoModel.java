@@ -145,6 +145,11 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 	}
 	
+	//TODO: this function will update tags, update groups, update the storage location, and update the image itself all based on whether they are null or not, id is used to match
+	public void updatePhoto(PhotoEntry entry) {
+		
+	}
+	
 	public void removePhoto(int id) {
 		int toRemove = -1;
 		

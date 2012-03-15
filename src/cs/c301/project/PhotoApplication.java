@@ -47,4 +47,8 @@ public class PhotoApplication extends Application {
 	public void removeGroup(String group) {
 		model.removeGroup(group.trim());
 	}
+	
+	public void updatePhoto(PhotoEntry entry) {
+		model.updatePhoto(entry);
+	}
 }
