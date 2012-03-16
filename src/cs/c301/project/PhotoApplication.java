@@ -54,7 +54,11 @@ public class PhotoApplication extends Application {
 		model.updatePhoto(entry);
 	}
 	
-	public static String hello() {
-		return "Hello";
+	public static PhotoEntry getTemporaryImage() {
+		return model.getTemporaryImage();
+	}
+	
+	public static PhotoEntry getLatestImage() {
+		return model.getLatestImage();
 	}
 }

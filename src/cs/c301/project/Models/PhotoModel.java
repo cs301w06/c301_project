@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
@@ -17,11 +18,11 @@ import cs.c301.project.Listeners.PhotoModelListener;
 @SuppressWarnings("serial")
 public class PhotoModel implements Serializable {
 	private Vector<PhotoModelListener> listeners;
-	private Vector<String> tags;
-	private Vector<String> groups;
-	private Vector<PhotoEntry> data;
-	private int tracker;
-	private String filePath;
+	private Vector<String> tags; //stores tags data
+	private Vector<String> groups; //stores groups data
+	private Vector<PhotoEntry> data; //stores photo data
+	private int tracker; //for a new photo id
+	private String filePath; //external sd card address passed down
 	
 	@SuppressWarnings("unchecked")
 	public PhotoModel(File f) {
@@ -74,8 +75,46 @@ public class PhotoModel implements Serializable {
 		}
 		
 		catch (Exception e) {}
+		
+		//make the temporary folder if it doesnt exist
+		File file = new File(filePath + File.separator + "tmp");
+		
+		if (!file.exists())
+			file.mkdir();
 	}
-
+	
+	public PhotoEntry getTemporaryImage() {
+		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
+		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
+		
+		return entry;
+	}
+	
+	public PhotoEntry getLatestImage() {
+		int id = -1;
+		Date latestDate = null;
+		
+		for (int i = 0; i < data.size(); i++) {
+			if (latestDate == null) {
+				data.elementAt(i).getDate();
+				id = i;
+			} else {
+				Date tempDate = data.elementAt(i).getDate();
+				
+				if (tempDate.compareTo(latestDate) > 0) {
+					id = i;
+					latestDate = tempDate;
+				}
+			}
+		}
+		
+		if (id != -1) {
+			return data.elementAt(id);
+		}
+		
+		return null;
+	}
+	
 	public Vector<String> getGroups() {
 		return groups;
 	}
@@ -133,23 +172,29 @@ public class PhotoModel implements Serializable {
 	}
 	
 	public void addPhoto(PhotoEntry photo) {
-		try {
-			photo.setID(tracker);
-			photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
+		photo.setID(tracker);
 		
+		//make folder exist
+		File test = new File(filePath + File.separator + photo.getGroup());
+		if (!test.exists())
+			test.mkdir();
+		
+		photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
+		
+		try {
 			File file = new File(photo.getFilePath());
 			OutputStream output = new FileOutputStream(file);
     		photo.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, output);
     		output.close();
     		photo.deleteBitmap();
-		
-			data.add(photo);
-			tracker++;
-			
-			updateModelListeners();
 		}
 		
 		catch (Exception e) {}
+			
+		data.add(photo);
+		tracker++;
+		
+		updateModelListeners();
 	}
 	
 	//TODO: this function will update tags, update groups, update the storage location, and update the image itself all based on whether they are null or not, id is used to match
