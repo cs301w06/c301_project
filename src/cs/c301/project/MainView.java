@@ -54,7 +54,6 @@ public class MainView extends Activity {
 			
 		});
 
-		/** List button to direct to PartsListView page */
 		Button listButton = (Button) findViewById(R.id.main_list);
 		listButton.setOnClickListener(new OnClickListener() {
 
@@ -64,7 +63,6 @@ public class MainView extends Activity {
 			}
 		});
 		
-		/** Search button to direct to SearchPhoto page */
 		Button searchButton = (Button) findViewById(R.id.main_search);
 		searchButton.setOnClickListener(new OnClickListener() {
 

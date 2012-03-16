@@ -36,15 +36,9 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
 
-		/** 
-		 * Image view of the most recent photo taken
-		 */
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
 		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
 
-		/**
-		 * Comparision image view of recent photo taken 
-		 */
 		//ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 
 		/** 
@@ -52,9 +46,6 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		 */
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 
-		/**
-		 * Allow user to discard the photo currently on screen
-		 */
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -64,10 +55,6 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 
 		});
 
-		/**
-		 *  Allow user to choose group for the current on screen photo
-		 *  and will save into chosen group
-		 */
 		keepButton = (Button) findViewById(R.id.review_keep);
 		keepButton.setText("Select Group");
 		keepButton.setOnClickListener(new Button.OnClickListener(){
