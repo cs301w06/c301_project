@@ -6,6 +6,11 @@ import cs.c301.project.Listeners.PhotoModelListener;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * SearchPhotoView will allow the user to search photo by tag
+ * group and date of the photo
+ *
+ */
 public class SearchPhotoView extends Activity implements PhotoModelListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -14,44 +19,28 @@ public class SearchPhotoView extends Activity implements PhotoModelListener {
 		/* TODO: Link to advanced search screen */
 	}
 	
+	/**
+	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
+	 */
 	public void photosChanged(Vector<PhotoEntry> photos) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
+	 */
 	public void tagsChanged(Vector<String> tags) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/** 
+	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
+	 */
 	public void groupsChanged(Vector<String> groups) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/**
-	 * @uml.property  name="mainView"
-	 * @uml.associationEnd  inverse="searchPhotoView:cs.c301.project.MainView"
-	 */
-	private MainView mainView;
-
-	/**
-	 * Getter of the property <tt>mainView</tt>
-	 * @return  Returns the mainView.
-	 * @uml.property  name="mainView"
-	 */
-	public MainView getMainView() {
-		return mainView;
-	}
-
-	/**
-	 * Setter of the property <tt>mainView</tt>
-	 * @param mainView  The mainView to set.
-	 * @uml.property  name="mainView"
-	 */
-	public void setMainView(MainView mainView) {
-		this.mainView = mainView;
-	}
-
 }
 
