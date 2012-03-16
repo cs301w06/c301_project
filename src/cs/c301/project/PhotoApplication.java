@@ -57,8 +57,4 @@ public class PhotoApplication extends Application {
 	public static PhotoEntry getTemporaryImage() {
 		return model.getTemporaryImage();
 	}
-	
-	public static PhotoEntry getLatestImage() {
-		return model.getLatestImage();
-	}
 }

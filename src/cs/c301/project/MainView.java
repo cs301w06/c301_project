@@ -34,13 +34,12 @@ public class MainView extends Activity {
 //				String file = "temp"; // change later
 //				Photo.savePhoto(folder, file);
 //				getPhoto();
-					
+				
 				requestPhotoCapture();
 			}
 			
 		});
 
-		
 		/* List button to direct to PartsListView page */
 		Button listButton = (Button) findViewById(R.id.main_list);
 		listButton.setOnClickListener(new OnClickListener() {
@@ -63,7 +62,6 @@ public class MainView extends Activity {
 		});
 	}
 	
-	
 	public void requestPhotoCapture() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -71,7 +69,6 @@ public class MainView extends Activity {
 		File imageFile = new File(entry.getFilePath());
 		Uri imageUri = Uri.fromFile(imageFile);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-		PhotoApplication.addPhoto(entry);
 		
 		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);		
 	}
