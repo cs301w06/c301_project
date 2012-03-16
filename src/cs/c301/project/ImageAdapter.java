@@ -40,18 +40,32 @@ public class ImageAdapter extends BaseAdapter {
 	    }
 
 	    /**
+	     * Place holder for item getter, currently returns null
 	     * 
+	     * @param position Element position
+	     * @return Returns null
 	     */
 	    public Object getItem(int position) {
 	        return null;
 	    }
 
+	    /**
+	     * Place holder for item id getter
+	     * 
+	     * @param position Element position
+	     * @return Returns 0
+	     */
 	    public long getItemId(int position) {
 	        return 0;
 	    }
 
 	    /**
+	     * Creates out image view and inserts it into our grid view
 	     * 
+	     * @param position
+	     * @param convertView
+	     * @param parent
+	     * @return Returns the imageView inserted into our grid view
 	     */
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        ImageView imageView;
