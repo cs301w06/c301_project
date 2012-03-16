@@ -1,31 +1,26 @@
 package cs.c301.project;
 
+import java.util.Vector;
+import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Listeners.PhotoModelListener;
 
 
-public class ComparePhotoView implements FView {
 
-	/**
-	 * @uml.property  name="comparephoto"
-	 * @uml.associationEnd  inverse="comparePhotoResult:controller.comparephoto"
-	 */
-	private comparephoto comparephoto;
+public class ComparePhotoView implements PhotoModelListener {
 
-	/**
-	 * Getter of the property <tt>comparephoto</tt>
-	 * @return  Returns the comparephoto.
-	 * @uml.property  name="comparephoto"
-	 */
-	public comparephoto getComparephoto() {
-		return comparephoto;
+	public void photosChanged(Vector<PhotoEntry> photos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Setter of the property <tt>comparephoto</tt>
-	 * @param comparephoto  The comparephoto to set.
-	 * @uml.property  name="comparephoto"
-	 */
-	public void setComparephoto(comparephoto comparephoto) {
-		this.comparephoto = comparephoto;
+	public void tagsChanged(Vector<String> tags) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void groupsChanged(Vector<String> groups) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

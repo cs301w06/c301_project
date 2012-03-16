@@ -1,31 +1,27 @@
 package cs.c301.project;
 
+import java.util.Vector;
+
+import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Listeners.PhotoModelListener;
 
 
-public class PhotoCompare implements FView {
 
-	/**
-	 * @uml.property  name="photoController"
-	 * @uml.associationEnd  inverse="photocompare:controller.PhotoController"
-	 */
-	private PhotoController photoController;
+public class PhotoCompare implements PhotoModelListener {
 
-	/**
-	 * Getter of the property <tt>photoController</tt>
-	 * @return  Returns the photoController.
-	 * @uml.property  name="photoController"
-	 */
-	public PhotoController getPhotoController() {
-		return photoController;
+	public void photosChanged(Vector<PhotoEntry> photos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Setter of the property <tt>photoController</tt>
-	 * @param photoController  The photoController to set.
-	 * @uml.property  name="photoController"
-	 */
-	public void setPhotoController(PhotoController photoController) {
-		this.photoController = photoController;
+	public void tagsChanged(Vector<String> tags) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void groupsChanged(Vector<String> groups) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
