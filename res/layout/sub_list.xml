@@ -10,12 +10,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Subgroup List" />
-
+
     <GridView
         android:id="@+id/sub_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/sub_back"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sub_group"
         android:numColumns="3" >
@@ -30,13 +29,5 @@
         android:layout_below="@+id/sub_title"
         android:text="Group"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/sub_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Back" />
 
 </RelativeLayout>
