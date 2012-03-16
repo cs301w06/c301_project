@@ -16,16 +16,6 @@ public class SearchPhotoView extends Activity implements FView {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search);
 
-		/* Camera button to direct to CameraView page */
-		Button backButton = (Button) findViewById(R.id.search_back);
-		backButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent = new Intent(SearchPhotoView.this, MainView.class);
-				startActivity(intent);				
-			}
-
-		});
 		
 		/* TODO: Link to advanced search screen */
 	}
