@@ -26,14 +26,6 @@ public class MainView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		/**
-		 *  Camera button to direct to CameraView page 
-		 *  
-		 *  @parameters entry 	to get the temporary image
-		 *  @parameters imageUri 	Uri for image
-		 *  @parameters intent 	call the camera
-		 *  
-		 */
 		Button cameraButton = (Button) findViewById(R.id.main_camera);
 		cameraButton.setOnClickListener(new OnClickListener() {
 
