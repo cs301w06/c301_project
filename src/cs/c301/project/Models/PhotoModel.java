@@ -260,7 +260,8 @@ public class PhotoModel implements Serializable {
 	}
 	
 	/**
-	 * Removes a photo from our data and updates the model listeners. 
+	 * Finds a photo specified by an id in the data list. If the photo is found
+	 * in the list, it is removed and the listeners are updated.
 	 * 
 	 * @param id The unique id of the photo we wish to remove
 	 */
@@ -286,7 +287,8 @@ public class PhotoModel implements Serializable {
 	}
 	
 	/**
-	 * Adds a specific class to the model listener.
+	 * Adds a specific class to the model listener. Check to see if the listener already
+	 * exists within the listener list, and if it does not then add it.
 	 * 
 	 * @param listener Class which we want to listen to the model for changes
 	 */
@@ -298,10 +300,11 @@ public class PhotoModel implements Serializable {
 	}
 	
 	/**
-	 * Removes a specific class from the model listeners.
+	 * Removes a specific class from the model listeners. Check to see if the listener
+	 * exists in the listener list, and remove it if it does.
 	 * 
 	 * @param listener Class which we no longer want to listen for changes
-	 * @return Returns true if the listener is removed, returns false if the listener does not exist
+	 * @return true if the listener is removed, false if the listener does not exist
 	 */
 	public boolean removePhotoModelListener(PhotoModelListener listener) {
 		if (listeners.contains(listener)) {
