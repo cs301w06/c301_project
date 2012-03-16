@@ -36,7 +36,6 @@ public class MainView extends Activity implements FView {
 				intent.putExtra("path", Environment.getExternalStorageDirectory().getAbsolutePath());
 				startActivity(intent);
 			}
-
 		});
 		
 		/* Search button to direct to SearchPhoto page */
@@ -74,7 +73,4 @@ public class MainView extends Activity implements FView {
 	public void setSearchphoto(SearchPhotoView searchphoto) {
 		this.searchphoto = searchphoto;
 	}
-
-
-
 }

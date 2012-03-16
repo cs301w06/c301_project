@@ -1,20 +1,24 @@
 package cs.c301.project;
 
+import java.io.File;
+import java.util.Vector;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.view.View;
+import android.widget.TextView;
+import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Listeners.PhotoModelListener;
 
 
 /**
  * @uml.dependency   supplier="model.Photo"
  */
-public class PhotoSubView extends Activity implements FView {
+public class PhotoSubView extends Activity implements PhotoModelListener {
 	//private String folderName = "tmp";
 
 	@Override
@@ -32,6 +36,10 @@ public class PhotoSubView extends Activity implements FView {
 		title.setText(filepath);*/
 		
 		//Create an array of our photos
+		File file = new File(filepath);
+		TextView tv = (TextView)findViewById(R.id.sub_group);
+		tv.setText(file.getName());
+		
 		BitmapArrayController imageBmp = new BitmapArrayController(filepath);
 		String[] imagePaths = imageBmp.getPaths();
 		Bitmap[] bmpArray = imageBmp.imageGallery(imagePaths);
@@ -55,53 +63,20 @@ public class PhotoSubView extends Activity implements FView {
 * 	Where do we add the code to populate the bmp array?
 */
 	}
-	
-	/**
-	 * @uml.property  name="photoController"
-	 * @uml.associationEnd  inverse="photoSubView:controller.PhotoController"
-	 */
-	private PhotoController photoController;
 
-	/**
-	 * Getter of the property <tt>photoController</tt>
-	 * @return  Returns the photoController.
-	 * @uml.property  name="photoController"
-	 */
-	public PhotoController getPhotoController() {
-		return photoController;
+	public void photosChanged(Vector<PhotoEntry> photos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Setter of the property <tt>photoController</tt>
-	 * @param photoController  The photoController to set.
-	 * @uml.property  name="photoController"
-	 */
-	public void setPhotoController(PhotoController photoController) {
-		this.photoController = photoController;
+	public void tagsChanged(Vector<String> tags) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * @uml.property  name="photo"
-	 * @uml.associationEnd  inverse="photoSubView:model.Photo"
-	 */
-	private Photo photo;
-
-	/**
-	 * Getter of the property <tt>photo</tt>
-	 * @return  Returns the photo.
-	 * @uml.property  name="photo"
-	 */
-	public Photo getPhoto() {
-		return photo;
-	}
-
-	/**
-	 * Setter of the property <tt>photo</tt>
-	 * @param photo  The photo to set.
-	 * @uml.property  name="photo"
-	 */
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
+	public void groupsChanged(Vector<String> groups) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

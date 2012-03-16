@@ -1,6 +1,7 @@
 package cs.c301.project;
 
 import android.app.Application;
+import android.content.Context;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Models.PhotoModel;
@@ -9,46 +10,47 @@ public class PhotoApplication extends Application {
 
 	public static PhotoModel model;
 	
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		
+	public PhotoApplication() {
 		model = new PhotoModel();
 	}
 	
-	public void addPhotoModelListener(PhotoModelListener c) {
+	public static void addPhotoModelListener(PhotoModelListener c) {
 		model.addPhotoModelListener(c);
 	}
 	
-	public void removePhotoModelListener(PhotoModelListener c) {
+	public static void removePhotoModelListener(PhotoModelListener c) {
 		model.removePhotoModelListener(c);
 	}
 	
-	public void addPhoto(PhotoEntry entry) {
+	public static void addPhoto(PhotoEntry entry) {
 		model.addPhoto(entry);
 	}
 	
-	public void removePhoto(int entry) {
+	public static void removePhoto(int entry) {
 		model.removePhoto(entry);
 	}
 	
-	public void addTag(String tag) {
+	public static void addTag(String tag) {
 		model.addTag(tag.trim());
 	}
 	
-	public void removeTag(String tag) {
+	public static void removeTag(String tag) {
 		model.removeTag(tag.trim());
 	}
 	
-	public void addGroup(String group) {
+	public static void addGroup(String group) {
 		model.addGroup(group.trim());
 	}
 	
-	public void removeGroup(String group) {
+	public static void removeGroup(String group) {
 		model.removeGroup(group.trim());
 	}
 	
-	public void updatePhoto(PhotoEntry entry) {
+	public static void updatePhoto(PhotoEntry entry) {
 		model.updatePhoto(entry);
+	}
+	
+	public static String hello() {
+		return "Hello";
 	}
 }

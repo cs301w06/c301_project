@@ -1,6 +1,7 @@
 package cs.c301.project;
 
 import java.io.File;
+import java.util.Date;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -29,7 +30,6 @@ public class GroupList extends Activity implements PhotoModelListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grouplist);
-		//getApplication().addPhotoModelListener(this);
 		
 		//the filepath for the storage path is stored in this intent
 		Bundle extra = getIntent().getExtras();
@@ -134,7 +134,6 @@ public class GroupList extends Activity implements PhotoModelListener {
     }
     
 	public void photosChanged(Vector<PhotoEntry> photos) {
-		// TODO Auto-generated method stub
 		
 	}
 
