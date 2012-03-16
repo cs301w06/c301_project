@@ -1,18 +1,10 @@
 package cs.c301.project;
 
-import java.util.Collection;
 import java.util.Vector;
-
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-
 
 public class SearchPhotoView extends Activity implements PhotoModelListener {
 	@Override
@@ -35,6 +27,30 @@ public class SearchPhotoView extends Activity implements PhotoModelListener {
 	public void groupsChanged(Vector<String> groups) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * @uml.property  name="mainView"
+	 * @uml.associationEnd  inverse="searchPhotoView:cs.c301.project.MainView"
+	 */
+	private MainView mainView;
+
+	/**
+	 * Getter of the property <tt>mainView</tt>
+	 * @return  Returns the mainView.
+	 * @uml.property  name="mainView"
+	 */
+	public MainView getMainView() {
+		return mainView;
+	}
+
+	/**
+	 * Setter of the property <tt>mainView</tt>
+	 * @param mainView  The mainView to set.
+	 * @uml.property  name="mainView"
+	 */
+	public void setMainView(MainView mainView) {
+		this.mainView = mainView;
 	}
 
 }
