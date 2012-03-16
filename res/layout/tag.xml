@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Add Tags" />
-
+
     <EditText
         android:id="@+id/tag_text"
         android:layout_width="wrap_content"
@@ -29,13 +29,5 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tag_text"
         android:text="Add" />
-
-    <Button
-        android:id="@+id/tag_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Back" />
 
 </RelativeLayout>
