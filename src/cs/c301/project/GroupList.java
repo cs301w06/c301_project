@@ -1,10 +1,11 @@
 package cs.c301.project;
 
 import java.io.File;
+import java.util.Date;
 import java.util.Vector;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,20 +21,29 @@ import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Utilities.DirectoryFilter;
 
-public class GroupList extends ListActivity implements PhotoModelListener {
+public class GroupList extends Activity implements PhotoModelListener {
 	private File location;
 	private File[] items;
+	private boolean isUnderReview;
+	private ListView lv;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		//getApplication().addPhotoModelListener(this);
+		setContentView(R.layout.grouplist);
 		
 		//the filepath for the storage path is stored in this intent
 		Bundle extra = getIntent().getExtras();
 		
-		String filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
-		location = new File(filepath); //creates the file object with path for manipulation
+		try {
+			isUnderReview = extra.getBoolean("isUnderReview");
+		}
+		
+		catch (Exception e) {
+			isUnderReview = false;
+		}
+		
+		//filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
+		location = new File(PhotoApplication.getFilePath()); //creates the file object with path for manipulation
 		items = location.listFiles(new DirectoryFilter()); //pulls all the directories 
 		
 		String[] names = new String[items.length];
@@ -42,21 +52,30 @@ public class GroupList extends ListActivity implements PhotoModelListener {
 			names[i] = items[i].getName();
 		}
 		
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.grouplist, R.id.grouplistview, names));
+		lv = (ListView)findViewById(R.id.grouplistview);
 		
-		ListView lv = getListView();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, names);
+		
+		lv.setAdapter(adapter);
 		lv.setTextFilterEnabled(true);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//start a new activity with the file path of the subgroup in the intent
-				Intent intent = new Intent(view.getContext(), PhotoSubView.class);
-				intent.putExtra("path", items[position].getAbsolutePath()); //not sure if this position starts at 0 or 1, will need to trial and error
-                startActivity(intent);
+				if (!isUnderReview) {
+					//start a new activity with the file path of the subgroup in the intent
+					Intent intent = new Intent(view.getContext(), PhotoSubView.class);
+					intent.putExtra("path", items[position].getAbsolutePath()); //not sure if this position starts at 0 or 1, will need to trial and error
+	                startActivity(intent);
+				} else {
+					Intent intent = new Intent();
+	                intent.putExtra("groupname", items[position].getName());
+	                setResult(1, intent);
+	                finish();
+				}
 			}
 		});
 		
-		Button addGroupButton = (Button)findViewById(R.id.searchgroup);
+		Button addGroupButton = (Button)findViewById(R.id.addgroup);
 		addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 requestUserInput();
@@ -87,16 +106,8 @@ public class GroupList extends ListActivity implements PhotoModelListener {
 	  	
 				if (!testDirectory.exists()) { //test to see if the directory exists or not
 					if (testDirectory.mkdir()) { //make the directory
-						items = location.listFiles(new DirectoryFilter()); //pulls all the directories
-						String[] names = new String[items.length];
-	
-						for (int i = 0; i < items.length; i++) {
-							names[i] = items[i].getName();
-						}
+						onStart();
 						
-						//not sure why this doesnt work yet, must have something to do with the android version api
-						//setListAdapter(new ArrayAdapter<String>(this, R.layout.grouplist, R.id.grouplistview, names));
-	
 						Toast.makeText(getApplicationContext(), newGroupName + " has been successfully added to the group list.", Toast.LENGTH_SHORT).show();
 					} else {
 						//notify that it failed to make the directory
@@ -118,9 +129,26 @@ public class GroupList extends ListActivity implements PhotoModelListener {
 	
 		newGroupDialog.show();
 	}
+    
+    @Override
+    protected void onStart() {
+    	super.onStart();
+    	
+    	location = new File(PhotoApplication.getFilePath()); //creates the file object with path for manipulation
+		items = location.listFiles(new DirectoryFilter()); //pulls all the directories 
+		
+		String[] names = new String[items.length];
+		
+		for (int i = 0; i < items.length; i++) {
+			names[i] = items[i].getName();
+		}
 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, names);
+		
+		lv.setAdapter(adapter);
+    }
+    
 	public void photosChanged(Vector<PhotoEntry> photos) {
-		// TODO Auto-generated method stub
 		
 	}
 

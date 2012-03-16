@@ -21,9 +21,11 @@ public class PhotoModel implements Serializable {
 	private Vector<String> groups;
 	private Vector<PhotoEntry> data;
 	private int tracker;
+	private String filePath;
 	
 	@SuppressWarnings("unchecked")
-	public PhotoModel() {
+	public PhotoModel(File f) {
+		filePath = f.getAbsolutePath();
 		listeners = new Vector<PhotoModelListener>(0, 1);
 		data = new Vector<PhotoEntry>(0, 1);
 		tags = new Vector<String>(0, 1);
@@ -31,6 +33,7 @@ public class PhotoModel implements Serializable {
 		tracker = 0;
 		
 		try {
+			//TODO: check if the image still exists or not; purge otherwise
 			File file = new File("data");
 			
 			if (file.exists()) {
@@ -125,10 +128,14 @@ public class PhotoModel implements Serializable {
 		return data;
 	}
 	
+	public String getFilePath() {
+		return filePath;
+	}
+	
 	public void addPhoto(PhotoEntry photo) {
 		try {
 			photo.setID(tracker);
-			photo.setFilePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
+			photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
 		
 			File file = new File(photo.getFilePath());
 			OutputStream output = new FileOutputStream(file);
