@@ -5,7 +5,11 @@ import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
 
-
+/**
+ * ComparePhotoView allows the user to see and compare different
+ * photos.  Currently used as a place holder 
+ *
+ */
 public class ComparePhotoView implements PhotoModelListener {
 
 	public void photosChanged(Vector<PhotoEntry> photos) {
