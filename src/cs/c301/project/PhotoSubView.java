@@ -15,6 +15,11 @@ import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
 /**
+ * PhotoSubView is the activity class and view for listing the images
+ * within a given group folder. It is passed the file path of the folder,
+ * and then passes the path to a controller. The controller creates an
+ * array of the images within the folder in the form of bitmaps. It then
+ * calls the image adapter to put the images in the array into the grid view.
  * 
  * @author esteckle
  *

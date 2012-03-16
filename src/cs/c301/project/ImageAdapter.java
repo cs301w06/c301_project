@@ -10,19 +10,19 @@ import android.widget.ImageView;
 
 /**
  * The image adapter which puts images into our grid view.
+ * Code base from GridView tutorial on Android SDK page.
  * 
  * @author esteckle
  *
  */
 public class ImageAdapter extends BaseAdapter {
 	 private Context mContext;
-	 
-	 // Array for containing the photos we will display
-	 private Bitmap[] mThumbBmp;
+	 private Bitmap[] mThumbBmp; // Array for containing the photos we will display
 
 	    /**
+	     * Creates the ImageAdapter object.
 	     * 
-	     * @param c The context for our adapter
+	     * @param c The context view for our adapter
 	     * @param bmpArray An array containing our images
 	     */
 	    public ImageAdapter(Context c, Bitmap[] bmpArray) {
