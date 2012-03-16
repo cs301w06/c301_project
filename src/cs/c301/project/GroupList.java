@@ -1,9 +1,7 @@
 package cs.c301.project;
 
 import java.io.File;
-import java.util.Date;
 import java.util.Vector;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -75,13 +73,15 @@ public class GroupList extends Activity implements PhotoModelListener {
 			}
 		});
 		
+		/** Add group button that allows user to add a group to the list */
 		Button addGroupButton = (Button)findViewById(R.id.addgroup);
 		addGroupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 requestUserInput();
             }
         });
-		
+
+		/** Search group button that allows user to search the list */
 		Button searchButton = (Button)findViewById(R.id.searchgroup);
 		searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -91,6 +91,10 @@ public class GroupList extends Activity implements PhotoModelListener {
         });
 	}	
 	
+	/**
+	 * User must enter new group name, will check the list to see if there is 
+	 * an existing group in the list already
+	 */
     private void requestUserInput() {
     	AlertDialog.Builder newGroupDialog = new AlertDialog.Builder(this);
     	newGroupDialog.setTitle("Add Group");
@@ -121,6 +125,9 @@ public class GroupList extends Activity implements PhotoModelListener {
 			}
 		});
 	
+    	/**
+    	 * User chooses to cancel the action
+    	 */
     	newGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog, int whichButton) {
     			//do nothing because user cancelled
@@ -130,6 +137,9 @@ public class GroupList extends Activity implements PhotoModelListener {
 		newGroupDialog.show();
 	}
     
+    /** 
+     * Overrides the existing onStart command and pulls the directories
+     */
     @Override
     protected void onStart() {
     	super.onStart();
@@ -160,29 +170,5 @@ public class GroupList extends Activity implements PhotoModelListener {
 	public void groupsChanged(Vector<String> groups) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	/**
-	 * @uml.property  name="mainView"
-	 * @uml.associationEnd  inverse="groupList:cs.c301.project.MainView"
-	 */
-	private MainView mainView;
-
-	/**
-	 * Getter of the property <tt>mainView</tt>
-	 * @return  Returns the mainView.
-	 * @uml.property  name="mainView"
-	 */
-	public MainView getMainView() {
-		return mainView;
-	}
-
-	/**
-	 * Setter of the property <tt>mainView</tt>
-	 * @param mainView  The mainView to set.
-	 * @uml.property  name="mainView"
-	 */
-	public void setMainView(MainView mainView) {
-		this.mainView = mainView;
 	}
 }
