@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="test1" size="1717,1355" id="cs.c301.project" metadata="uml2-1.0" initialized="true" scrolledX="729" tag="1000" key="32303037303533312D3130303020633330315F50726F6A6563742F6C657975616E">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.3 //@children.10/@sourceConnections.2 //@children.10/@sourceConnections.3" name="MainView" location="50,1268" size="107,67" id="cs.c301.project/MainView" runTimeClassModel="onCreate(Landroid.os.Bundle;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/MainView#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="cs.c301.project/MainView@mainView+cs.c301.project/GroupList@groupList" source="//@children.0" target="//@children.9" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="mainView" location="107,10" id="cs.c301.project/MainView@mainView+cs.c301.project/GroupList@groupList|cs.c301.project/MainView#mainView" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - mainView" location="164,1285" size="55,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="164,1261" size="18,10" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="groupList" location="10,85" id="cs.c301.project/MainView@mainView+cs.c301.project/GroupList@groupList|cs.c301.project/GroupList#groupList" multiplicityLabel="//@children.0/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - groupList" location="886,961" size="54,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="854,961" size="18,10" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/MainView-Soyatec::Import->cs.c301.project/GroupList" source="//@children.0" target="//@children.9" targetEnd="//@children.0/@sourceConnections.1/@children.2" label="//@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="107,37" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,85"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/MainView-Soyatec::Import->cs.c301.project/SearchPhotoView" source="//@children.0" target="//@children.10" targetEnd="//@children.0/@sourceConnections.2/@children.2" label="//@children.0/@sourceConnections.2/@children.0" sourceEnd="//@children.0/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="107,19" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,63"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="ImageAdapter" location="50,922" size="139,139" id="cs.c301.project/ImageAdapter" runTimeClassModel="ImageAdapter(Landroid.content.Context;[Landroid.graphics.Bitmap;),getView(ILandroid.view.View;Landroid.view.ViewGroup;),getItem(I),getCount(),getItemId(I)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="98,90">
+      <children xsi:type="editmodel:MethodEditModel" name="ImageAdapter" id="cs.c301.project/ImageAdapter#ImageAdapter(Landroid.content.Context;[Landroid.graphics.Bitmap;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCount" id="cs.c301.project/ImageAdapter#getCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getItem" id="cs.c301.project/ImageAdapter#getItem(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getItemId" id="cs.c301.project/ImageAdapter#getItemId(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getView" id="cs.c301.project/ImageAdapter#getView(ILandroid.view.View;Landroid.view.ViewGroup;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.5/@sourceConnections.0" name="PhotoApplication" location="780,450" size="184,283" id="cs.c301.project/PhotoApplication" runTimeClassModel="model,PhotoApplication(),removePhoto(I),addTag(Ljava.lang.String;),getFilePath(),addPhoto(Lcs.c301.project.Data.PhotoEntry;),removePhotoModelListener(Lcs.c301.project.Listeners.PhotoModelListener;),addPhotoModelListener(Lcs.c301.project.Listeners.PhotoModelListener;),removeTag(Ljava.lang.String;),getTemporaryImage(),addGroup(Ljava.lang.String;),removeGroup(Ljava.lang.String;),updatePhoto(Lcs.c301.project.Data.PhotoEntry;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="model" id="cs.c301.project/PhotoApplication#model"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="161,216">
+      <children xsi:type="editmodel:MethodEditModel" name="PhotoApplication" id="cs.c301.project/PhotoApplication#PhotoApplication()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addGroup" id="cs.c301.project/PhotoApplication#addGroup(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addPhoto" id="cs.c301.project/PhotoApplication#addPhoto(Lcs.c301.project.Data.PhotoEntry;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addPhotoModelListener" id="cs.c301.project/PhotoApplication#addPhotoModelListener(Lcs.c301.project.Listeners.PhotoModelListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addTag" id="cs.c301.project/PhotoApplication#addTag(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFilePath" id="cs.c301.project/PhotoApplication#getFilePath()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTemporaryImage" location="6,166" id="cs.c301.project/PhotoApplication#getTemporaryImage()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeGroup" id="cs.c301.project/PhotoApplication#removeGroup(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removePhoto" id="cs.c301.project/PhotoApplication#removePhoto(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removePhotoModelListener" id="cs.c301.project/PhotoApplication#removePhotoModelListener(Lcs.c301.project.Listeners.PhotoModelListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeTag" id="cs.c301.project/PhotoApplication#removeTag(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="updatePhoto" id="cs.c301.project/PhotoApplication#updatePhoto(Lcs.c301.project.Data.PhotoEntry;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoApplication-Soyatec::Import->cs.c301.project.Listeners/PhotoModelListener" source="//@children.2" target="//@children.6" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="184,264" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,18"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="BitmapArrayController" location="1166,1115" size="196,103" id="cs.c301.project/BitmapArrayController" runTimeClassModel="BitmapArrayController(Ljava.lang.String;),getPaths(),imageGallery([Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="137,54">
+      <children xsi:type="editmodel:MethodEditModel" name="BitmapArrayController" id="cs.c301.project/BitmapArrayController#BitmapArrayController(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPaths" id="cs.c301.project/BitmapArrayController#getPaths()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="imageGallery" id="cs.c301.project/BitmapArrayController#imageGallery([Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PhotoSubView" location="1365,869" size="141,121" id="cs.c301.project/PhotoSubView" runTimeClassModel="onCreate(Landroid.os.Bundle;),tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,72">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/PhotoSubView#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/PhotoSubView#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/PhotoSubView#photosChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/PhotoSubView#tagsChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoSubView-Standard::Instantiate->cs.c301.project/ImageAdapter" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate»" size="65,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,86" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="139,33"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoSubView-Standard::Call->cs.c301.project/BitmapArrayController*cs.c301.project/PhotoSubView-Standard::Instantiate->cs.c301.project/BitmapArrayController*cs.c301.project/PhotoSubView-Soyatec::Import->cs.c301.project/BitmapArrayController" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="127,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="26,121" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="135,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoSubView-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.4" target="//@children.6" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,12" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="179,122"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/PhotoSubView" source="//@children.4" target="//@children.7/@sourceConnections.1" targetEnd="//@children.4/@sourceConnections.3/@children.1" sourceEnd="//@children.4/@sourceConnections.3/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="70,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PhotoReview" location="1200,869" size="135,175" id="cs.c301.project/PhotoReview" runTimeClassModel="keepButton,onCreate(Landroid.os.Bundle;),p,groupsChanged(Ljava.util.Vector;),tagsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;),partlist">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="keepButton" id="cs.c301.project/PhotoReview#keepButton"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="p" id="cs.c301.project/PhotoReview#p"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="partlist" id="cs.c301.project/PhotoReview#partlist"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,72">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/PhotoReview#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/PhotoReview#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/PhotoReview#photosChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/PhotoReview#tagsChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoReview-Standard::Call->cs.c301.project/PhotoApplication" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="30,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,25" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="184,226"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoReview-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.5" target="//@children.6" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="36,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="142,123"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/PhotoReview" source="//@children.5" target="//@children.7/@sourceConnections.1" targetEnd="//@children.5/@sourceConnections.2/@children.1" sourceEnd="//@children.5/@sourceConnections.2/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.7/@sourceConnections.1 //@children.9/@sourceConnections.1 //@children.2/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.5/@sourceConnections.1 //@children.4/@sourceConnections.2 //@children.10/@sourceConnections.0" name="PhotoModelListener" location="1094,696" size="179,123" id="cs.c301.project.Listeners/PhotoModelListener" runTimeClassModel="tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,54">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project.Listeners/PhotoModelListener#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project.Listeners/PhotoModelListener#photosChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project.Listeners/PhotoModelListener#tagsChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ComparePhotoView" location="664,869" size="175,103" id="cs.c301.project/ComparePhotoView" runTimeClassModel="tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,54">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/ComparePhotoView#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/ComparePhotoView#photosChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/ComparePhotoView#tagsChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/ComparePhotoView-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.7" target="//@children.6" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="175,18" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,95"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.9/@sourceConnections.2 //@children.8/@sourceConnections.1 //@children.5/@sourceConnections.2 //@children.4/@sourceConnections.3 //@children.10/@sourceConnections.1" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/ComparePhotoView" source="//@children.7" target="//@children.6" targetEnd="//@children.7/@sourceConnections.1/@children.1" sourceEnd="//@children.7/@sourceConnections.1/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="175,8" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,105" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PhotoCompare" location="1027,869" size="143,103" id="cs.c301.project/PhotoCompare" runTimeClassModel="groupsChanged(Ljava.util.Vector;),tagsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,54">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/PhotoCompare#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/PhotoCompare#photosChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/PhotoCompare#tagsChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoCompare-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.8" target="//@children.6" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="104,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="37,123"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/PhotoCompare" source="//@children.8" target="//@children.7/@sourceConnections.1" targetEnd="//@children.8/@sourceConnections.1/@children.1" sourceEnd="//@children.8/@sourceConnections.1/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.0/@sourceConnections.1" name="GroupList" location="869,869" size="128,85" id="cs.c301.project/GroupList" runTimeClassModel="onCreate(Landroid.os.Bundle;),tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,36">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/GroupList#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/GroupList#photosChanged(Ljava.util.Vector;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/GroupList-Standard::Call->cs.c301.project/PhotoApplication" source="//@children.9" target="//@children.2" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="30,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="47,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="136,283"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/GroupList-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.9" target="//@children.6" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="128,3" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,116"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/GroupList" source="//@children.9" target="//@children.7/@sourceConnections.1" targetEnd="//@children.9/@sourceConnections.2/@children.1" sourceEnd="//@children.9/@sourceConnections.2/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/GroupList-Soyatec::Import->cs.c301.project/MainView" source="//@children.9" target="//@children.0" targetEnd="//@children.9/@sourceConnections.3/@children.2" label="//@children.9/@sourceConnections.3/@children.0" sourceEnd="//@children.9/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,70" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="92,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.2" name="SearchPhotoView" location="1536,869" size="161,85" id="cs.c301.project/SearchPhotoView" runTimeClassModel="onCreate(Landroid.os.Bundle;),tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,36">
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/SearchPhotoView#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/SearchPhotoView#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/SearchPhotoView-Soyatec::Implement->cs.c301.project.Listeners/PhotoModelListener" source="//@children.10" target="//@children.6" targetEnd="//@children.10/@sourceConnections.0/@children.2" label="//@children.10/@sourceConnections.0/@children.0" sourceEnd="//@children.10/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="64,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,14" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="179,93"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="cs.c301.project.Listeners/PhotoModelListener&lt;-cs.c301.project/SearchPhotoView" source="//@children.10" target="//@children.7/@sourceConnections.1" targetEnd="//@children.10/@sourceConnections.1/@children.1" sourceEnd="//@children.10/@sourceConnections.1/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.2/@children.2" label="//@children.10/@sourceConnections.2/@children.0" sourceEnd="//@children.10/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="searchPhotoView" location="0,36" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/SearchPhotoView#searchPhotoView" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - searchPhotoView" location="1439,888" size="90,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1511,912" size="18,10" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="mainView" location="102,0" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/MainView#mainView" multiplicityLabel="//@children.10/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - mainView" location="90,1251" size="55,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="159,1251" size="18,10" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/SearchPhotoView-Soyatec::Import->cs.c301.project/MainView" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.3/@children.2" label="//@children.10/@sourceConnections.3/@children.0" sourceEnd="//@children.10/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,67" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="107,39"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

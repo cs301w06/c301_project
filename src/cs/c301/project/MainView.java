@@ -74,13 +74,65 @@ public class MainView extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-		
+	
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				Intent aIntent = new Intent(MainView.this, PhotoReview.class);
 				startActivity(aIntent);
 			}
-			
+	
 		}
+	}
+
+
+	/**
+	 * @uml.property  name="groupList"
+	 * @uml.associationEnd  inverse="mainView:cs.c301.project.GroupList"
+	 */
+	private GroupList groupList;
+
+	/**
+	 * Getter of the property <tt>groupList</tt>
+	 * @return  Returns the groupList.
+	 * @uml.property  name="groupList"
+	 */
+	public GroupList getGroupList() {
+		return groupList;
+	}
+
+
+	/**
+	 * Setter of the property <tt>groupList</tt>
+	 * @param groupList  The groupList to set.
+	 * @uml.property  name="groupList"
+	 */
+	public void setGroupList(GroupList groupList) {
+		this.groupList = groupList;
+	}
+
+
+	/**
+	 * @uml.property  name="searchPhotoView"
+	 * @uml.associationEnd  inverse="mainView:cs.c301.project.SearchPhotoView"
+	 */
+	private SearchPhotoView searchPhotoView;
+
+	/**
+	 * Getter of the property <tt>searchPhotoView</tt>
+	 * @return  Returns the searchPhotoView.
+	 * @uml.property  name="searchPhotoView"
+	 */
+	public SearchPhotoView getSearchPhotoView() {
+		return searchPhotoView;
+	}
+
+
+	/**
+	 * Setter of the property <tt>searchPhotoView</tt>
+	 * @param searchPhotoView  The searchPhotoView to set.
+	 * @uml.property  name="searchPhotoView"
+	 */
+	public void setSearchPhotoView(SearchPhotoView searchPhotoView) {
+		this.searchPhotoView = searchPhotoView;
 	}
 }
