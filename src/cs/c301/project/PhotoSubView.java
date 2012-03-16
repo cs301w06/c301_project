@@ -14,13 +14,16 @@ import android.widget.TextView;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
-
 /**
- * @uml.dependency   supplier="model.Photo"
+ * 
+ * @author esteckle
+ *
  */
 public class PhotoSubView extends Activity implements PhotoModelListener {
-	//private String folderName = "tmp";
 
+	/**
+	 *
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,17 +32,13 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 		Bundle extra = getIntent().getExtras();
 		
 		String filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
-		//String filepath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp/";
-		/*
-		TextView title = new TextView(this);
-		title = (TextView)findViewById(R.id.sub_group);
-		title.setText(filepath);*/
 		
 		//Create an array of our photos
 		File file = new File(filepath);
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(file.getName());
 		
+		//Grab the folder name to display as a title
 		BitmapArrayController imageBmp = new BitmapArrayController(filepath);
 		String[] imagePaths = imageBmp.getPaths();
 		Bitmap[] bmpArray = imageBmp.imageGallery(imagePaths);
@@ -52,16 +51,6 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 	        	
 	        }
 	    });
-
-/*
-* TODO
-* 	A lot of things will have to be moved around
-* 	Likely that our bmp array will have to be moved out of the adapter into a controller
-* 	to work properly. Also it is untested and some of the code was taken from the
-* 	gridview tutorial, so there may be other issues to work out.
-* 	Linking issues, such as how will the subView be passed the folder name?
-* 	Where do we add the code to populate the bmp array?
-*/
 	}
 
 	public void photosChanged(Vector<PhotoEntry> photos) {
