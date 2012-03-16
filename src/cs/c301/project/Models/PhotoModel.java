@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
@@ -254,9 +255,66 @@ public class PhotoModel implements Serializable {
 	 * 
 	 * @param entry The specific photo we wish to update
 	 */
-	//TODO: this function will update tags, update groups, update the storage location, and update the image itself all based on whether they are null or not, id is used to match
+	//TODO: this function will update tags, update groups, update the storage location, and update the image itself all based on the parameters in PhotoEntry, id is used to match
 	public void updatePhoto(PhotoEntry entry) {
+		int element = -1;
 		
+		for (int i = 0; i < data.size(); i++) {
+			if (data.elementAt(i).getID() == entry.getID())
+				element = i;
+		}
+		
+		if (element != -1) {
+			PhotoEntry old = data.elementAt(element);
+			
+			if (!entry.getGroup().equals(old.getGroup())) {
+				old.setGroup(entry.getGroup());
+			}
+			
+			boolean tagsSame = true;
+			
+			Vector<String> oldTags = old.getTags();
+			Vector<String> newTags = entry.getTags();
+			
+			if (oldTags.size() != newTags.size())
+				tagsSame = false;
+			else {
+				for (int i = 0; i < oldTags.size(); i++) {
+					if (!oldTags.elementAt(i).equals(newTags.elementAt(i)))
+						tagsSame = false;
+				}
+			}
+			
+			if (!tagsSame) {
+				old.setTags(newTags);
+			}
+			
+			if (!entry.getFilePath().equals(old.getFilePath())) {
+				File file = new File(old.getFilePath());
+				
+				if (file.exists()) {
+					Bitmap image = BitmapFactory.decodeFile(old.getFilePath());
+					file = new File(entry.getFilePath());
+					
+					if (entry.getBitmap() != null)
+						image = entry.getBitmap();
+					
+					try {
+						OutputStream output = new FileOutputStream(file);
+			    		image.compress(Bitmap.CompressFormat.JPEG, 100, output);
+			    		output.close();
+					}
+					
+					catch (Exception e) {}
+					
+					
+				}
+				
+				old.setFilePath(entry.getFilePath());
+			}
+			
+			data.set(element, old);
+		}
 	}
 	
 	/**

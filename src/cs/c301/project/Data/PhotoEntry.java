@@ -92,6 +92,10 @@ public class PhotoEntry implements Serializable {
 		}
 	}
 	
+	public void setTags(Vector<String> tags) {
+		this.tags = tags;
+	}
+	
 	public Vector<String> getTags() {
 		return tags;
 	}
