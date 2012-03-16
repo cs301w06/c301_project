@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="test1" size="1717,1355" id="cs.c301.project" metadata="uml2-1.0" initialized="true" scrolledX="729" tag="1000" key="32303037303533312D3130303020633330315F50726F6A6563742F6C657975616E">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="project3" size="1717,1355" id="cs.c301.project" metadata="uml2-1.0" initialized="true" scrolledY="243" tag="1000" key="32303037303533312D3130303020633330315F50726F6A6563742F6C657975616E">
   <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.3 //@children.10/@sourceConnections.2 //@children.10/@sourceConnections.3" name="MainView" location="50,1268" size="107,67" id="cs.c301.project/MainView" runTimeClassModel="onCreate(Landroid.os.Bundle;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
@@ -206,7 +206,7 @@
       <children xsi:type="editmodel:AssociationEndEditModel"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/GroupList-Soyatec::Import->cs.c301.project/MainView" source="//@children.9" target="//@children.0" targetEnd="//@children.9/@sourceConnections.3/@children.2" label="//@children.9/@sourceConnections.3/@children.0" sourceEnd="//@children.9/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,70" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="92,0"/>
     </sourceConnections>
