@@ -19,7 +19,7 @@
         android:layout_below="@+id/adv_title"
         android:text="Date"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/date_field"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_below="@+id/date_field"
         android:text="Group"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/group_field"
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_below="@+id/group_field"
         android:text="Tags"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/tag_field"
         android:layout_width="wrap_content"
@@ -73,13 +73,5 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tag_field"
         android:text="Search" />
-
-    <Button
-        android:id="@+id/adv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Back" />
 
 </RelativeLayout>

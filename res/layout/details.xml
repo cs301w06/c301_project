@@ -44,13 +44,6 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/det_back"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/back" />
-
-        <Button
             android:id="@+id/det_delete"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
