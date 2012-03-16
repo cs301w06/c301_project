@@ -214,7 +214,10 @@ public class PhotoModel implements Serializable {
 	}
 	
 	/**
-	 * Add a given photo to our data and updates listeners.
+	 * If the photo directory does not exist the directory is created. If the group is not
+	 * "tmp" then the method must grab the file path and set the photo's path. The photo is compressed
+	 *  into a jpeg. Finally, the photo is added to the data list. If the photo already exists in the tmp
+	 *  folder, the photo is added directly to the data. Afterwards, the call is made to update model listeners.
 	 * 
 	 * @param photo The photo we wish to add
 	 */
@@ -257,7 +260,7 @@ public class PhotoModel implements Serializable {
 	}
 	
 	/**
-	 * Removes a photo from our data and updates the model listeners.
+	 * Removes a photo from our data and updates the model listeners. 
 	 * 
 	 * @param id The unique id of the photo we wish to remove
 	 */
