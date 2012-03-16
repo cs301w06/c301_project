@@ -40,7 +40,7 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		setContentView(R.layout.review);
 
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
-		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
+//		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
 
 		//ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 
