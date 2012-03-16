@@ -24,7 +24,7 @@ import cs.c301.project.Utilities.DirectoryFilter;
 public class GroupList extends Activity implements PhotoModelListener {
 	private File location;
 	private File[] items;
-	private String filepath;
+	private boolean isUnderReview;
 	private ListView lv;
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,16 @@ public class GroupList extends Activity implements PhotoModelListener {
 		//the filepath for the storage path is stored in this intent
 		Bundle extra = getIntent().getExtras();
 		
-		filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
-		location = new File(filepath); //creates the file object with path for manipulation
+		try {
+			isUnderReview = extra.getBoolean("isUnderReview");
+		}
+		
+		catch (Exception e) {
+			isUnderReview = false;
+		}
+		
+		//filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
+		location = new File(PhotoApplication.getFilePath()); //creates the file object with path for manipulation
 		items = location.listFiles(new DirectoryFilter()); //pulls all the directories 
 		
 		String[] names = new String[items.length];
@@ -53,10 +61,17 @@ public class GroupList extends Activity implements PhotoModelListener {
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//start a new activity with the file path of the subgroup in the intent
-				Intent intent = new Intent(view.getContext(), PhotoSubView.class);
-				intent.putExtra("path", items[position].getAbsolutePath()); //not sure if this position starts at 0 or 1, will need to trial and error
-                startActivity(intent);
+				if (!isUnderReview) {
+					//start a new activity with the file path of the subgroup in the intent
+					Intent intent = new Intent(view.getContext(), PhotoSubView.class);
+					intent.putExtra("path", items[position].getAbsolutePath()); //not sure if this position starts at 0 or 1, will need to trial and error
+	                startActivity(intent);
+				} else {
+					Intent intent = new Intent();
+	                intent.putExtra("groupname", items[position].getName());
+	                setResult(1, intent);
+	                finish();
+				}
 			}
 		});
 		
@@ -119,7 +134,7 @@ public class GroupList extends Activity implements PhotoModelListener {
     protected void onStart() {
     	super.onStart();
     	
-    	location = new File(filepath); //creates the file object with path for manipulation
+    	location = new File(PhotoApplication.getFilePath()); //creates the file object with path for manipulation
 		items = location.listFiles(new DirectoryFilter()); //pulls all the directories 
 		
 		String[] names = new String[items.length];

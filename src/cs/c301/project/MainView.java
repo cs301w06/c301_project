@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
-public class MainView extends Activity implements FView {
+public class MainView extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class MainView extends Activity implements FView {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, GroupList.class);
-				intent.putExtra("path", Environment.getExternalStorageDirectory().getAbsolutePath());
 				startActivity(intent);
 			}
 		});
@@ -48,29 +47,5 @@ public class MainView extends Activity implements FView {
 			}
 
 		});
-	}
-
-	/**
-	 * @uml.property  name="searchphoto"
-	 * @uml.associationEnd  inverse="mainView:controller.searchphoto"
-	 */
-	private SearchPhotoView searchphoto;
-
-	/**
-	 * Getter of the property <tt>searchphoto</tt>
-	 * @return  Returns the searchphoto.
-	 * @uml.property  name="searchphoto"
-	 */
-	public SearchPhotoView getSearchphoto() {
-		return searchphoto;
-	}
-
-	/**
-	 * Setter of the property <tt>searchphoto</tt>
-	 * @param searchphoto  The searchphoto to set.
-	 * @uml.property  name="searchphoto"
-	 */
-	public void setSearchphoto(SearchPhotoView searchphoto) {
-		this.searchphoto = searchphoto;
 	}
 }
