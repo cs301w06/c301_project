@@ -68,4 +68,8 @@ public class PhotoEntry implements Serializable {
 	public int getID() {
 		return id;
 	}
+	
+	public String getSaveName() {
+		return date.getDate() + date.getMonth() + date.getYear() + date.getHours() + date.getMinutes() + date.getSeconds() + ".jpg";
+	}
 }

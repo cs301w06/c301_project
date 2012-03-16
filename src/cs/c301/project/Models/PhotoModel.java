@@ -79,11 +79,11 @@ public class PhotoModel implements Serializable {
 		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
 		
 		//check if tmp folder exists
-		File test = new File(filePath + File.separator + entry.getGroup());
+		File test = new File(filePath + File.separator + "tmp");
 		if (!test.exists())
 			test.mkdir();
 		
-		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
+		entry.setFilePath(filePath + File.separator + "tmp" + File.separator + entry.getSaveName());
 		
 		return entry;
 	}
@@ -153,7 +153,7 @@ public class PhotoModel implements Serializable {
 			test.mkdir();
 		
 		if (!photo.getGroup().equals("tmp")) {
-			photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
+			photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getSaveName());
 			
 			try {
 				File file = new File(photo.getFilePath());
