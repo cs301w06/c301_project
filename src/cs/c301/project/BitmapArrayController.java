@@ -6,6 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 /**
+ * BitmapArrayController is the class which takes a folder file path and will create an 
+ * array of bitmap images from all image files contained within the folder. It contains
+ * a method getPaths which finds the absolute paths of every image within the folder.
+ * The method imageGallery takes an array of paths and converts all the images into
+ * bitmaps, storing them in an array.
  * 
  * @author esteckle
  *
