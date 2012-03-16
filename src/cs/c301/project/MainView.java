@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 
+
 public class MainView extends Activity {
 	/** Called when the activity is first created. */
 	@Override
@@ -65,6 +66,14 @@ public class MainView extends Activity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	
     protected void getPhoto() {
+    	
+    	/**
+    	 * This is the method to call the Android camera from the user mobile
+    	 * and here we have specify the folder and the name we want to save as.
+    	 * 
+    	 * @parameter intent	the intent to call the camera from the phone
+    	 * @parameter photo		the result after the photo has been taken successfully
+    	 */
 
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
@@ -81,6 +90,19 @@ public class MainView extends Activity {
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+		/**
+		 * onActivityResult is the method to handle the result after taking a photo,
+		 * if everything goes well, the program will switch into the interface of 
+		 * PhotoReview.
+		 * 
+		 * @parameter requestCode	detect whether the photo is taken properly
+		 * @parameter resultCode	detect if we should switch intent
+		 * @parameter intent		switch the interface to PhotoReview
+		 * 
+		 */
+		
+		
+		
 		
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			

@@ -1,6 +1,7 @@
 package cs.c301.project;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -8,8 +9,29 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * CameraView is the view to call the camera from Android emulator,
+ * which will allow the user to take a photo through the camera and 
+ * getting ready to save it into the SD card. After taking the photo,
+ * it will switch to the PhotoReview interface.
+ * 
+ * 
+ * @author leyuan
+ *
+ */
+
+
+
+
+
+
+
+
 public class CameraView extends Activity implements FView {
-	
+	/**
+	 * Normal beginning to declare which layout the class needs to
+	 * show, and set OnClickListener for
+	 */
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
