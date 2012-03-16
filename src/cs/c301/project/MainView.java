@@ -36,24 +36,22 @@ public class MainView extends Activity {
 //				Photo.savePhoto(folder, file);
 //				getPhoto();
 					
-					PhotoEntry entry = new PhotoEntry(null, null, "tmp");
+					PhotoEntry entry = PhotoApplication.getTemporaryImage();
 					
-					// Folder destination so that photos can be saved here
-					String folder = PhotoApplication.getFilePath() + "/tmp";
-					// Create a new file
-					File folderF = new File(folder);
-					// Create folder if does not exist
-					if (!folderF.exists()) {
-						folderF.mkdir();
-					}
-					// Save image in folder and current time as name
-					String imageFilePath = folder + "/temp.jpg";
+//					// Folder destination so that photos can be saved here
+//					String folder = PhotoApplication.getFilePath() + "/tmp";
+//					// Create a new file
+//					File folderF = new File(folder);
+//					// Create folder if does not exist
+//					if (!folderF.exists()) {
+//						folderF.mkdir();
+//					}
+//					// Save image in folder and current time as name
+//					String imageFilePath = folder + "/temp.jpg";
 					// Create Uri
-					File imageFile = new File(imageFilePath);
+					File imageFile = new File(entry.getFilePath());
 					Uri imageUri = Uri.fromFile(imageFile);
-					
-					entry.setFilePath(imageFilePath);
-					
+	
 					PhotoApplication.addPhoto(entry);
 					
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

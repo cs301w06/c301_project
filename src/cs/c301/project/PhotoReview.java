@@ -67,6 +67,7 @@ public class PhotoReview extends Activity implements PhotoModelListener {
     	Bundle extra = intent.getExtras();
     	
     	groupName = extra.getString("groupname");
+    	photoEntry.setGroup(groupName);
     }
     
 	public void photosChanged(Vector<PhotoEntry> photos) {

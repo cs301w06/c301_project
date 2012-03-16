@@ -75,14 +75,18 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 	}
 	
-//	public PhotoEntry getTemporaryImage() {
-//		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
-//		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
-//		entry.setID(tracker);
-//		tracker++;
-//		
-//		return entry;
-//	}
+	public PhotoEntry getTemporaryImage() {
+		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
+		
+		//check if tmp folder exists
+		File test = new File(filePath + File.separator + entry.getGroup());
+		if (!test.exists())
+			test.mkdir();
+		
+		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
+		
+		return entry;
+	}
 	
 	public Vector<String> getGroups() {
 		return groups;
