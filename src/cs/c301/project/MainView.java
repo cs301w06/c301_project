@@ -27,7 +27,6 @@ public class MainView extends Activity {
 				/* Save into temporary folder */
 				String folder = "tmp";
 				String file = "temp"; // change later
-				Photo.savePhoto(folder, file);
 				getPhoto();
 			}
 			
@@ -55,7 +54,6 @@ public class MainView extends Activity {
 
 		});
 	}
-	private Photo photo;
 
 	/**
 	 * Getter of the property <tt>photo</tt>
@@ -77,8 +75,6 @@ public class MainView extends Activity {
 
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
-		Photo.savePhoto("tmp", "temp");
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, Photo.getPhoto("tmp", "temp"));
 		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);		
 		
 	}
