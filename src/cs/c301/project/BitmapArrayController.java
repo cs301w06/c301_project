@@ -30,8 +30,8 @@ public class BitmapArrayController {
 	}
 	
 	/**
-	 * With the folder filepath contained in the object, this method will
-	 * find all images contained within the folder, and save the filepaths for
+	 * With the folder file path contained in the object, this method will
+	 * find all images contained within the folder, and save the file paths for
 	 * each image into a string array.
 	 * 
 	 * @return A string array of the paths to each image in the folder 
@@ -51,7 +51,7 @@ public class BitmapArrayController {
     }
     
 	/**
-	 * Given an array of filepaths, this method decodes the image files specified
+	 * Given an array of file paths, this method decodes the image files specified
 	 * by the paths into bitmaps, and then stores the bitmaps into an array.
 	 * 
 	 * @param imagePaths String array containing all the paths for our images
