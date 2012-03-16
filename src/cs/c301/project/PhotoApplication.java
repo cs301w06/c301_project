@@ -1,7 +1,7 @@
 package cs.c301.project;
 
 import android.app.Application;
-import android.content.Context;
+import android.os.Environment;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Models.PhotoModel;
@@ -11,7 +11,11 @@ public class PhotoApplication extends Application {
 	public static PhotoModel model;
 	
 	public PhotoApplication() {
-		model = new PhotoModel();
+		model = new PhotoModel(Environment.getExternalStorageDirectory());
+	}
+	
+	public static String getFilePath() {
+		return model.getFilePath();
 	}
 	
 	public static void addPhotoModelListener(PhotoModelListener c) {
