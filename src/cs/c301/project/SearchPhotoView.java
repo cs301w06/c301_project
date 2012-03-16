@@ -8,8 +8,8 @@ import android.os.Bundle;
 
 /**
  * SearchPhotoView will allow the user to search photo by tag
- * group and date of the photo
- *
+ * group and date of the photo. Currently not implemented and used
+ * as a place holder.  Will be completed for part 4.
  */
 public class SearchPhotoView extends Activity implements PhotoModelListener {
 	@Override
