@@ -2,8 +2,10 @@ package cs.c301.project;
 
 import java.io.File;
 import java.util.Vector;
+import java.util.WeakHashMap;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +35,8 @@ public class GroupList extends Activity implements PhotoModelListener {
 	private boolean isUnderReview;
 	private ListView lv;
 
+	public WeakHashMap<Integer, AlertDialog.Builder> dialogs;
+
 	/**
 	 * Method called upon creation of the activity. Checks to see if the activity has been
 	 * called from the camera (for save group selection) or main menu (browse group). Populates
@@ -44,6 +48,8 @@ public class GroupList extends Activity implements PhotoModelListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grouplist);
+		
+		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
 
 		//the filepath for the storage path is stored in this intent
 		Bundle extra = getIntent().getExtras();
@@ -139,12 +145,20 @@ public class GroupList extends Activity implements PhotoModelListener {
 			}
 		});
 
+    	newGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+    		public void onClick(DialogInterface dialog, int whichButton) {
+    			//do nothing because user cancelled
+    		}
+    	});
+    	
+    	dialogs.put(0, newGroupDialog);
+
 		newGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				//do nothing because user cancelled
 			}
 		});
-
+		
 		newGroupDialog.show();
 	}
 
