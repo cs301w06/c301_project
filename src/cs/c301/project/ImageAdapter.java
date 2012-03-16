@@ -30,10 +30,18 @@ public class ImageAdapter extends BaseAdapter {
 	        mContext = c;
 	    }
 
+	    /**
+	     * Gets the number of images stored in the bitmap array
+	     * 
+	     * @return Returns the number of elements in the bitmap array
+	     */
 	    public int getCount() {
 	        return mThumbBmp.length;
 	    }
 
+	    /**
+	     * 
+	     */
 	    public Object getItem(int position) {
 	        return null;
 	    }
