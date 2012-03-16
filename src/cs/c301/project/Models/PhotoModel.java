@@ -7,11 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
-import android.os.Environment;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
@@ -75,44 +73,19 @@ public class PhotoModel implements Serializable {
 		}
 		
 		catch (Exception e) {}
-		
-		//make the temporary folder if it doesnt exist
-		File file = new File(filePath + File.separator + "tmp");
-		
-		if (!file.exists())
-			file.mkdir();
 	}
 	
 	public PhotoEntry getTemporaryImage() {
 		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
-		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
+		
+		//check if tmp folder exists
+		File test = new File(filePath + File.separator + "tmp");
+		if (!test.exists())
+			test.mkdir();
+		
+		entry.setFilePath(filePath + File.separator + "tmp" + File.separator + entry.getSaveName());
 		
 		return entry;
-	}
-	
-	public PhotoEntry getLatestImage() {
-		int id = -1;
-		Date latestDate = null;
-		
-		for (int i = 0; i < data.size(); i++) {
-			if (latestDate == null) {
-				data.elementAt(i).getDate();
-				id = i;
-			} else {
-				Date tempDate = data.elementAt(i).getDate();
-				
-				if (tempDate.compareTo(latestDate) > 0) {
-					id = i;
-					latestDate = tempDate;
-				}
-			}
-		}
-		
-		if (id != -1) {
-			return data.elementAt(id);
-		}
-		
-		return null;
 	}
 	
 	public Vector<String> getGroups() {
@@ -179,18 +152,20 @@ public class PhotoModel implements Serializable {
 		if (!test.exists())
 			test.mkdir();
 		
-		photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getDate().toString() + ".jpg");
-		
-		try {
-			File file = new File(photo.getFilePath());
-			OutputStream output = new FileOutputStream(file);
-    		photo.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, output);
-    		output.close();
-    		photo.deleteBitmap();
+		if (!photo.getGroup().equals("tmp")) {
+			photo.setFilePath(filePath + File.separator + photo.getGroup() + File.separator + photo.getSaveName());
+			
+			try {
+				File file = new File(photo.getFilePath());
+				OutputStream output = new FileOutputStream(file);
+	    		photo.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, output);
+	    		output.close();
+	    		photo.deleteBitmap();
+			}
+			
+			catch (Exception e) {}
 		}
 		
-		catch (Exception e) {}
-			
 		data.add(photo);
 		tracker++;
 		

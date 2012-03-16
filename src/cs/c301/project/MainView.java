@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,12 +36,32 @@ public class MainView extends Activity {
 //				Photo.savePhoto(folder, file);
 //				getPhoto();
 					
-				requestPhotoCapture();
+					PhotoEntry entry = PhotoApplication.getTemporaryImage();
+					
+//					// Folder destination so that photos can be saved here
+//					String folder = PhotoApplication.getFilePath() + "/tmp";
+//					// Create a new file
+//					File folderF = new File(folder);
+//					// Create folder if does not exist
+//					if (!folderF.exists()) {
+//						folderF.mkdir();
+//					}
+//					// Save image in folder and current time as name
+//					String imageFilePath = folder + "/temp.jpg";
+					// Create Uri
+					File imageFile = new File(entry.getFilePath());
+					Uri imageUri = Uri.fromFile(imageFile);
+	
+					PhotoApplication.addPhoto(entry);
+					
+					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+					
+					startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);	
 			}
 			
 		});
 
-		
 		/* List button to direct to PartsListView page */
 		Button listButton = (Button) findViewById(R.id.main_list);
 		listButton.setOnClickListener(new OnClickListener() {
@@ -63,18 +84,6 @@ public class MainView extends Activity {
 		});
 	}
 	
-	
-	public void requestPhotoCapture() {
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-		PhotoEntry entry = PhotoApplication.getTemporaryImage();
-		File imageFile = new File(entry.getFilePath());
-		Uri imageUri = Uri.fromFile(imageFile);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-		PhotoApplication.addPhoto(entry);
-		
-		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);		
-	}
 
 	/**
 	 * Setter of the property <tt>photo</tt>
@@ -86,7 +95,7 @@ public class MainView extends Activity {
 		
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				Intent aIntent = new Intent(getApplicationContext(), PhotoReview.class);
+				Intent aIntent = new Intent(MainView.this, PhotoReview.class);
 				startActivity(aIntent);
 			}
 			
