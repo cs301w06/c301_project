@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="test1" size="1717,1355" id="cs.c301.project" metadata="uml2-1.0" initialized="true" scrolledX="729" tag="1000" key="32303037303533312D3130303020633330315F50726F6A6563742F6C657975616E">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="project3" size="1717,1355" id="cs.c301.project" metadata="uml2-1.0" initialized="true" scrolledY="243" tag="1000" key="32303037303533312D3130303020633330315F50726F6A6563742F6C657975616E">
   <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.3 //@children.10/@sourceConnections.2 //@children.10/@sourceConnections.3" name="MainView" location="50,1268" size="107,67" id="cs.c301.project/MainView" runTimeClassModel="onCreate(Landroid.os.Bundle;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
@@ -24,8 +24,8 @@
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/MainView-Soyatec::Import->cs.c301.project/SearchPhotoView" source="//@children.0" target="//@children.10" targetEnd="//@children.0/@sourceConnections.2/@children.2" label="//@children.0/@sourceConnections.2/@children.0" sourceEnd="//@children.0/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="107,19" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,63"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="107,15" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="15,85"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
@@ -114,10 +114,10 @@
       <children xsi:type="editmodel:AttributeEditModel" name="partlist" id="cs.c301.project/PhotoReview#partlist"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="105,72">
-      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/PhotoReview#groupsChanged(Ljava.util.Vector;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/PhotoReview#onCreate(Landroid.os.Bundle;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/PhotoReview#photosChanged(Ljava.util.Vector;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/PhotoReview#tagsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/PhotoReview#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/PhotoReview#groupsChanged(Ljava.util.Vector;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="photosChanged" id="cs.c301.project/PhotoReview#photosChanged(Ljava.util.Vector;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/PhotoReview-Standard::Call->cs.c301.project/PhotoApplication" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
@@ -206,16 +206,16 @@
       <children xsi:type="editmodel:AssociationEndEditModel"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/GroupList-Soyatec::Import->cs.c301.project/MainView" source="//@children.9" target="//@children.0" targetEnd="//@children.9/@sourceConnections.3/@children.2" label="//@children.9/@sourceConnections.3/@children.0" sourceEnd="//@children.9/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,10" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,70" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="92,0"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.2" name="SearchPhotoView" location="1536,869" size="161,85" id="cs.c301.project/SearchPhotoView" runTimeClassModel="onCreate(Landroid.os.Bundle;),tagsChanged(Ljava.util.Vector;),groupsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.2" name="SearchPhotoView" location="1536,869" size="161,85" id="cs.c301.project/SearchPhotoView" runTimeClassModel="onCreate(Landroid.os.Bundle;),groupsChanged(Ljava.util.Vector;),tagsChanged(Ljava.util.Vector;),photosChanged(Ljava.util.Vector;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="105,36">
-      <children xsi:type="editmodel:MethodEditModel" name="groupsChanged" id="cs.c301.project/SearchPhotoView#groupsChanged(Ljava.util.Vector;)"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="93,36">
+      <children xsi:type="editmodel:MethodEditModel" name="tagsChanged" id="cs.c301.project/SearchPhotoView#tagsChanged(Ljava.util.Vector;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="cs.c301.project/SearchPhotoView#onCreate(Landroid.os.Bundle;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
@@ -230,19 +230,19 @@
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.2/@children.2" label="//@children.10/@sourceConnections.2/@children.0" sourceEnd="//@children.10/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,10" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="searchPhotoView" location="0,36" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/SearchPhotoView#searchPhotoView" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - searchPhotoView" location="1439,888" size="90,10" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1511,912" size="18,10" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="searchPhotoView" location="0,75" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/SearchPhotoView#searchPhotoView" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - searchPhotoView" location="1439,927" size="90,10" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1511,951" size="18,10" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="mainView" location="102,0" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/MainView#mainView" multiplicityLabel="//@children.10/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - mainView" location="90,1251" size="55,10" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="159,1251" size="18,10" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="mainView" location="97,0" id="cs.c301.project/SearchPhotoView@searchPhotoView+cs.c301.project/MainView@mainView|cs.c301.project/MainView#mainView" multiplicityLabel="//@children.10/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - mainView" location="85,1251" size="55,10" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="154,1251" size="18,10" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="cs.c301.project/SearchPhotoView-Soyatec::Import->cs.c301.project/MainView" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.3/@children.2" label="//@children.10/@sourceConnections.3/@children.0" sourceEnd="//@children.10/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="44,10" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,67" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="107,39"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,48" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="25,0"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
