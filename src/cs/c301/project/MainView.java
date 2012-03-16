@@ -47,12 +47,14 @@ public class MainView extends Activity {
 						folderF.mkdir();
 					}
 					// Save image in folder and current time as name
-					String imageFilePath = folder + "/" + entry.getDate().toString() + ".jpg";
+					String imageFilePath = folder + "/temp.jpg";
 					// Create Uri
 					File imageFile = new File(imageFilePath);
 					Uri imageUri = Uri.fromFile(imageFile);
 					
 					entry.setFilePath(imageFilePath);
+					
+					PhotoApplication.addPhoto(entry);
 					
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
