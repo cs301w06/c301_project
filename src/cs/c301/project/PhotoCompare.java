@@ -13,16 +13,25 @@ import cs.c301.project.Listeners.PhotoModelListener;
  */
 public class PhotoCompare implements PhotoModelListener {
 
+	/**
+	 * Place holder
+	 */
 	public void photosChanged(Vector<PhotoEntry> photos) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Place holder
+	 */
 	public void tagsChanged(Vector<String> tags) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Place holder
+	 */
 	public void groupsChanged(Vector<String> groups) {
 		// TODO Auto-generated method stub
 		

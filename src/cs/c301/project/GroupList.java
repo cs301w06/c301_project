@@ -22,7 +22,9 @@ import cs.c301.project.Utilities.DirectoryFilter;
 /**
  * GroupList gets all photo groups, the body parts, and creates
  * a set list for the user to choose from.  Each photo should be listed
- * under a group 
+ * under a group.
+ * <p>
+ * Also allows the addition of new groups, which are immediately added to the list.
  */
 public class GroupList extends Activity implements PhotoModelListener {
 	
@@ -31,6 +33,14 @@ public class GroupList extends Activity implements PhotoModelListener {
 	private boolean isUnderReview;
 	private ListView lv;
 
+	/**
+	 * Method called upon creation of the activity. Checks to see if the activity has been
+	 * called from the camera (for save group selection) or main menu (browse group). Populates
+	 * the list with all folders found, and allows selection of folders from the list. Selection of
+	 * a folder allows browsing of it's contents.
+	 * <p>
+	 * Also allows addition of new groups.
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grouplist);
@@ -129,9 +139,6 @@ public class GroupList extends Activity implements PhotoModelListener {
 			}
 		});
 
-		/**
-		 * User chooses to cancel the action
-		 */
 		newGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				//do nothing because user cancelled

@@ -32,6 +32,9 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	private PhotoEntry photoEntry;
 
 	@Override
+	/**
+	 * Method called upon activity creation
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
