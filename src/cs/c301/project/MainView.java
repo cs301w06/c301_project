@@ -28,6 +28,11 @@ public class MainView extends Activity {
 		
 		/**
 		 *  Camera button to direct to CameraView page 
+		 *  
+		 *  @parameters entry 	to get the temporary image
+		 *  @parameters imageUri 	Uri for image
+		 *  @parameters intent 	call the camera
+		 *  
 		 */
 		Button cameraButton = (Button) findViewById(R.id.main_camera);
 		cameraButton.setOnClickListener(new OnClickListener() {
@@ -72,6 +77,14 @@ public class MainView extends Activity {
 	}
 	
 
+	
+	/**
+	 * onActivityResult is the method to handle the result after taking a photo,
+	 * if the photo is taken successfully, switch the intent to PhotoReview.
+	 * 
+	 * @parameters	CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE 	detect if the photo is taken correctly
+	 * @parameters	intent		switch intent
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 	
