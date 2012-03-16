@@ -37,5 +37,29 @@ public class SearchPhotoView extends Activity implements PhotoModelListener {
 		
 	}
 
+	/**
+	 * @uml.property  name="mainView"
+	 * @uml.associationEnd  inverse="searchPhotoView:cs.c301.project.MainView"
+	 */
+	private MainView mainView;
+
+	/**
+	 * Getter of the property <tt>mainView</tt>
+	 * @return  Returns the mainView.
+	 * @uml.property  name="mainView"
+	 */
+	public MainView getMainView() {
+		return mainView;
+	}
+
+	/**
+	 * Setter of the property <tt>mainView</tt>
+	 * @param mainView  The mainView to set.
+	 * @uml.property  name="mainView"
+	 */
+	public void setMainView(MainView mainView) {
+		this.mainView = mainView;
+	}
+
 }
 
