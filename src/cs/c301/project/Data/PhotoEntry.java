@@ -92,6 +92,10 @@ public class PhotoEntry implements Serializable {
 		}
 	}
 	
+	public Vector<String> getTags() {
+		return tags;
+	}
+	
 	/**
 	 * Sets the photo group to the given string.
 	 * 
