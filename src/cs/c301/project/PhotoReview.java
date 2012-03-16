@@ -95,6 +95,7 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	}
 
 	protected void onStart() {
+		super.onStart();
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
 		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
 	}
