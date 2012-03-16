@@ -75,14 +75,14 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 	}
 	
-	public PhotoEntry getTemporaryImage() {
-		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
-		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
-		entry.setID(tracker);
-		tracker++;
-		
-		return entry;
-	}
+//	public PhotoEntry getTemporaryImage() {
+//		PhotoEntry entry = new PhotoEntry(null, null, "tmp");
+//		entry.setFilePath(filePath + File.separator + entry.getGroup() + File.separator + entry.getDate().toString() + ".jpg");
+//		entry.setID(tracker);
+//		tracker++;
+//		
+//		return entry;
+//	}
 	
 	public Vector<String> getGroups() {
 		return groups;

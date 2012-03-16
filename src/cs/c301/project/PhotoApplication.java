@@ -53,8 +53,8 @@ public class PhotoApplication extends Application {
 	public static void updatePhoto(PhotoEntry entry) {
 		model.updatePhoto(entry);
 	}
-	
-	public static PhotoEntry getTemporaryImage() {
-		return model.getTemporaryImage();
-	}
+//	
+//	public static PhotoEntry getTemporaryImage() {
+//		return model.getTemporaryImage();
+//	}
 }
