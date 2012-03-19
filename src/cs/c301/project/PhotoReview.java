@@ -80,10 +80,14 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	 */
 	@Override
 	protected void onActivityResult(int a, int b, Intent intent) {
-		Bundle extra = intent.getExtras();
-
-		groupName = extra.getString("groupname");
-		photoEntry.setGroup(groupName);
+		try {
+			Bundle extra = intent.getExtras();
+	
+			groupName = extra.getString("groupname");
+			photoEntry.setGroup(groupName);
+		}
+		
+		catch (Exception e) {}
 	}
 
 	/**

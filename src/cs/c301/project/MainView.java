@@ -1,6 +1,7 @@
 package cs.c301.project;
 
 import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -66,8 +67,6 @@ public class MainView extends Activity {
 		});
 	}
 	
-
-	
 	/**
 	 * onActivityResult is the method to handle the result after taking a photo,
 	 * if the photo is taken successfully, switch the intent to PhotoReview.
@@ -85,57 +84,5 @@ public class MainView extends Activity {
 			}
 	
 		}
-	}
-
-
-	/**
-	 * @uml.property  name="groupList"
-	 * @uml.associationEnd  inverse="mainView:cs.c301.project.GroupList"
-	 */
-	private GroupList groupList;
-
-	/**
-	 * Getter of the property <tt>groupList</tt>
-	 * @return  Returns the groupList.
-	 * @uml.property  name="groupList"
-	 */
-	public GroupList getGroupList() {
-		return groupList;
-	}
-
-
-	/**
-	 * Setter of the property <tt>groupList</tt>
-	 * @param groupList  The groupList to set.
-	 * @uml.property  name="groupList"
-	 */
-	public void setGroupList(GroupList groupList) {
-		this.groupList = groupList;
-	}
-
-
-	/**
-	 * @uml.property  name="searchPhotoView"
-	 * @uml.associationEnd  inverse="mainView:cs.c301.project.SearchPhotoView"
-	 */
-	private SearchPhotoView searchPhotoView;
-
-	/**
-	 * Getter of the property <tt>searchPhotoView</tt>
-	 * @return  Returns the searchPhotoView.
-	 * @uml.property  name="searchPhotoView"
-	 */
-	public SearchPhotoView getSearchPhotoView() {
-		return searchPhotoView;
-	}
-
-
-	/**
-	 * Setter of the property <tt>searchPhotoView</tt>
-	 * @param searchPhotoView  The searchPhotoView to set.
-	 * @uml.property  name="searchPhotoView"
-	 */
-	public void setSearchPhotoView(SearchPhotoView searchPhotoView) {
-		this.searchPhotoView = searchPhotoView;
 	}
 }
