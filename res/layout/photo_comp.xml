@@ -31,12 +31,14 @@
         android:orientation="horizontal" >
 
         <ImageView
+            android:id="@+id/Photo1"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_weight="0.5"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
+            android:id="@+id/Photo2"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_weight="0.5"
