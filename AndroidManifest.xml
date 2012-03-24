@@ -3,15 +3,16 @@
     package="cs.c301.project"
     android:versionCode="1"
     android:versionName="1.0" >
-    
+
     <uses-sdk android:minSdkVersion="7" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name="cs.c301.project.PhotoApplication"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" android:name="cs.c301.project.PhotoApplication">
-        
+        android:label="@string/app_name" >
         <activity
             android:name=".MainView"
             android:label="@string/app_name" >
@@ -29,12 +30,15 @@
         </activity>
         <activity android:name="PhotoReview" >
         </activity>
-        <activity android:name="GroupList">      
-        </activity>
          <activity android:name="TagList">      
         </activity>
         <activity android:name=".PhotoSubView">
+             </activity>
+        <activity android:name="GroupList" >
+        </activity>
+        <activity android:name=".PhotoSubView" >
+        </activity>
+        <activity android:name="TagView" >
         </activity>
     </application>
-
 </manifest>

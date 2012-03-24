@@ -34,11 +34,18 @@
             android:text="@string/discard" />
 
         <Button
-            android:id="@+id/review_keep"
+            android:id="@+id/review_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Select Group" />
+        
+        <Button
+            android:id="@+id/review_keep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Keep" />
     </LinearLayout>
 
 </RelativeLayout>
