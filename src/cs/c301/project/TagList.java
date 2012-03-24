@@ -209,7 +209,7 @@ public class TagList extends Activity implements PhotoModelListener {
 	//TODO: all of this functionality needs to be migrated to the model
 	private void requestUserInput() {
 		AlertDialog.Builder newtagDialog = new AlertDialog.Builder(this);
-		newtagDialog.setTitle("Add tag");
+		newtagDialog.setTitle("Add Tag");
 		newtagDialog.setMessage("Please enter the new tag name:");
 
 		final EditText inputName = new EditText(this);

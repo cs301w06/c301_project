@@ -58,7 +58,7 @@ android:focusableInTouchMode="true">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.37"
-            android:text="Add tag" />
+            android:text="Add Tag" />
 
         <Button
             android:id="@+id/searchtag"
