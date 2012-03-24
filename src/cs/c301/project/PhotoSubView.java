@@ -44,17 +44,17 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 		
 		Bundle extra = getIntent().getExtras();
 		
-		String filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
+		String group = extra.getString("group"); //grabbing the file path, should be stored as an absolute path
 		
 		//Grab the folder name to display as a title
-		File file = new File(filepath);
+		//File file = new File(filepath);
 		TextView tv = (TextView)findViewById(R.id.sub_group);
-		tv.setText(file.getName());
+		tv.setText(group);
 		
 		//Create an array of our photos
-		imageBmp = new BitmapArrayController(filepath);
-		imagePaths = imageBmp.getPaths();
-		bmpArray = imageBmp.imageGallery(imagePaths);
+		//imageBmp = new BitmapArrayController(filepath);
+		//imagePaths = imageBmp.getPaths();
+		//bmpArray = imageBmp.imageGallery(imagePaths);
 		
 		GridView gridview = (GridView) findViewById(R.id.sub_list);
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
