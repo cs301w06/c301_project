@@ -25,9 +25,8 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * @author esteckle
  *
  */
-public class PhotoSubView extends Activity implements PhotoModelListener {
+public class PhotoSubView extends Activity{
 
-	private BitmapArrayController imageBmp;
 	private String[] imagePaths;
 	private Bitmap[] bmpArray;
 	
@@ -48,12 +47,23 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 		String tags = extra.getString("tag");
 		
 		Vector<String> groupV = new Vector<String>();
+		Vector<String> tagsV = new Vector<String>();
 		
+		groupV.add(group);
+		tagsV.add(tags);
+		
+		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 		
 		//Grab the folder name to display as a title
 		//File file = new File(filepath);
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
+		
+		bmpArray = new Bitmap[photos.size()];
+		
+		for (int i = 0; i < photos.size(); i++){
+			bmpArray[i] = photos.elementAt(i).getBitmap();
+		}
 		
 		//Create an array of our photos
 		//imageBmp = new BitmapArrayController(filepath);
