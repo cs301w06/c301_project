@@ -17,7 +17,7 @@ import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
 /**
- * Take recent taken photo from the sd card and draws the photo up on screen
+ * Take recent taken photo from file and draws the photo up on screen
  * for the user to review and decide whether to put into group and then keep 
  * the photo or user can discard the photo if it is unwanted
  *
@@ -81,8 +81,9 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	 */
 	@Override
 	protected void onActivityResult(int a, int b, Intent intent) {
-
+		
 		try {
+			
 			Bundle extra = intent.getExtras();
 
 			groupName = extra.getString("groupname");
@@ -135,7 +136,6 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		if (id != -1) {
 
 			photoEntry = photos.elementAt(id);
-
 			onStart();
 		}
 	}
@@ -150,6 +150,7 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
 
 		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
+		comparePhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
 	}
 
 	/**
