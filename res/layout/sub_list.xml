@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sub_group"
-        android:numColumns="3" >
+        android:numColumns="4"
+        android:verticalSpacing="10dp" >
 
     </GridView>
 

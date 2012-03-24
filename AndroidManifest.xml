@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".PhotoSubView">
         </activity>
+        <activity android:name="PhotoDetails">
+        </activity>
     </application>
 
 </manifest>
