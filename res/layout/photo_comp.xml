@@ -30,13 +30,15 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <ImageView
+        <ImageSwitcher
+            android:id="@+id/Photo1"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_weight="0.5"
             android:src="@drawable/ic_launcher" />
 
-        <ImageView
+        <ImageSwitcher
+            android:id="@+id/Photo2"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_weight="0.5"
@@ -70,6 +72,13 @@
         android:layout_height="20dp"
         android:layout_weight="1.0"
         android:orientation="horizontal" >
+
+        <Gallery
+            android:id="@+id/compGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <LinearLayout
