@@ -49,7 +49,7 @@ public class PhotoModel implements Serializable {
 		
 		try {
 			//TODO: check if the image still exists or not; purge otherwise
-			File file = new File("data");
+			File file = new File("data.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -67,7 +67,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("tags");
+			File file = new File("tags.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -79,7 +79,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("groups");
+			File file = new File("groups.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -126,12 +126,15 @@ public class PhotoModel implements Serializable {
 	 * 
 	 * @param group Name of the group we wish to add
 	 */
-	public void addGroup(String group) {
+	public boolean addGroup(String group) {
 		if (!groups.contains(group)) {
 			groups.add(group);
 			
 			updateModelListeners();
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -168,12 +171,16 @@ public class PhotoModel implements Serializable {
 	 * 
 	 * @param tag The tag which we wish to add to a photo
 	 */
-	public void addTag(String tag) {
+	public boolean addTag(String tag) {
 		if (!tags.contains(tag)) {
 			tags.add(tag);
 			
 			updateModelListeners();
+			
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -344,6 +351,34 @@ public class PhotoModel implements Serializable {
 		}
 	}
 	
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+		Vector<PhotoEntry> entries = new Vector<PhotoEntry>();
+		
+		for (int i = 0; i < groupsQuery.size(); i++) {
+			for (int j = 0; j < data.size(); j++) {
+				if (data.elementAt(j).getGroup().equalsIgnoreCase(groupsQuery.elementAt(i))) {
+					if (!entries.contains(data.elementAt(j))) {
+						entries.add(data.elementAt(j));
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < tagsQuery.size(); i++) {
+			for (int j = 0; j < data.size(); j++) {
+				Vector<String> elementTags = data.elementAt(j).getTags();
+				
+				if (elementTags.contains(tagsQuery.elementAt(i))) {
+					if (!entries.contains(data.elementAt(j))) {
+						entries.add(data.elementAt(j));
+					}
+				}
+			}
+		}
+
+		return entries;
+	}
+	
 	/**
 	 * Adds a specific class to the model listener. Check to see if the listener already
 	 * exists within the listener list, and if it does not then add it.
@@ -406,7 +441,7 @@ public class PhotoModel implements Serializable {
 	 */
 	private void saveData() {
 		try {
-			File file = new File("data");
+			File file = new File("data.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(data);
@@ -417,7 +452,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("tags");
+			File file = new File("tags.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(tags);
@@ -428,7 +463,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("groups");
+			File file = new File("groups.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(groups);

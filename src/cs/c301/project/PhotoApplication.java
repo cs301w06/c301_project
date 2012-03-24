@@ -1,5 +1,8 @@
 package cs.c301.project;
 
+
+import java.util.Vector;
+
 import android.app.Application;
 import android.os.Environment;
 import cs.c301.project.Data.PhotoEntry;
@@ -13,7 +16,7 @@ import cs.c301.project.Models.PhotoModel;
  */
 public class PhotoApplication extends Application {
 
-	public static PhotoModel model;
+	private static PhotoModel model;
 	
 	/**
 	 * Creates a new photo model 
@@ -72,8 +75,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param tag String of words to be associated to photo
 	 */
-	public static void addTag(String tag) {
-		model.addTag(tag.trim());
+	public static boolean addTag(String tag) {
+		return model.addTag(tag.trim());
 	}
 	
 	/**
@@ -90,8 +93,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param group Body part that photo is grouped to 
 	 */
-	public static void addGroup(String group) {
-		model.addGroup(group.trim());
+	public static boolean addGroup(String group) {
+		return model.addGroup(group);
 	}
 	
 	/**
@@ -119,5 +122,9 @@ public class PhotoApplication extends Application {
 	 */
 	public static PhotoEntry getTemporaryImage() {
 		return model.getTemporaryImage();
+	}
+	
+	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+		return model.getPhotosByValues(groupsQuery, tagsQuery);
 	}
 }
