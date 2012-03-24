@@ -1,15 +1,16 @@
 package cs.c301.project;
 
 import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import cs.c301.project.Data.PhotoEntry;
 
 /**
  * The main page of they project, gives choices for user to chose from.  
@@ -30,14 +31,8 @@ public class MainView extends Activity {
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
-				
-					PhotoEntry entry = PhotoApplication.getTemporaryImage();
-					
-					File imageFile = new File(entry.getFilePath());
-					Uri imageUri = Uri.fromFile(imageFile);
+					Uri imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tmp.jpg"));
 	
-					PhotoApplication.addPhoto(entry);
-					
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 					

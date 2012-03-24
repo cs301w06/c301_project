@@ -22,7 +22,7 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * the photo or user can discard the photo if it is unwanted
  *
  */
-public class PhotoReview extends Activity implements PhotoModelListener {
+public class PhotoReview extends Activity {
 
 	ListView partlist;
 	Button groupButton, keepButton;
@@ -70,7 +70,7 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 			}			
 		});
 
-		PhotoApplication.addPhotoModelListener(this);
+//		PhotoApplication.addPhotoModelListener(this);
 	}
 
 	/**
@@ -103,42 +103,42 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		catch (Exception e) {}
 	}
 
-	/**
-	 * Grab the latest photo from file and give the global 
-	 * variable the string path
-	 * 
-	 * @param photos	vector list of photos on file
-	 */
-	public void photosChanged(Vector<PhotoEntry> photos) {
-
-		int id = -1;
-		Date latestDate = null;
-
-		for (int i = 0; i < photos.size(); i++) {
-
-			if (latestDate == null) {
-
-				photos.elementAt(i).getDate();
-				id = i;
-
-			} else {
-
-				Date tempDate = photos.elementAt(i).getDate();
-
-				if (tempDate.compareTo(latestDate) > 0) {
-					id = i;
-					latestDate = tempDate;
-				}
-			}
-		}
-		
-		if (id != -1) {
-
-			photoEntry = photos.elementAt(id);
-
-			onStart();
-		}
-	}
+//	/**
+//	 * Grab the latest photo from file and give the global 
+//	 * variable the string path
+//	 * 
+//	 * @param photos	vector list of photos on file
+//	 */
+//	public void photosChanged(Vector<PhotoEntry> photos) {
+//
+//		int id = -1;
+//		Date latestDate = null;
+//
+//		for (int i = 0; i < photos.size(); i++) {
+//
+//			if (latestDate == null) {
+//
+//				photos.elementAt(i).getDate();
+//				id = i;
+//
+//			} else {
+//
+//				Date tempDate = photos.elementAt(i).getDate();
+//
+//				if (tempDate.compareTo(latestDate) > 0) {
+//					id = i;
+//					latestDate = tempDate;
+//				}
+//			}
+//		}
+//		
+//		if (id != -1) {
+//
+//			photoEntry = photos.elementAt(id);
+//
+//			onStart();
+//		}
+//	}
 
 	/**
 	 * Show the review photo page and draw the photo on screen
@@ -147,27 +147,27 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		super.onStart();
 
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
-		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
+//		reviewPhoto.setImageDrawable(photoEntry.getBitmap()); //needs to be changed to use the bitmap
 
 		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(java.util.Vector)
-	 */
-	public void tagsChanged(Vector<String> tags) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/** 
-	 * (non-Javadoc)
-	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
-	 */
-	public void groupsChanged(Vector<String> groups) {
-		// TODO Auto-generated method stub
-
-	}
+//	/**
+//	 * (non-Javadoc)
+//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(java.util.Vector)
+//	 */
+//	public void tagsChanged(Vector<String> tags) {
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//	/** 
+//	 * (non-Javadoc)
+//	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
+//	 */
+//	public void groupsChanged(Vector<String> groups) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }

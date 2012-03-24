@@ -35,7 +35,7 @@ import cs.c301.project.Utilities.GroupListLayout;
  * <p>
  * Also allows the addition of new groups, which are immediately added to the list.
  */
-public class GroupList extends Activity implements PhotoModelListener {
+public class GroupList extends Activity {
 	
 	private Vector<Integer> matchingPositions;
 	private boolean isUnderReview, isInFilterState;
@@ -57,6 +57,8 @@ public class GroupList extends Activity implements PhotoModelListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.grouplist);
+		
+		groups = PhotoApplication.getGroups();
 		
 		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
 		filterString = "";
@@ -200,7 +202,7 @@ public class GroupList extends Activity implements PhotoModelListener {
 	    });
 		
 		GroupListLayout.setFilterActivity(this);
-		PhotoApplication.addPhotoModelListener(this);
+//		PhotoApplication.addPhotoModelListener(this);
 	}	
 
 	/**
@@ -292,29 +294,29 @@ public class GroupList extends Activity implements PhotoModelListener {
 		}
 	}
 
-	
-	/**
-	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
-	 */
-	public void photosChanged(Vector<PhotoEntry> photos) {
-	}
-
-	/**
-	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
-	 */
-	public void tagsChanged(Vector<String> tags) {
-	}
-
-	/** 
-	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
-	 */
-	public void groupsChanged(Vector<String> groups) {
-		//get the group data from the listener and use data for content
-		
-		this.groups = groups;
-		
-		onStart();
-	}
+//	
+//	/**
+//	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
+//	 */
+//	public void photosChanged(Vector<PhotoEntry> photos) {
+//	}
+//
+//	/**
+//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
+//	 */
+//	public void tagsChanged(Vector<String> tags) {
+//	}
+//
+//	/** 
+//	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
+//	 */
+//	public void groupsChanged(Vector<String> groups) {
+//		//get the group data from the listener and use data for content
+//		
+//		this.groups = groups;
+//		
+//		onStart();
+//	}
 
 	@Override
 	public void onBackPressed() {

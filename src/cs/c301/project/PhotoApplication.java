@@ -22,43 +22,43 @@ public class PhotoApplication extends Application {
 	 * Creates a new photo model 
 	 */
 	public PhotoApplication() {
-		model = new PhotoModel(Environment.getExternalStorageDirectory());
+		model = new PhotoModel(this);
 	}
 	
-	/**
-	 * Get the photo model file path
-	 * 
-	 * @return path of the photo model
-	 */
-	public static String getFilePath() {
-		return model.getFilePath();
-	}
-	
-	/**
-	 * Use listener to see if photo is added
-	 * 
-	 * @param c photo model listener
-	 */
-	public static void addPhotoModelListener(PhotoModelListener c) {
-		model.addPhotoModelListener(c);
-	}
-	
-	/**
-	 * Use listener to see if photo is removed
-	 * 
-	 * @param c photo model listener
-	 */
-	public static void removePhotoModelListener(PhotoModelListener c) {
-		model.removePhotoModelListener(c);
-	}
+//	/**
+//	 * Get the photo model file path
+//	 * 
+//	 * @return path of the photo model
+//	 */
+//	public static String getFilePath() {
+//		return model.getFilePath();
+//	}
+//	
+//	/**
+//	 * Use listener to see if photo is added
+//	 * 
+//	 * @param c photo model listener
+//	 */
+//	public static void addPhotoModelListener(PhotoModelListener c) {
+//		model.addPhotoModelListener(c);
+//	}
+//	
+//	/**
+//	 * Use listener to see if photo is removed
+//	 * 
+//	 * @param c photo model listener
+//	 */
+//	public static void removePhotoModelListener(PhotoModelListener c) {
+//		model.removePhotoModelListener(c);
+//	}
 	
 	/**
 	 * Add a new photo 
 	 * 
 	 * @param entry photo information
 	 */
-	public static void addPhoto(PhotoEntry entry) {
-		model.addPhoto(entry);
+	public static boolean addPhoto(PhotoEntry entry) {
+		return model.addPhoto(entry);
 	}
 	
 	/**
@@ -66,8 +66,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param entry photo information
 	 */
-	public static void removePhoto(int entry) {
-		model.removePhoto(entry);
+	public static boolean removePhoto(int id) {
+		return model.removePhoto(id);
 	}
 	
 	/**
@@ -84,8 +84,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param tag String of words to be associated to photo
 	 */
-	public static void removeTag(String tag) {
-		model.removeTag(tag.trim());
+	public static boolean removeTag(String tag) {
+		return model.removeTag(tag.trim());
 	}
 	
 	/**
@@ -102,8 +102,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param group Body part that photo is grouped to 
 	 */
-	public static void removeGroup(String group) {
-		model.removeGroup(group.trim());
+	public static boolean removeGroup(String group) {
+		return model.removeGroup(group.trim());
 	}
 	
 	/**
@@ -111,20 +111,32 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param entry photo information
 	 */
-	public static void updatePhoto(PhotoEntry entry) {
-		model.updatePhoto(entry);
+	public static boolean updatePhoto(PhotoEntry entry) {
+		return model.updatePhoto(entry);
 	}
 	
-	/**
-	 * Get temporary image
-	 * 
-	 * @return the temporary image
-	 */
-	public static PhotoEntry getTemporaryImage() {
-		return model.getTemporaryImage();
+	public static Vector<String> getTags() {
+		return model.getTags();
 	}
+	
+	public static Vector<String> getGroups() {
+		return model.getGroups();
+	}
+	
+//	/**
+//	 * Get temporary image
+//	 * 
+//	 * @return the temporary image
+//	 */
+//	public static PhotoEntry getTemporaryImage() {
+//		return model.getTemporaryImage();
+//	}
 	
 	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		return model.getPhotosByValues(groupsQuery, tagsQuery);
+	}
+	
+	public static Vector<PhotoEntry> getAllPhotos() {
+		return model.getAllPhotos();
 	}
 }
