@@ -1,9 +1,7 @@
 package cs.c301.project;
 
-
 import java.util.Date;
 import java.util.Vector;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
@@ -26,7 +25,7 @@ import cs.c301.project.Listeners.PhotoModelListener;
 public class PhotoReview extends Activity implements PhotoModelListener {
 
 	ListView partlist;
-	Button keepButton;
+	Button groupButton, keepButton;
 	ProgressDialog p;
 	private String groupName;
 	private PhotoEntry photoEntry;
@@ -39,33 +38,35 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
 
-		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
-//		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
-
-		//ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
-
-		/** 
-		 * Discard button to allow the user to discard unwanted photos
-		 */
 		Button discardButton = (Button) findViewById(R.id.review_disc);
-
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
 
 				PhotoApplication.removePhoto(photoEntry.getID());
+				Toast.makeText(getApplicationContext(), "Photo Discarded", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(getApplication(), MainView.class);
+				startActivity(intent);
 			}
 
 		});
 
-		keepButton = (Button) findViewById(R.id.review_keep);
-		keepButton.setText("Select Group");
-		keepButton.setOnClickListener(new Button.OnClickListener(){
+		groupButton = (Button) findViewById(R.id.review_group);
+		groupButton.setOnClickListener(new Button.OnClickListener(){
 
 			public void onClick(View v) {
+
 				Intent intent = new Intent(getApplication(), GroupList.class);
 				intent.putExtra("isUnderReview", true);
 				startActivityForResult(intent, 0);
+			}			
+		});
+
+		keepButton = (Button) findViewById(R.id.review_keep);
+		keepButton.setOnClickListener(new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Please select a group first", Toast.LENGTH_SHORT).show();
 			}			
 		});
 
@@ -80,31 +81,48 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	 */
 	@Override
 	protected void onActivityResult(int a, int b, Intent intent) {
+
 		try {
 			Bundle extra = intent.getExtras();
-	
+
 			groupName = extra.getString("groupname");
 			photoEntry.setGroup(groupName);
+
+			keepButton.setOnClickListener(new Button.OnClickListener() {
+
+				public void onClick(View v) {
+					Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					PhotoApplication.updatePhoto(photoEntry);
+					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
+					startActivity(intent);
+				}
+
+			});
 		}
-		
+
 		catch (Exception e) {}
 	}
 
 	/**
-	 * Grab the latest photo from the sd card and give the global 
+	 * Grab the latest photo from file and give the global 
 	 * variable the string path
 	 * 
-	 * @param photos	vector list of photos in the sd card
+	 * @param photos	vector list of photos on file
 	 */
 	public void photosChanged(Vector<PhotoEntry> photos) {
+
 		int id = -1;
 		Date latestDate = null;
 
 		for (int i = 0; i < photos.size(); i++) {
+
 			if (latestDate == null) {
+
 				photos.elementAt(i).getDate();
 				id = i;
+
 			} else {
+
 				Date tempDate = photos.elementAt(i).getDate();
 
 				if (tempDate.compareTo(latestDate) > 0) {
@@ -113,8 +131,9 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 				}
 			}
 		}
-
+		
 		if (id != -1) {
+
 			photoEntry = photos.elementAt(id);
 
 			onStart();
@@ -126,8 +145,11 @@ public class PhotoReview extends Activity implements PhotoModelListener {
 	 */
 	protected void onStart() {
 		super.onStart();
+
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
 		reviewPhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
+
+		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 	}
 
 	/**
