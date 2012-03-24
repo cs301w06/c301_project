@@ -82,7 +82,7 @@ public class GroupList extends Activity implements PhotoModelListener {
 				if (!isUnderReview) {
 					//start a new activity with the file path of the subgroup in the intent
 					Intent intent = new Intent(view.getContext(), PhotoSubView.class);
-					intent.putExtra("name", groups.elementAt(matchingPositions.elementAt(position)));
+					intent.putExtra("group", groups.elementAt(matchingPositions.elementAt(position)));
 					startActivity(intent);
 					
 					//reset the view in case of future back buttons
@@ -104,7 +104,7 @@ public class GroupList extends Activity implements PhotoModelListener {
 					inputMethodManager.hideSoftInputFromWindow(filterEditText.getWindowToken(), 0);
 					
 					Intent intent = new Intent();
-					intent.putExtra("name", groups.elementAt(matchingPositions.elementAt(position)));
+					intent.putExtra("group", groups.elementAt(matchingPositions.elementAt(position)));
 					setResult(1, intent);
 					finish();
 				}
