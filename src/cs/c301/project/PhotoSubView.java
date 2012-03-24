@@ -45,6 +45,10 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 		Bundle extra = getIntent().getExtras();
 		
 		String group = extra.getString("group"); //grabbing the file path, should be stored as an absolute path
+		String tags = extra.getString("tag");
+		
+		Vector<String> groupV = new Vector<String>();
+		
 		
 		//Grab the folder name to display as a title
 		//File file = new File(filepath);
