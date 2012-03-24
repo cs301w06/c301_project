@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -24,8 +25,11 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * @author esteckle
  *
  */
-public class PhotoSubView extends Activity implements PhotoModelListener {
+public class PhotoSubView extends Activity{
 
+	private String[] imagePaths;
+	private Bitmap[] bmpArray;
+	
 	/**
 	 * onCreate method is called when the activity starts. It initializes the grid view and
 	 * populates it with our images from a given folder. 
@@ -39,24 +43,41 @@ public class PhotoSubView extends Activity implements PhotoModelListener {
 		
 		Bundle extra = getIntent().getExtras();
 		
-		String filepath = extra.getString("path"); //grabbing the file path, should be stored as an absolute path
+		String group = extra.getString("group"); //grabbing the file path, should be stored as an absolute path
+		String tags = extra.getString("tag");
 		
-		//Create an array of our photos
-		File file = new File(filepath);
-		TextView tv = (TextView)findViewById(R.id.sub_group);
-		tv.setText(file.getName());
+		Vector<String> groupV = new Vector<String>();
+		Vector<String> tagsV = new Vector<String>();
+		
+		groupV.add(group);
+		tagsV.add(tags);
+		
+		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 		
 		//Grab the folder name to display as a title
-		BitmapArrayController imageBmp = new BitmapArrayController(filepath);
-		String[] imagePaths = imageBmp.getPaths();
-		Bitmap[] bmpArray = imageBmp.imageGallery(imagePaths);
+		//File file = new File(filepath);
+		TextView tv = (TextView)findViewById(R.id.sub_group);
+		tv.setText(group);
+		
+		bmpArray = new Bitmap[photos.size()];
+		
+		for (int i = 0; i < photos.size(); i++){
+			bmpArray[i] = photos.elementAt(i).getBitmap();
+		}
+		
+		//Create an array of our photos
+		//imageBmp = new BitmapArrayController(filepath);
+		//imagePaths = imageBmp.getPaths();
+		//bmpArray = imageBmp.imageGallery(imagePaths);
 		
 		GridView gridview = (GridView) findViewById(R.id.sub_list);
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
-
+	    
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	
+	        	Intent intent = new Intent(PhotoSubView.this, PhotoDetails.class);
+	        	intent.putExtra("path", imagePaths[position]);
+				startActivity(intent);
 	        }
 	    });
 	}

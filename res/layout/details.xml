@@ -11,6 +11,7 @@
         android:text="@string/detail" />
 
     <ImageView
+        android:id="@+id/det_photo"
         android:layout_width="300dp"
         android:layout_height="250dp"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -24,7 +25,7 @@
         android:text="Date Goes Here" />
 
     <TextView
-        android:id="@+id/det_date"
+        android:id="@+id/det_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -65,7 +66,7 @@
             android:text="@string/compare" />
 
         <Button
-            android:id="@+id/det_tag"
+            android:id="@+id/det_tag_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
