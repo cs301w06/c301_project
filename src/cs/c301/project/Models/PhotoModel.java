@@ -351,6 +351,34 @@ public class PhotoModel implements Serializable {
 		}
 	}
 	
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+		Vector<PhotoEntry> entries = new Vector<PhotoEntry>();
+		
+		for (int i = 0; i < groupsQuery.size(); i++) {
+			for (int j = 0; j < data.size(); j++) {
+				if (data.elementAt(j).getGroup().equalsIgnoreCase(groupsQuery.elementAt(i))) {
+					if (!entries.contains(data.elementAt(j))) {
+						entries.add(data.elementAt(j));
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < tagsQuery.size(); i++) {
+			for (int j = 0; j < data.size(); j++) {
+				Vector<String> elementTags = data.elementAt(j).getTags();
+				
+				if (elementTags.contains(tagsQuery.elementAt(i))) {
+					if (!entries.contains(data.elementAt(j))) {
+						entries.add(data.elementAt(j));
+					}
+				}
+			}
+		}
+
+		return entries;
+	}
+	
 	/**
 	 * Adds a specific class to the model listener. Check to see if the listener already
 	 * exists within the listener list, and if it does not then add it.
