@@ -49,7 +49,7 @@ public class PhotoModel implements Serializable {
 		
 		try {
 			//TODO: check if the image still exists or not; purge otherwise
-			File file = new File("data");
+			File file = new File("data.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -67,7 +67,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("tags");
+			File file = new File("tags.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -79,7 +79,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("groups");
+			File file = new File("groups.save");
 			
 			if (file.exists()) {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
@@ -126,12 +126,15 @@ public class PhotoModel implements Serializable {
 	 * 
 	 * @param group Name of the group we wish to add
 	 */
-	public void addGroup(String group) {
+	public boolean addGroup(String group) {
 		if (!groups.contains(group)) {
 			groups.add(group);
 			
 			updateModelListeners();
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -168,12 +171,16 @@ public class PhotoModel implements Serializable {
 	 * 
 	 * @param tag The tag which we wish to add to a photo
 	 */
-	public void addTag(String tag) {
+	public boolean addTag(String tag) {
 		if (!tags.contains(tag)) {
 			tags.add(tag);
 			
 			updateModelListeners();
+			
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -406,7 +413,7 @@ public class PhotoModel implements Serializable {
 	 */
 	private void saveData() {
 		try {
-			File file = new File("data");
+			File file = new File("data.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(data);
@@ -417,7 +424,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("tags");
+			File file = new File("tags.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(tags);
@@ -428,7 +435,7 @@ public class PhotoModel implements Serializable {
 		catch (Exception e) {}
 		
 		try {
-			File file = new File("groups");
+			File file = new File("groups.save");
 			
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(groups);

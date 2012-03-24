@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 /**
  * This class contains all the information which is attached to a specific photo, and all
  * methods which interact with that information.
@@ -41,6 +42,10 @@ public class PhotoEntry implements Serializable {
 	 * @return Bitmap of the photo
 	 */
 	public Bitmap getBitmap() {
+		if (bitmap == null) {
+			return BitmapFactory.decodeFile(getFilePath());
+		}
+		
 		return bitmap;
 	}
 	

@@ -47,7 +47,7 @@ public class MainView extends Activity {
 			
 		});
 
-		Button listButton = (Button) findViewById(R.id.main_list);
+		Button listButton = (Button) findViewById(R.id.view_by_group);
 		listButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -61,6 +61,16 @@ public class MainView extends Activity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, SearchPhotoView.class);
+				startActivity(intent);				
+			}
+
+		});
+		
+		Button tagsButton = (Button) findViewById(R.id.view_by_tag);
+		tagsButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent intent = new Intent(MainView.this, TagList.class);
 				startActivity(intent);				
 			}
 

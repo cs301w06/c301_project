@@ -72,8 +72,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param tag String of words to be associated to photo
 	 */
-	public static void addTag(String tag) {
-		model.addTag(tag.trim());
+	public static boolean addTag(String tag) {
+		return model.addTag(tag.trim());
 	}
 	
 	/**
@@ -90,8 +90,8 @@ public class PhotoApplication extends Application {
 	 * 
 	 * @param group Body part that photo is grouped to 
 	 */
-	public static void addGroup(String group) {
-		model.addGroup(group.trim());
+	public static boolean addGroup(String group) {
+		return model.addGroup(group);
 	}
 	
 	/**

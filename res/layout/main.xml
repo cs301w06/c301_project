@@ -16,11 +16,17 @@
         android:text="Camera" />
 
     <Button
-        android:id="@+id/main_list"
+        android:id="@+id/view_by_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="List" />
-
+        android:text="View By Groups" />
+	
+    <Button
+        android:id="@+id/view_by_tag"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="View By Tags" />
+    
     <Button
         android:id="@+id/main_search"
         android:layout_width="fill_parent"

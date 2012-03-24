@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cs.c301.project.Utilities.TagListLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/tagPanel"
+    android:descendantFocusability="beforeDescendants"
+android:focusableInTouchMode="true">
+	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tagTextViewWrapper">
+    <TextView
+        android:id="@+id/tagTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tags"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        	android:layout_marginBottom="5dp" />
+</LinearLayout>
+
+	<EditText
+	    android:id="@+id/tagEditText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Type here to filter tags."
+   	android:layout_margin="2dp"
+   >
+	    
+	</EditText>
+	
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+         android:id="@+id/tagListView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1.0"
+    android:padding="5dp"
+    android:textSize="16sp" >
+</ListView>
+
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tagButtonPaneWrapper"
+        >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal" 
+        android:id="@+id/tagButtonPane">
+
+        <Button
+            android:id="@+id/addtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.37"
+            android:text="Add tag" />
+
+        <Button
+            android:id="@+id/searchtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.19"
+            android:text="Advanced Search" />
+
+    </LinearLayout>
+    </LinearLayout>
+</cs.c301.project.Utilities.TagListLayout>
