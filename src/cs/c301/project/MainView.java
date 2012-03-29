@@ -31,6 +31,7 @@ public class MainView extends Activity {
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
+					
 					Uri imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tmp.jpg"));
 	
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -57,7 +58,6 @@ public class MainView extends Activity {
 				Intent intent = new Intent(MainView.this, SearchPhotoView.class);
 				startActivity(intent);				
 			}
-
 		});
 		
 		Button tagsButton = (Button) findViewById(R.id.view_by_tag);
@@ -67,7 +67,6 @@ public class MainView extends Activity {
 				Intent intent = new Intent(MainView.this, TagList.class);
 				startActivity(intent);				
 			}
-
 		});
 	}
 	
@@ -75,18 +74,19 @@ public class MainView extends Activity {
 	 * onActivityResult is the method to handle the result after taking a photo,
 	 * if the photo is taken successfully, switch the intent to PhotoReview.
 	 * 
-	 * @parameters	CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE 	detect if the photo is taken correctly
-	 * @parameters	intent		switch intent
+	 * @param requestCode	Integer request code originally supplied, allowing you to identify who
+	 * 						this result came from	
+	 * @param resultCode 	Integer result code returned by child activity through its setResult()
+	 * @param intent		Intent, which can return result data to caller
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 	
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				Intent aIntent = new Intent(MainView.this, PhotoReview.class);
+				Intent aIntent = new Intent(getApplication(), PhotoReview.class);
 				startActivity(aIntent);
 			}
-	
 		}
 	}
 }
