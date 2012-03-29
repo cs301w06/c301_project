@@ -34,7 +34,7 @@ import cs.c301.project.Utilities.TagListLayout;
  * <p>
  * Also allows the addition of new tags, which are immediately added to the list.
  */
-public class TagList extends Activity {
+public class TagList extends Activity implements PhotoModelListener {
 	
 	private Vector<Integer> matchingPositions;
 	private boolean isUnderReview, isInFilterState;
@@ -56,8 +56,6 @@ public class TagList extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.taglist);
-		
-		tags = PhotoApplication.getTags();
 		
 		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
 		filterString = "";
@@ -201,7 +199,7 @@ public class TagList extends Activity {
 	    });
 		
 		TagListLayout.setFilterActivity(this);
-//		PhotoApplication.addPhotoModelListener(this);
+		PhotoApplication.addPhotoModelListener(this);
 	}	
 
 	/**
@@ -292,28 +290,28 @@ public class TagList extends Activity {
 			lv.setAdapter(adapter);
 		}
 	}
-//
-//	
-//	/**
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
-//	 */
-//	public void photosChanged(Vector<PhotoEntry> photos) {
-//	}
-//
-//	/**
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
-//	 */
-//	public void tagsChanged(Vector<String> tags) {
-//		this.tags = tags;
-//		
-//		onStart();
-//	}
-//
-//	/** 
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
-//	 */
-//	public void groupsChanged(Vector<String> tags) {
-//	}
+
+	
+	/**
+	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
+	 */
+	public void photosChanged(Vector<PhotoEntry> photos) {
+	}
+
+	/**
+	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
+	 */
+	public void tagsChanged(Vector<String> tags) {
+		this.tags = tags;
+		
+		onStart();
+	}
+
+	/** 
+	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
+	 */
+	public void groupsChanged(Vector<String> tags) {
+	}
 
 	@Override
 	public void onBackPressed() {

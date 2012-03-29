@@ -2,10 +2,10 @@ package cs.c301.project.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.StringTokenizer;
 import java.util.Vector;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 /**
  * This class contains all the information which is attached to a specific photo, and all
  * methods which interact with that information.
@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
  */
 public class PhotoEntry implements Serializable {
 	private int id; //id of picture
+	private String filePath; //absolute path that includes name
 	private Vector<String> tags; //associated tags
 	private String group; //associated groups
 	private Date date; //date of picture
@@ -29,7 +30,10 @@ public class PhotoEntry implements Serializable {
 	 * @param tags List of tags associated with specified photo
 	 * @param group Group associated with specified photo
 	 */
-	public PhotoEntry() {
+	public PhotoEntry(Bitmap bitmap, Vector<String> tags, String group) {
+		this.bitmap = bitmap;
+		this.tags = tags;
+		this.group = group;
 		date = new Date();
 	}
 	/**
@@ -38,14 +42,36 @@ public class PhotoEntry implements Serializable {
 	 * @return Bitmap of the photo
 	 */
 	public Bitmap getBitmap() {
+		if (bitmap == null) {
+			return BitmapFactory.decodeFile(getFilePath());
+		}
+		
 		return bitmap;
 	}
 	
 	/**
 	 * Deletes the photo from the data by setting it null
 	 */
-	public void setBitmap(Bitmap image) {
-		bitmap = image;
+	public void deleteBitmap() {
+		bitmap = null;
+	}
+	
+	/**
+	 * Setter for the photo file path
+	 * 
+	 * @param s Given file path
+	 */
+	public void setFilePath(String s) {
+		filePath = s;
+	}
+	
+	/**
+	 * Getter for the photo file path
+	 * 
+	 * @return File path as a string
+	 */
+	public String getFilePath() {
+		return filePath;
 	}
 	
 	/**
@@ -71,22 +97,12 @@ public class PhotoEntry implements Serializable {
 		}
 	}
 	
-	public void setTags(String tags) {
-		StringTokenizer tokenizer = new StringTokenizer(tags, ",");
-		
-		while (tokenizer.hasMoreTokens()) {
-			addTag(tokenizer.nextToken());
-		}
+	public void setTags(Vector<String> tags) {
+		this.tags = tags;
 	}
 	
-	public String getTagsForDatabase() {
-		String tagConstruct = "";
-		
-		for (int i = 0; i < tags.size(); i++) {
-			tagConstruct += tags.elementAt(i) + ",";
-		}
-		
-		return tagConstruct.substring(0, tagConstruct.length() - 1);
+	public Vector<String> getTags() {
+		return tags;
 	}
 	
 	/**
@@ -116,10 +132,6 @@ public class PhotoEntry implements Serializable {
 		return date;
 	}
 	
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
 	/**
 	 * Sets the id for this entry of the PhotoEntry object.
 	 * 
@@ -136,5 +148,14 @@ public class PhotoEntry implements Serializable {
 	 */
 	public int getID() {
 		return id;
+	}
+	
+	/**
+	 * Generates a unique name for a photo when it is saved.
+	 * 
+	 * @return Filename under which the photo is saved.
+	 */
+	public String getSaveName() {
+		return date.getDate() + date.getMonth() + date.getYear() + date.getHours() + date.getMinutes() + date.getSeconds() + ".jpg";
 	}
 }
