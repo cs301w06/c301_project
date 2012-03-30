@@ -38,23 +38,31 @@ public class PhotoModel {
 	}
 	
 	public boolean addGroup(String group) {
-		ContentValues entry = new ContentValues();
-		entry.put(photoModelHelper.groupsTableName, group);
-		long row = photoDatabase.insert(photoModelHelper.groupsTable, null, entry);
+		Vector<String> existingGroups = getGroups();
 		
-		if (row != -1)
-			return true;
+		if (!existingGroups.contains(group)) {
+			ContentValues entry = new ContentValues();
+			entry.put(photoModelHelper.groupsTableName, group);
+			long row = photoDatabase.insert(photoModelHelper.groupsTable, null, entry);
+			
+			if (row != -1)
+				return true;
+		}
 		
 		return false;
 	}
 	
 	public boolean addTag(String tag) {
-		ContentValues entry = new ContentValues();
-		entry.put(photoModelHelper.tagsTableName, tag);
-		long row = photoDatabase.insert(photoModelHelper.tagsTable, null, entry);
+		Vector<String> existingTags = getTags();
 		
-		if (row != -1)
-			return true;
+		if (!existingTags.contains(tag)) {
+			ContentValues entry = new ContentValues();
+			entry.put(photoModelHelper.tagsTableName, tag);
+			long row = photoDatabase.insert(photoModelHelper.tagsTable, null, entry);
+			
+			if (row != -1)
+				return true;
+		}
 		
 		return false;
 	}
@@ -127,6 +135,8 @@ public class PhotoModel {
 			}
 		}
 		
+		cursor.close();
+		
 		return s;
 	}
 	
@@ -144,6 +154,8 @@ public class PhotoModel {
 				loop = false;
 			}
 		}
+		
+		cursor.close();
 		
 		return s;
 	}
@@ -182,6 +194,8 @@ public class PhotoModel {
 				loop = false;
 			}
 		}
+
+		cursor.close();
 		
 		return photoEntries;
 	}
@@ -268,6 +282,8 @@ public class PhotoModel {
 				loop = false;
 			}
 		}
+		
+		cursor.close();
 		
 		return photoEntries;
 	}
