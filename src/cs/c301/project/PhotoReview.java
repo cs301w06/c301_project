@@ -2,10 +2,11 @@ package cs.c301.project;
 
 import java.util.Date;
 import java.util.Vector;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 
 /**
  * Take recent taken photo from file and draws the photo up on screen
@@ -29,7 +29,8 @@ public class PhotoReview extends Activity {
 	ProgressDialog p;
 	private String groupName;
 	private PhotoEntry photoEntry;
-
+	private boolean isGroupSelected;
+	
 	@Override
 	/**
 	 * Method called upon activity creation
@@ -37,13 +38,20 @@ public class PhotoReview extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
-
+		
+		isGroupSelected = false;
+		
+		Bundle extra = getIntent().getExtras();
+		
+		photoEntry = (PhotoEntry)extra.getSerializable("photo");
+		
+		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
+		reviewPhoto.setImageBitmap(photoEntry.getBitmap());
+		
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-
-				PhotoApplication.removePhoto(photoEntry.getID());
 				Toast.makeText(getApplicationContext(), "Photo Discarded", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(getApplication(), MainView.class);
 				startActivity(intent);
@@ -63,14 +71,20 @@ public class PhotoReview extends Activity {
 		});
 
 		keepButton = (Button) findViewById(R.id.review_keep);
-		keepButton.setOnClickListener(new Button.OnClickListener(){
+		keepButton.setOnClickListener(new Button.OnClickListener() {
 
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Please select a group first", Toast.LENGTH_SHORT).show();
-			}			
-		});
+				if (isGroupSelected) {
+					Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					PhotoApplication.addPhoto(photoEntry);
+					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
+					startActivity(intent);
+				} else {
+					Toast.makeText(getApplicationContext(), "Please select a group first", Toast.LENGTH_SHORT).show();
+				}
+			}
 
-//		PhotoApplication.addPhotoModelListener(this);
+		});
 	}
 
 	/**
@@ -80,132 +94,16 @@ public class PhotoReview extends Activity {
 	 * @param intent	extra data from the intent
 	 */
 	@Override
-	protected void onActivityResult(int a, int b, Intent intent) {
-		
+	protected void onActivityResult(int a, int b, Intent intent) {	
 		try {
-			
 			Bundle extra = intent.getExtras();
 
-			groupName = extra.getString("groupname");
+			groupName = extra.getString("group");
 			photoEntry.setGroup(groupName);
-
-			keepButton.setOnClickListener(new Button.OnClickListener() {
-
-				public void onClick(View v) {
-					Intent intent = new Intent(getApplication(), PhotoSubView.class);
-					PhotoApplication.updatePhoto(photoEntry);
-					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					startActivity(intent);
-				}
-
-			});
+			
+			isGroupSelected = true;
 		}
 
 		catch (Exception e) {}
 	}
-
-//	/**
-//	 * Grab the latest photo from file and give the global 
-//	 * variable the string path
-//	 * 
-//	 * @param photos	vector list of photos on file
-//	 */
-//	public void photosChanged(Vector<PhotoEntry> photos) {
-//
-//		int id = -1;
-//		Date latestDate = null;
-//
-//		for (int i = 0; i < photos.size(); i++) {
-//
-//			if (latestDate == null) {
-//
-//				photos.elementAt(i).getDate();
-//				id = i;
-//
-//			} else {
-//
-//				Date tempDate = photos.elementAt(i).getDate();
-//
-//				if (tempDate.compareTo(latestDate) > 0) {
-//					id = i;
-//					latestDate = tempDate;
-//				}
-//			}
-//		}
-//		
-//		if (id != -1) {
-//
-//			photoEntry = photos.elementAt(id);
-//
-//			onStart();
-//		}
-//	}
-	
-	/**
-	 * Grab the latest photo from file and give the global 
-	 * variable the string path
-	 * 
-	 * @param photos	vector list of photos on file
-	 */
-	public void photosChanged(Vector<PhotoEntry> photos) {
-
-		int id = -1;
-		Date latestDate = null;
-
-		for (int i = 0; i < photos.size(); i++) {
-
-			if (latestDate == null) {
-
-				photos.elementAt(i).getDate();
-				id = i;
-
-			} else {
-
-				Date tempDate = photos.elementAt(i).getDate();
-
-				if (tempDate.compareTo(latestDate) > 0) {
-					id = i;
-					latestDate = tempDate;
-				}
-			}
-		}
-		
-		if (id != -1) {
-
-			photoEntry = photos.elementAt(id);
-			onStart();
-		}
-	}
-
-	/**
-	 * Show the review photo page and draw the photo on screen
-	 */
-	protected void onStart() {
-		super.onStart();
-
-		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
-//		reviewPhoto.setImageDrawable(photoEntry.getBitmap()); //needs to be changed to use the bitmap
-//
-//		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
-//		comparePhoto.setImageDrawable(Drawable.createFromPath(photoEntry.getFilePath()));
-	}
-
-//	/**
-//	 * (non-Javadoc)
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(java.util.Vector)
-//	 */
-//	public void tagsChanged(Vector<String> tags) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	/** 
-//	 * (non-Javadoc)
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
-//	 */
-//	public void groupsChanged(Vector<String> groups) {
-//		// TODO Auto-generated method stub
-//
-//	}
-
 }

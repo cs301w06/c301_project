@@ -4,13 +4,15 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import cs.c301.project.Data.PhotoEntry;
 
 /**
  * The main page of they project, gives choices for user to chose from.  
@@ -31,10 +33,8 @@ public class MainView extends Activity {
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
-					Uri imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tmp.jpg"));
-	
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
 					
 					startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);	
 			}
@@ -69,6 +69,8 @@ public class MainView extends Activity {
 			}
 
 		});
+		
+//		PhotoApplication.openDatabase();
 	}
 	
 	/**
@@ -84,6 +86,17 @@ public class MainView extends Activity {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				Intent aIntent = new Intent(MainView.this, PhotoReview.class);
+				
+				File imagePath = new File(PhotoApplication.getTemporaryImage().toString());
+				
+				Bitmap image = BitmapFactory.decodeFile(imagePath.getAbsolutePath());
+				Log.e("MainView", imagePath.getAbsolutePath());
+				
+				PhotoEntry entry = new PhotoEntry();
+				entry.setBitmap(image);
+				
+				aIntent.putExtra("photo", entry);
+				
 				startActivity(aIntent);
 			}
 	
