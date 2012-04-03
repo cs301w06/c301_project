@@ -30,17 +30,18 @@
         </activity>
         <activity android:name="PhotoReview" >
         </activity>
-         <activity android:name="TagList">      
+        <activity android:name="TagList" >
         </activity>
-        <activity android:name=".PhotoSubView">
-             </activity>
+        <activity android:name=".PhotoSubView" >
+        </activity>
         <activity android:name="GroupList" >
         </activity>
         <activity android:name=".PhotoSubView" >
         </activity>
         <activity android:name="TagView" >
         </activity>
-        <activity android:name="PhotoDetails">
+        <activity android:name="PhotoDetails" >
         </activity>
     </application>
+
 </manifest>
