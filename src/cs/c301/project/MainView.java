@@ -76,29 +76,20 @@ public class MainView extends Activity {
 	}
 	
 	/**
-	 * onActivityResult is the method to handle the result after taking a photo,
-	 * if the photo is taken successfully, switch the intent to PhotoReview.
-	 * 
-	 * @parameters	CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE 	detect if the photo is taken correctly
-	 * @parameters	intent		switch intent
-	 */
+	* onActivityResult is the method to handle the result after taking a photo,
+	* if the photo is taken successfully, switch the intent to PhotoReview.
+	*
+	* @param requestCode Integer request code originally supplied, allowing you to identify who
+	* this result came from
+	* @param resultCode Integer result code returned by child activity through its setResult()
+	* @param intent Intent, which can return result data to caller
+	*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 	
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				Intent aIntent = new Intent(MainView.this, PhotoReview.class);
-				
-				File imagePath = new File(PhotoApplication.getTemporaryImage().toString());
-				
-				Bitmap image = BitmapFactory.decodeFile(imagePath.getAbsolutePath());
-				Log.e("MainView", imagePath.getAbsolutePath());
-				
-				PhotoEntry entry = new PhotoEntry();
-				entry.setBitmap(image);
-				
-				aIntent.putExtra("photo", entry);
-				
+				Intent aIntent = new Intent(getApplication(), PhotoReview.class);
 				startActivity(aIntent);
 			}
 	

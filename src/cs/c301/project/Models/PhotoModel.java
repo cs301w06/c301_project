@@ -80,7 +80,7 @@ public class PhotoModel {
 		catch (IOException e) {}
 		
 		entry.put(photoModelHelper.photosTableGroup, photo.getGroup());
-		entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
+		//entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDate, photo.getDate().toString());
 		
 		long row = photoDatabase.insert(photoModelHelper.photosTable, null, entry);
@@ -174,7 +174,7 @@ public class PhotoModel {
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
 				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
-				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+				//String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
 				Date date = new Date();
 				
 				try {
@@ -185,7 +185,7 @@ public class PhotoModel {
 				
 				entry.setID(ID);
 				entry.setGroup(group);
-				entry.setTags(tags);
+				//entry.setTags(tags);
 				entry.setBitmap(image);
 				entry.setDate(date);
 				
@@ -200,7 +200,8 @@ public class PhotoModel {
 		return photoEntries;
 	}
 	
-	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+	//public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
 		Vector<String> selectionArgs = new Vector<String>();
@@ -219,7 +220,7 @@ public class PhotoModel {
 			}
 		}
 		
-		if (tagsQuery != null && tagsQuery.size() > 0) {
+		/*if (tagsQuery != null && tagsQuery.size() > 0) {
 			if (tagsQuery.elementAt(0) != null) {
 				if (query.equals(""))
 					query = photoModelHelper.photosTableTags + " LIKE ? ";
@@ -235,7 +236,7 @@ public class PhotoModel {
 					}
 				}
 			}
-		}
+		}*/
 		
 		if (query.equals(""))
 			return getAllPhotos();
@@ -262,7 +263,7 @@ public class PhotoModel {
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
 				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
-				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+				//String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
 				Date date = new Date();
 				
 				try {
@@ -273,7 +274,7 @@ public class PhotoModel {
 				
 				entry.setID(ID);
 				entry.setGroup(group);
-				entry.setTags(tags);
+				//entry.setTags(tags);
 				entry.setBitmap(image);
 				entry.setDate(date);
 				
@@ -301,7 +302,7 @@ public class PhotoModel {
 		catch (IOException e) {}
 		
 		entry.put(photoModelHelper.photosTableGroup, photoEntry.getGroup());
-		entry.put(photoModelHelper.photosTableTags, photoEntry.getTagsForDatabase());
+		//entry.put(photoModelHelper.photosTableTags, photoEntry.getTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDate, photoEntry.getDate().toString());
 		
 		int row = photoDatabase.update(photoModelHelper.photosTable, entry, photoModelHelper.photosTableID + " = ?", new String[] {"" + photoEntry.getID()});
