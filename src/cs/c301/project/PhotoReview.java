@@ -94,6 +94,7 @@ public class PhotoReview extends Activity {
 					Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
 					intent.putExtra("group", groupName);
 					startActivity(intent);
+					finish();
 				}
 			});
 		}
