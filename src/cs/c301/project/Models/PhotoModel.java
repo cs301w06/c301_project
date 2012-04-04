@@ -200,8 +200,7 @@ public class PhotoModel {
 		return photoEntries;
 	}
 	
-	//public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
-	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
 		Vector<String> selectionArgs = new Vector<String>();
@@ -220,7 +219,7 @@ public class PhotoModel {
 			}
 		}
 		
-		/*if (tagsQuery != null && tagsQuery.size() > 0) {
+		if (tagsQuery != null && tagsQuery.size() > 0) {
 			if (tagsQuery.elementAt(0) != null) {
 				if (query.equals(""))
 					query = photoModelHelper.photosTableTags + " LIKE ? ";
@@ -236,7 +235,7 @@ public class PhotoModel {
 					}
 				}
 			}
-		}*/
+		}
 		
 		if (query.equals(""))
 			return getAllPhotos();
@@ -263,7 +262,7 @@ public class PhotoModel {
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
 				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
-				//String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
 				Date date = new Date();
 				
 				try {
@@ -274,7 +273,7 @@ public class PhotoModel {
 				
 				entry.setID(ID);
 				entry.setGroup(group);
-				//entry.setTags(tags);
+				entry.setTags(tags);
 				entry.setBitmap(image);
 				entry.setDate(date);
 				

@@ -54,8 +54,8 @@ public class PhotoSubView extends Activity{
 		groupV.add(group);
 		tagsV.add(tags);
 		
-		//Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
-		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV);
+		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+//		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV);
 		
 		//Grab the folder name to display as a title
 		//File file = new File(filepath);

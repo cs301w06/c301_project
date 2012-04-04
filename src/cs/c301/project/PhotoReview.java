@@ -41,11 +41,7 @@ public class PhotoReview extends Activity {
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-
-				//PhotoApplication.removePhoto(photoEntry.getID());
-				Toast.makeText(getApplicationContext(), "Photo Discarded", Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(getApplication(), MainView.class);
-				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -53,7 +49,6 @@ public class PhotoReview extends Activity {
 		groupButton.setOnClickListener(new Button.OnClickListener(){
 
 			public void onClick(View v) {
-
 				Intent intent = new Intent(getApplication(), GroupList.class);
 				intent.putExtra("isUnderReview", true);
 				startActivityForResult(intent, 0);
@@ -86,7 +81,7 @@ public class PhotoReview extends Activity {
 			groupName = extra.getString("group");
 			newPhoto.setGroup(groupName);
 			newPhoto.setBitmap(newBMP);
-			//newPhoto.setTags("");
+			newPhoto.setTags("");
 			if (newPhoto.getBitmap() == null)
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
 			
@@ -95,10 +90,10 @@ public class PhotoReview extends Activity {
 			keepButton.setOnClickListener(new Button.OnClickListener() {
 
 				public void onClick(View v) {
-					//Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					Intent intent = new Intent(getApplication(), PhotoSubView.class);
 					PhotoApplication.addPhoto(newPhoto);
 					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					//startActivity(intent);
+					startActivity(intent);
 				}
 			});
 		}
