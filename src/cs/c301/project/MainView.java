@@ -6,11 +6,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import cs.c301.project.Data.PhotoEntry;
 
@@ -27,6 +29,8 @@ public class MainView extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.main);
 		
 		Button cameraButton = (Button) findViewById(R.id.main_camera);
@@ -69,8 +73,6 @@ public class MainView extends Activity {
 			}
 
 		});
-		
-//		PhotoApplication.openDatabase();
 	}
 	
 	/**

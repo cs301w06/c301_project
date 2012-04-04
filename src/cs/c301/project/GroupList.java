@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
@@ -53,6 +54,7 @@ public class GroupList extends Activity {
 	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.grouplist);
 		
 		groups = PhotoApplication.getGroups();
@@ -248,6 +250,8 @@ public class GroupList extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		
+		groups = PhotoApplication.getGroups();
 		
 		if (!filterString.equals("") && filterString != null) {
 			Vector<String> matching = new Vector<String>(0, 1);
