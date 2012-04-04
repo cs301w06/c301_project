@@ -90,10 +90,10 @@ public class PhotoReview extends Activity {
 			keepButton.setOnClickListener(new Button.OnClickListener() {
 
 				public void onClick(View v) {
-					Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					//Intent intent = new Intent(getApplication(), PhotoSubView.class);
 					PhotoApplication.addPhoto(newPhoto);
 					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					startActivity(intent);
+					//startActivity(intent);
 				}
 			});
 		}
