@@ -76,24 +76,24 @@ public class PhotoReview extends Activity {
 
 		try {
 			Bundle extra = intent.getExtras();
-			//final PhotoEntry newPhoto = new PhotoEntry();
 			newPhoto = new PhotoEntry();
 			groupName = extra.getString("group");
 			newPhoto.setGroup(groupName);
 			newPhoto.setBitmap(newBMP);
-			newPhoto.setTags("");
-			if (newPhoto.getBitmap() == null)
+			
+			if (newPhoto.getBitmap() == null) {
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
-			
-			
+			}
 			
 			keepButton.setOnClickListener(new Button.OnClickListener() {
 
 				public void onClick(View v) {
-					//Intent intent = new Intent(getApplication(), PhotoSubView.class);
 					PhotoApplication.addPhoto(newPhoto);
 					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					//startActivity(intent);
+					
+					Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
+					intent.putExtra("group", groupName);
+					startActivity(intent);
 				}
 			});
 		}
