@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -39,6 +40,7 @@ public class PhotoSubView extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.sub_list);
 		
 		Bundle extra = getIntent().getExtras();
@@ -52,8 +54,8 @@ public class PhotoSubView extends Activity{
 		groupV.add(group);
 		tagsV.add(tags);
 		
-		//Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
-		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV);
+		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+//		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV);
 		
 		//Grab the folder name to display as a title
 		//File file = new File(filepath);

@@ -200,8 +200,7 @@ public class PhotoModel {
 		return photoEntries;
 	}
 	
-	//public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
-	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
 		Vector<String> selectionArgs = new Vector<String>();

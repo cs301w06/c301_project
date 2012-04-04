@@ -30,8 +30,11 @@ public class PhotoEntry implements Serializable {
 	 * @param group Group associated with specified photo
 	 */
 	public PhotoEntry() {
+		tags = new Vector<String>(0, 1);
+		group = "";
 		date = new Date();
 	}
+	
 	/**
 	 * Getter for the photo bitmap itself
 	 * 

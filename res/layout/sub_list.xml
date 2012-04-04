@@ -18,8 +18,9 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sub_group"
         android:numColumns="4"
-        android:verticalSpacing="10dp" >
-
+        android:verticalSpacing="10dp" 
+        android:choiceMode= "multipleChoice">
+		
     </GridView>
 
     <TextView

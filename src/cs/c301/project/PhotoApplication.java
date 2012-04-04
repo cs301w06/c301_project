@@ -100,12 +100,12 @@ public class PhotoApplication extends Application {
 		return model.getGroups();
 	}
 	
-	/*public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		return model.getPhotosByValues(groupsQuery, tagsQuery);
-	}*/
-	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
-		return model.getPhotosByValues(groupsQuery);
 	}
+//	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
+//		return model.getPhotosByValues(groupsQuery);
+//	}
 	
 	public static Vector<PhotoEntry> getAllPhotos() {
 		return model.getAllPhotos();

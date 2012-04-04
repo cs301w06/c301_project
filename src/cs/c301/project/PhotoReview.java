@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class PhotoReview extends Activity {
 	/** Method called upon activity creation */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.review);
 
 		newBMP = setBogoPic();
@@ -39,11 +41,7 @@ public class PhotoReview extends Activity {
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-
-				//PhotoApplication.removePhoto(photoEntry.getID());
-				Toast.makeText(getApplicationContext(), "Photo Discarded", Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(getApplication(), MainView.class);
-				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -51,7 +49,6 @@ public class PhotoReview extends Activity {
 		groupButton.setOnClickListener(new Button.OnClickListener(){
 
 			public void onClick(View v) {
-
 				Intent intent = new Intent(getApplication(), GroupList.class);
 				intent.putExtra("isUnderReview", true);
 				startActivityForResult(intent, 0);
@@ -84,7 +81,7 @@ public class PhotoReview extends Activity {
 			groupName = extra.getString("group");
 			newPhoto.setGroup(groupName);
 			newPhoto.setBitmap(newBMP);
-			//newPhoto.setTags("");
+			newPhoto.setTags("");
 			if (newPhoto.getBitmap() == null)
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
 			

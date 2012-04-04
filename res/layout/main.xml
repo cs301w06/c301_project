@@ -3,41 +3,45 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
+
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Main Menu" />
-    
-    <Button
-        android:id="@+id/main_camera"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Camera" />
+        android:text="YouTrack"
+        android:gravity="center_horizontal"
+        android:paddingTop="100dp"
+        android:textSize="40sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/view_by_group"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="View By Groups" />
-	
-    <Button
         android:id="@+id/view_by_tag"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View By Tags" />
-    
+
+    <Button
+        android:id="@+id/view_by_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View By Groups" />
+
     <Button
         android:id="@+id/main_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Search" />
 
+    <Button
+        android:id="@+id/main_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        
     </LinearLayout>
 
 </LinearLayout>
