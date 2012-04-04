@@ -4,9 +4,8 @@ package cs.c301.project;
 import java.util.Vector;
 
 import android.app.Application;
-import android.os.Environment;
+import android.net.Uri;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Models.PhotoModel;
 
 /**
@@ -20,37 +19,15 @@ public class PhotoApplication extends Application {
 	
 	/**
 	 * Creates a new photo model 
+	 * @return 
 	 */
-	public PhotoApplication() {
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		
 		model = new PhotoModel(this);
 	}
-	
-//	/**
-//	 * Get the photo model file path
-//	 * 
-//	 * @return path of the photo model
-//	 */
-//	public static String getFilePath() {
-//		return model.getFilePath();
-//	}
-//	
-//	/**
-//	 * Use listener to see if photo is added
-//	 * 
-//	 * @param c photo model listener
-//	 */
-//	public static void addPhotoModelListener(PhotoModelListener c) {
-//		model.addPhotoModelListener(c);
-//	}
-//	
-//	/**
-//	 * Use listener to see if photo is removed
-//	 * 
-//	 * @param c photo model listener
-//	 */
-//	public static void removePhotoModelListener(PhotoModelListener c) {
-//		model.removePhotoModelListener(c);
-//	}
 	
 	/**
 	 * Add a new photo 
@@ -123,20 +100,18 @@ public class PhotoApplication extends Application {
 		return model.getGroups();
 	}
 	
-//	/**
-//	 * Get temporary image
-//	 * 
-//	 * @return the temporary image
-//	 */
-//	public static PhotoEntry getTemporaryImage() {
-//		return model.getTemporaryImage();
-//	}
-	
-	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
+	/*public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		return model.getPhotosByValues(groupsQuery, tagsQuery);
+	}*/
+	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
+		return model.getPhotosByValues(groupsQuery);
 	}
 	
 	public static Vector<PhotoEntry> getAllPhotos() {
 		return model.getAllPhotos();
+	}
+	
+	public static Uri getTemporaryImage() {
+		return model.getTemporaryImage();
 	}
 }

@@ -1,6 +1,5 @@
 package cs.c301.project;
 
-import java.io.File;
 import java.util.Vector;
 import java.util.WeakHashMap;
 
@@ -24,8 +23,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 import cs.c301.project.Utilities.GroupListLayout;
 
 /**

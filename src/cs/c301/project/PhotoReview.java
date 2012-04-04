@@ -15,7 +15,7 @@ import cs.c301.project.Data.PhotoEntry;
 
 /**
  * Take recent taken photo from file and draws the photo up on screen
- * for the user to review and decide whether to put into group and then keep 
+ * for the user to review and decide whether to put into group and then keep
  * the photo or user can discard the photo if it is unwanted
  *
  */
@@ -25,14 +25,15 @@ public class PhotoReview extends Activity {
 	private String groupName;
 	private PhotoEntry photoEntry;
 	private Bitmap newBMP;
-
+	private PhotoEntry newPhoto;
+	
 	@Override
 	/** Method called upon activity creation */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
 
-		setBogoPic();
+		newBMP = setBogoPic();
 
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
@@ -54,7 +55,7 @@ public class PhotoReview extends Activity {
 				Intent intent = new Intent(getApplication(), GroupList.class);
 				intent.putExtra("isUnderReview", true);
 				startActivityForResult(intent, 0);
-			}			
+			}
 		});
 
 		keepButton = (Button) findViewById(R.id.review_keep);
@@ -62,33 +63,40 @@ public class PhotoReview extends Activity {
 
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Please select a group first", Toast.LENGTH_SHORT).show();
-			}			
+			}
 		});
 	}
 
 	/**
 	 * Grab the group name of the photo from the group list intent
-	 * @param requestCode	Integer request code originally supplied, allowing you to identify who
-	 * 						this result came from	
-	 * @param resultCode 	Integer result code returned by child activity through its setResult()
-	 * @param intent		Intent, which can return result data to caller
+	 * @param requestCode Integer request code originally supplied, allowing you to identify who
+	 * this result came from
+	 * @param resultCode Integer result code returned by child activity through its setResult()
+	 * @param intent Intent, which can return result data to caller
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
 		try {
 			Bundle extra = intent.getExtras();
-
-			groupName = extra.getString("groupname");
-			photoEntry.setGroup(groupName);
-
+			//final PhotoEntry newPhoto = new PhotoEntry();
+			newPhoto = new PhotoEntry();
+			groupName = extra.getString("group");
+			newPhoto.setGroup(groupName);
+			newPhoto.setBitmap(newBMP);
+			//newPhoto.setTags("");
+			if (newPhoto.getBitmap() == null)
+				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
+			
+			
+			
 			keepButton.setOnClickListener(new Button.OnClickListener() {
 
 				public void onClick(View v) {
-					Intent intent = new Intent(getApplication(), PhotoSubView.class);
-					PhotoApplication.updatePhoto(photoEntry);
+					//Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					PhotoApplication.addPhoto(newPhoto);
 					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					startActivity(intent);
+					//startActivity(intent);
 				}
 			});
 		}
@@ -96,10 +104,10 @@ public class PhotoReview extends Activity {
 	}
 
 	/**
-	 * Grab the latest photo from file and give the global 
+	 * Grab the latest photo from file and give the global
 	 * variable the string path
-	 * 
-	 * @param photos	vector list of photos on file
+	 *
+	 * @param photos vector list of photos on file
 	 */
 	public void photosChanged(Vector<PhotoEntry> photos) {
 
@@ -125,7 +133,6 @@ public class PhotoReview extends Activity {
 		}
 
 		if (id != -1) {
-
 			photoEntry = photos.elementAt(id);
 			onStart();
 		}
@@ -136,15 +143,13 @@ public class PhotoReview extends Activity {
 		super.onStart();
 
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
-		reviewPhoto.setImageBitmap(newBMP); 
+		reviewPhoto.setImageBitmap(newBMP);
 
-//		ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
+		// ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 	}
 
 	/** Generate new bmp */
-	private void setBogoPic() {
-		PhotoEntry photoEntry = new PhotoEntry();
-		newBMP = BogoPicGen.generateBitmap(400, 400); 
-		photoEntry.setBitmap(newBMP);
+	private Bitmap setBogoPic() {
+		return BogoPicGen.generateBitmap(400, 400);
 	}
 }

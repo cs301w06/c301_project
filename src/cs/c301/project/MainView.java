@@ -4,13 +4,15 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import cs.c301.project.Data.PhotoEntry;
 
 /**
  * The main page of they project, gives choices for user to chose from.  
@@ -31,11 +33,8 @@ public class MainView extends Activity {
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
-					
-					Uri imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tmp.jpg"));
-	
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
 					
 					startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);	
 			}
@@ -60,6 +59,7 @@ public class MainView extends Activity {
 				Intent intent = new Intent(MainView.this, SearchPhotoView.class);
 				startActivity(intent);				
 			}
+
 		});
 		
 		Button tagsButton = (Button) findViewById(R.id.view_by_tag);
@@ -69,18 +69,21 @@ public class MainView extends Activity {
 				Intent intent = new Intent(MainView.this, TagList.class);
 				startActivity(intent);				
 			}
+
 		});
+		
+//		PhotoApplication.openDatabase();
 	}
 	
 	/**
-	 * onActivityResult is the method to handle the result after taking a photo,
-	 * if the photo is taken successfully, switch the intent to PhotoReview.
-	 * 
-	 * @param requestCode	Integer request code originally supplied, allowing you to identify who
-	 * 						this result came from	
-	 * @param resultCode 	Integer result code returned by child activity through its setResult()
-	 * @param intent		Intent, which can return result data to caller
-	 */
+	* onActivityResult is the method to handle the result after taking a photo,
+	* if the photo is taken successfully, switch the intent to PhotoReview.
+	*
+	* @param requestCode Integer request code originally supplied, allowing you to identify who
+	* this result came from
+	* @param resultCode Integer result code returned by child activity through its setResult()
+	* @param intent Intent, which can return result data to caller
+	*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 	
@@ -89,6 +92,7 @@ public class MainView extends Activity {
 				Intent aIntent = new Intent(getApplication(), PhotoReview.class);
 				startActivity(aIntent);
 			}
+	
 		}
 	}
 }
