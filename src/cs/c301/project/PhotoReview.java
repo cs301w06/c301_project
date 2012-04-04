@@ -25,14 +25,15 @@ public class PhotoReview extends Activity {
 	private String groupName;
 	private PhotoEntry photoEntry;
 	private Bitmap newBMP;
-
+	private PhotoEntry newPhoto;
+	
 	@Override
 	/** Method called upon activity creation */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.review);
 
-		setBogoPic();
+		newBMP = setBogoPic();
 
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
@@ -78,19 +79,24 @@ public class PhotoReview extends Activity {
 
 		try {
 			Bundle extra = intent.getExtras();
-			final PhotoEntry newPhoto = new PhotoEntry();
-			
-			groupName = extra.getString("groupname");
+			//final PhotoEntry newPhoto = new PhotoEntry();
+			newPhoto = new PhotoEntry();
+			groupName = extra.getString("group");
 			newPhoto.setGroup(groupName);
 			newPhoto.setBitmap(newBMP);
+			//newPhoto.setTags("");
+			if (newPhoto.getBitmap() == null)
+				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
+			
+			
 			
 			keepButton.setOnClickListener(new Button.OnClickListener() {
 
 				public void onClick(View v) {
-					Intent intent = new Intent(getApplication(), PhotoSubView.class);
+					//Intent intent = new Intent(getApplication(), PhotoSubView.class);
 					PhotoApplication.addPhoto(newPhoto);
 					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					startActivity(intent);
+					//startActivity(intent);
 				}
 			});
 		}
@@ -143,7 +149,7 @@ public class PhotoReview extends Activity {
 	}
 
 	/** Generate new bmp */
-	private void setBogoPic() {
-		newBMP = BogoPicGen.generateBitmap(400, 400);
+	private Bitmap setBogoPic() {
+		return BogoPicGen.generateBitmap(400, 400);
 	}
 }
