@@ -46,6 +46,8 @@ public class MainView extends Activity {
 		listButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+				System.out.println("I am here!!!");
 				Intent intent = new Intent(MainView.this, GroupList.class);
 				startActivity(intent);
 			}
