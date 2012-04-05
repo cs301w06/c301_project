@@ -33,6 +33,7 @@ public class PhotoEntry implements Serializable {
 	 */
 	public PhotoEntry() {
 		tags = new Vector<String>(0, 1);
+		doctor = new Vector<String>(0, 1);
 		group = "";
 		date = new Date();
 	}
@@ -84,7 +85,10 @@ public class PhotoEntry implements Serializable {
 			tagConstruct += doctor.elementAt(i) + ",";
 		}
 		
+		if (!tagConstruct.equals(""))
 		return tagConstruct.substring(0, tagConstruct.length() - 1);
+		
+		return tagConstruct;
 	}
 	
 	public void setAnnotation(String annotation) {
@@ -137,7 +141,10 @@ public class PhotoEntry implements Serializable {
 			tagConstruct += tags.elementAt(i) + ",";
 		}
 		
+		if (!tagConstruct.equals(""))
 		return tagConstruct.substring(0, tagConstruct.length() - 1);
+		
+		return tagConstruct;
 	}
 	
 	/**

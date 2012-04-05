@@ -87,9 +87,12 @@ public class TagList extends Activity {
 		
 		try {
 			isDoctor = extra.getBoolean("isDoctor");
-			tags = PhotoApplication.getDoctorTags();
-			TextView tagTextView = (TextView)findViewById(R.id.tagTextView);
-			tagTextView.setText("Doctor Tags");
+			
+			if (isDoctor) {
+				tags = PhotoApplication.getDoctorTags();
+				TextView tagTextView = (TextView)findViewById(R.id.tagTextView);
+				tagTextView.setText("Doctor Tags");
+			}
 		}
 
 		catch (Exception e) {
