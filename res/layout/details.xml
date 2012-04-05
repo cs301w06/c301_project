@@ -18,24 +18,58 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/det_date"
+        android:id="@+id/details_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:text="Date Goes Here" />
+        android:text="Description" />
 
     <TextView
-        android:id="@+id/det_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:text="Tags Goes Here" />
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="124dp"
+        android:text="TextView" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5" >
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/details_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Taken: " />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/details_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tags: " />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
     </LinearLayout>
 
     <LinearLayout
@@ -46,31 +80,24 @@
 
         <Button
             android:id="@+id/det_delete"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
             android:text="@string/delete" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/det_compare"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/compare" />
 
         <Button
             android:id="@+id/det_tag_button"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
             android:text="@string/tag" />
+
+        <Button
+            android:id="@+id/det_compare"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:text="@string/compare" />
     </LinearLayout>
 
 </LinearLayout>

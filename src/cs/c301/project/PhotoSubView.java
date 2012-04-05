@@ -14,7 +14,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 
 /**
  * PhotoSubView is the activity class and view for listing the images
@@ -26,7 +25,7 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * @author esteckle
  *
  */
-public class PhotoSubView extends Activity{
+public class PhotoSubView extends Activity {
 
 	private String[] imagePaths;
 	private Bitmap[] bmpArray;
@@ -54,7 +53,7 @@ public class PhotoSubView extends Activity{
 		groupV.add(group);
 		tagsV.add(tags);
 		
-		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+		final Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
@@ -72,6 +71,7 @@ public class PhotoSubView extends Activity{
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	System.out.print("123123123123\n");
 	        	Intent intent = new Intent(PhotoSubView.this, PhotoDetails.class);
+	        	intent.putExtra("photo", photos.elementAt(position));
 	        	//intent.putExtra("path", imagePaths[position]);
 				startActivity(intent);
 	        }
