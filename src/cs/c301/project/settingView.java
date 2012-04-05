@@ -1,6 +1,5 @@
 package cs.c301.project;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 
