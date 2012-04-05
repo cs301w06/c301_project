@@ -1,7 +1,5 @@
 package cs.c301.project;
 
-import java.util.Date;
-import java.util.Vector;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,7 +22,6 @@ public class PhotoReview extends Activity {
 
 	private Button groupButton, keepButton;
 	private String groupName;
-	private PhotoEntry photoEntry;
 	private Bitmap newBMP;
 	private PhotoEntry newPhoto;
 	
@@ -101,49 +98,12 @@ public class PhotoReview extends Activity {
 		catch (Exception e) {}
 	}
 
-	/**
-	 * Grab the latest photo from file and give the global
-	 * variable the string path
-	 *
-	 * @param photos vector list of photos on file
-	 */
-	public void photosChanged(Vector<PhotoEntry> photos) {
-
-		int id = -1;
-		Date latestDate = null;
-
-		for (int i = 0; i < photos.size(); i++) {
-
-			if (latestDate == null) {
-
-				photos.elementAt(i).getDate();
-				id = i;
-
-			} else {
-
-				Date tempDate = photos.elementAt(i).getDate();
-
-				if (tempDate.compareTo(latestDate) > 0) {
-					id = i;
-					latestDate = tempDate;
-				}
-			}
-		}
-
-		if (id != -1) {
-			photoEntry = photos.elementAt(id);
-			onStart();
-		}
-	}
-
 	/** Show the review photo page and draw the photo on screen */
 	protected void onStart() {
 		super.onStart();
 
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.review_photo);
 		reviewPhoto.setImageBitmap(newBMP);
-
-		// ImageView comparePhoto = (ImageView) findViewById(R.id.review_photoCompare);
 	}
 
 	/** Generate new bmp */
