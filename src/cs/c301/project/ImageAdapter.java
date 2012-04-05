@@ -79,6 +79,7 @@ public class ImageAdapter extends BaseAdapter {
 	        }
 	        imageView.setImageBitmap(mThumbBmp[position]);
 	        
+	        imageView.setBackgroundResource(R.drawable.photo_border);
 	        return imageView;
 	    }	    
 }

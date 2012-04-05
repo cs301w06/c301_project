@@ -1,5 +1,9 @@
 package cs.c301.project;
 
+import java.util.Vector;
+
+import cs.c301.project.Data.PhotoEntry;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +30,11 @@ public class AdvancedSearch extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				Vector<String> groupVector = new Vector<String>();
+				
+				groupVector.add(groupTextField.getText().toString());
+				
+				Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupVector, null);
 				
 			}
 			
