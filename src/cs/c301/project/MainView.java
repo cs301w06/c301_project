@@ -83,7 +83,7 @@ public class MainView extends Activity {
 			public void onClick(View v)
 			{
 
-				Intent intent = new Intent(MainView.this, settingView.class);
+				Intent intent = new Intent(MainView.this, PhotoCompare.class);
 				startActivity(intent);
 				
 			}

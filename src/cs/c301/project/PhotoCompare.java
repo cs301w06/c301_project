@@ -19,6 +19,7 @@ import android.widget.Gallery;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
@@ -29,11 +30,11 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * there is no implementation for the time being
  *
  */
-public class PhotoCompare extends Activity implements PhotoModelListener, ViewFactory {
+public class PhotoCompare extends Activity implements PhotoModelListener, ViewFactory, OnItemSelectedListener {
 	
 	
 	private static int count;
-	
+
 	public int getCount()
 	{
 		
@@ -62,6 +63,7 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
             R.drawable.sample_5, R.drawable.sample_6,  
             R.drawable.sample_7 };  
 	
+	private int flag = 2;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
 		Gallery compGallery = (Gallery) findViewById(R.id.compGallery);
 		
 		compGallery.setAdapter(new ImageAdapter(this));
+		compGallery.setOnItemSelectedListener(this);
 		
 		
 //		PhotoApplication.addPhotoModelListener(this);
@@ -133,22 +136,27 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
 	
 	public void onItemSelected(AdapterView<?> adapter, View v, int position,
 			long id){
-		
-		secondPhoto.setImageResource(photoImageIds[position]);
-		
-		
-        
-        if(flag == 2){
-        this.setCount(this.getCount()+1);
+		System.out.println("Iam here!!!\n");
+		System.out.print(flag);
+		System.out.println("\n");
 
-        if (this.getCount() % 2 == 1) {mSwitcher.setImageResource(mImageIds[position]);}
-        //mSwitcher.setImageResource(mImageIds[position]);  
-        else {
-        	mSwitcher1.setImageResource(mImageIds[position]);
-        	flag = 3;
-        }
-        }
-        mSwitcher1.setImageResource(mImageIds[position]);
+		if(flag == 2){
+			
+			this.setCount(this.getCount()+1);
+			
+			if(this.getCount() % 2 == 1){
+				
+				firstPhoto.setImageResource(photoImageIds[position]);
+				
+			}else{
+				
+				System.out.println("123123123!!!\n");
+				secondPhoto.setImageResource(photoImageIds[position]);
+				flag = 3;
+			}
+			
+		}
+		secondPhoto.setImageResource(photoImageIds[position]);
 	}
 	
 	
