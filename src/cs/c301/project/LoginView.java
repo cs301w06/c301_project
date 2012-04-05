@@ -34,7 +34,7 @@ public class LoginView extends Activity {
 							Toast.makeText(getApplicationContext(), "Welcome back " + username + "!", Toast.LENGTH_SHORT).show();
 							Intent intent = new Intent(getApplicationContext(), MainView.class);
 							
-							if (username.equals("doctor")) {
+							if (username.trim().equals("doctor")) {
 								intent.putExtra("isDoctor", true);
 								PhotoApplication.toggleDoctor();
 								usernameField.setText("");
