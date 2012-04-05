@@ -28,13 +28,16 @@ public class PhotoDetails extends Activity {
 		setContentView(R.layout.details);
 
 		Bundle extra = getIntent().getExtras();
-		photoEntry = (PhotoEntry) extra.get("photo");
+		
+		final int photoId = (Integer) extra.get("photo");
+		
+		photoEntry = PhotoApplication.getPhotoByID(photoId);
 		
 		Button deleteButton = (Button) findViewById(R.id.det_delete);
 		deleteButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				PhotoApplication.removePhoto(photoEntry.getID());
+				PhotoApplication.removePhoto(photoId);
 				finish();			
 			}
 			
@@ -44,7 +47,7 @@ public class PhotoDetails extends Activity {
 		tagButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				
+				//TODO add tag
 			}
 			
 		});
@@ -60,11 +63,14 @@ public class PhotoDetails extends Activity {
 		});
 		
 		TextView descriptionText = (TextView) findViewById(R.id.description_text);
-
+		descriptionText.setText(photoEntry.getAnnotation());
+		
 		TextView dateText = (TextView) findViewById(R.id.date_text);
 		dateText.setText(photoEntry.getDate().toString());
 		
 		TextView tagText = (TextView) findViewById(R.id.tag_text);
+	
+		tagText.setText(photoEntry.getTagsForDatabase());
 	}
 	
 	protected void onStart() {
