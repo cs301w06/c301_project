@@ -33,7 +33,26 @@ public class PhotoApplication extends Application {
 		model = new PhotoModel(this);
 	}
 	
-	public static void initializePhotoDatabase() {
+	public static boolean login(String username, String password) {
+		boolean attempt = loginModel.login(username, password);
+		
+		if (attempt)
+			initializePhotoDatabase();
+		
+		return attempt;
+	}
+	
+	
+	public static boolean newAccount(String username, String password) {
+		boolean attempt = loginModel.create(username, password);
+		
+		if (attempt)
+			initializePhotoDatabase();
+		
+		return attempt;
+	}
+	
+	private static void initializePhotoDatabase() {
 		model.setUser(loginModel.getCurrentUser());
 	}
 	

@@ -57,8 +57,10 @@ public class LoginModel {
 		
 		long row = loginDatabase.insert(LoginModelHelper.usersTable, null, entry);
 		
-		if (row != -1)
+		if (row != -1) {
+			currentUser = username;
 			return true;
+		}
 		
 		return false;
 	}
