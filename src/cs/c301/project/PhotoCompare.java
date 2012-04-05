@@ -4,22 +4,18 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
-
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
@@ -138,17 +134,17 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
 		
 		
         
-        if(flag == 2){
-        this.setCount(this.getCount()+1);
-
-        if (this.getCount() % 2 == 1) {mSwitcher.setImageResource(mImageIds[position]);}
-        //mSwitcher.setImageResource(mImageIds[position]);  
-        else {
-        	mSwitcher1.setImageResource(mImageIds[position]);
-        	flag = 3;
-        }
-        }
-        mSwitcher1.setImageResource(mImageIds[position]);
+//        if(flag == 2){
+//        this.setCount(this.getCount()+1);
+//
+//        if (this.getCount() % 2 == 1) {mSwitcher.setImageResource(mImageIds[position]);}
+//        //mSwitcher.setImageResource(mImageIds[position]);  
+//        else {
+//        	mSwitcher1.setImageResource(mImageIds[position]);
+//        	flag = 3;
+//        }
+//        }
+//        mSwitcher1.setImageResource(mImageIds[position]);
 	}
 	
 	

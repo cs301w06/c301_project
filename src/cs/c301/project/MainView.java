@@ -24,7 +24,7 @@ import cs.c301.project.Data.PhotoEntry;
 public class MainView extends Activity {
 	
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,14 +82,9 @@ public class MainView extends Activity {
 
 			public void onClick(View v)
 			{
-
 				Intent intent = new Intent(MainView.this, settingView.class);
-				startActivity(intent);
-				
+				startActivity(intent);	
 			}
-			
-			
-			
 		});
 	}
 	
@@ -104,13 +99,11 @@ public class MainView extends Activity {
 	*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-	
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				Intent aIntent = new Intent(getApplication(), PhotoReview.class);
 				startActivity(aIntent);
 			}
-	
 		}
 	}
 }

@@ -14,10 +14,9 @@ import android.util.Log;
  * @author yhu3
  *
  */
-public class PhotoModelHelper extends SQLiteOpenHelper {
-//	private Vector<PhotoModelListener> listeners;
-	
-	public static final String databaseName = "photos.db";
+public class PhotoModelHelper {
+
+	public static String databaseName = "photos.db";
 	
 	public static final String groupsTable = "groups";
 	public static final String groupsTableID = "id";
@@ -39,23 +38,41 @@ public class PhotoModelHelper extends SQLiteOpenHelper {
 	private static final String table1 = "CREATE TABLE " + groupsTable + " (" + groupsTableID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + groupsTableName + " TEXT NOT NULL);";
 	private static final String table2 = "CREATE TABLE " + tagsTable + " (" + tagsTableID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + tagsTableName + " TEXT NOT NULL);";
 	private static final String table3 = "CREATE TABLE " + photosTable + " (" + photosTableID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + photosTablePhoto + " BLOB, " + photosTableGroup + " TEXT, " + photosTableTags + " TEXT, " + photosTableDate + " TEXT);";
-			
+	
+	private static PhotoModelHelperInstance userDatabase;
+	public Context context;
+	
 	public PhotoModelHelper(Context context) {
-		super(context, databaseName, null, databaseVersion);
+		this.context = context;
 	}
 	
-	@Override
-	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(table1);
-		database.execSQL(table2);
-		database.execSQL(table3);
+	public void setUser(String username) {
+		databaseName = new String(username + ".db");
+		userDatabase = new PhotoModelHelperInstance(context);
 	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		database.execSQL("DROP TABLE IF EXISTS " + groupsTable);
-		database.execSQL("DROP TABLE IF EXISTS " + tagsTable);
-		database.execSQL("DROP TABLE IF EXISTS " + photosTable);
-		onCreate(database);
+	
+	public SQLiteDatabase getWritableDatabase() {
+		return userDatabase.getWritableDatabase();
+	}
+	
+	public class PhotoModelHelperInstance extends SQLiteOpenHelper {
+		public PhotoModelHelperInstance(Context context) {
+			super(context, databaseName, null, databaseVersion);
+		}
+		
+		@Override
+		public void onCreate(SQLiteDatabase database) {
+			database.execSQL(table1);
+			database.execSQL(table2);
+			database.execSQL(table3);
+		}
+	
+		@Override
+		public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+			database.execSQL("DROP TABLE IF EXISTS " + groupsTable);
+			database.execSQL("DROP TABLE IF EXISTS " + tagsTable);
+			database.execSQL("DROP TABLE IF EXISTS " + photosTable);
+			onCreate(database);
+		}
 	}
 }

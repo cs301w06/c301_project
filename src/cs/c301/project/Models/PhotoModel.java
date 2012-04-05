@@ -23,9 +23,14 @@ import cs.c301.project.Data.PhotoEntry;
 public class PhotoModel {
 	private PhotoModelHelper photoModelHelper;
 	private SQLiteDatabase photoDatabase;
+	private String username = "";
 	
 	public PhotoModel(Context context) {
 		photoModelHelper = new PhotoModelHelper(context);
+	}
+	
+	public void setUser(String username) {
+		photoModelHelper.setUser(username);
 		open();
 	}
 	
