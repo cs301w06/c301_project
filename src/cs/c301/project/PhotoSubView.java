@@ -77,7 +77,7 @@ public class PhotoSubView extends Activity {
 		for (int i = 0; i < photos.size(); i++){
 			bmpArray[i] = photos.elementAt(i).getBitmap();
 		}
-		
+		//isMultiSelected = true;
 		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
@@ -87,8 +87,8 @@ public class PhotoSubView extends Activity {
 	        	ImageView imageview = (ImageView) v;
 	        	
 	        	if (!isMultiSelected){
-	        		Intent intent = new Intent(v.getContext(), PhotoDetails.class);	        		
-					intent.putExtra("photo", photos.elementAt(position));
+	        		Intent intent = new Intent(PhotoSubView.this, PhotoDetails.class);	        		
+					intent.putExtra("photo", photos.elementAt(position).getID());
 					startActivity(intent);
 	        	}
 	        	else{
