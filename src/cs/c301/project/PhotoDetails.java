@@ -10,6 +10,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Photo details allows the user to view the photo with 
+ * extra details like description, tags and date of the 
+ * photo
+ * 
+ * @author wjtran
+ *
+ */
 public class PhotoDetails extends Activity {
 	
 	private PhotoEntry photoEntry;
