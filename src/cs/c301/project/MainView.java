@@ -84,6 +84,7 @@ public class MainView extends Activity {
 			{
 				Intent intent = new Intent(MainView.this, settingView.class);
 				startActivity(intent);	
+
 			}
 		});
 	}
