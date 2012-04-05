@@ -15,5 +15,9 @@
     <string name="advancesearch">Advanced Search</string>
     <string name="photocompare">Photo Comparison</string>
     <string name="discard">Discard</string>
-
+    <string name="group">Select Group</string>
+    <string name="keep">Keep Photo</string>
+    <string name="photoreview">Photo Review</string>
+	<string name="annotation">Add Annotation</string>
+	
 </resources>

@@ -1,6 +1,10 @@
 package cs.c301.project;
 
+import java.util.WeakHashMap;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
@@ -20,11 +25,13 @@ import cs.c301.project.Data.PhotoEntry;
  */
 public class PhotoReview extends Activity {
 
-	private Button groupButton, keepButton;
-	private String groupName;
+	private Button groupButton, keepButton, tagButton, annotationButton;
+	private String groupName, tagName, annotationText;
 	private Bitmap newBMP;
 	private PhotoEntry newPhoto;
-	
+
+	public WeakHashMap<Integer, AlertDialog.Builder> dialogs;
+
 	@Override
 	/** Method called upon activity creation */
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,7 @@ public class PhotoReview extends Activity {
 		setContentView(R.layout.review);
 
 		newBMP = setBogoPic();
+		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
 
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
@@ -50,6 +58,24 @@ public class PhotoReview extends Activity {
 				intent.putExtra("isUnderReview", true);
 				startActivityForResult(intent, 0);
 			}
+		});
+
+		annotationButton = (Button) findViewById(R.id.review_annotation);
+		annotationButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				requestAnnotation();
+			}
+
+		});
+		
+		tagButton = (Button) findViewById(R.id.review_tag);
+		tagButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Toast.makeText(getApplicationContext(), "Please select a group first", Toast.LENGTH_SHORT).show();
+			}
+
 		});
 
 		keepButton = (Button) findViewById(R.id.review_keep);
@@ -75,25 +101,55 @@ public class PhotoReview extends Activity {
 			Bundle extra = intent.getExtras();
 			newPhoto = new PhotoEntry();
 			groupName = extra.getString("group");
-			newPhoto.setGroup(groupName);
+			tagName = extra.getString("tag");
+
+			newPhoto.setTags(tagName);
+
+			if (groupName != null) {
+				newPhoto.setGroup(groupName);
+
+				tagButton = (Button) findViewById(R.id.review_tag);
+				tagButton.setOnClickListener(new OnClickListener() {
+
+					public void onClick(View arg0) {
+						Intent intent = new Intent(getApplication(), TagList.class);
+						intent.putExtra("isUnderReview", true);
+						startActivityForResult(intent, 0);
+					}
+
+				});
+				
+				keepButton.setOnClickListener(new Button.OnClickListener() {
+
+					public void onClick(View v) {
+						PhotoApplication.addPhoto(newPhoto);
+						Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
+
+						Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
+						intent.putExtra("group", groupName);
+						startActivity(intent);
+						finish();
+					}
+				});
+				
+				annotationButton = (Button) findViewById(R.id.review_annotation);
+				annotationButton.setOnClickListener(new OnClickListener() {
+
+					public void onClick(View v) {
+						requestAnnotation();
+					}
+
+				});
+			}
+
 			newPhoto.setBitmap(newBMP);
-			
+			newPhoto.setAnnotation(annotationText);
+
 			if (newPhoto.getBitmap() == null) {
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
 			}
-			
-			keepButton.setOnClickListener(new Button.OnClickListener() {
 
-				public void onClick(View v) {
-					PhotoApplication.addPhoto(newPhoto);
-					Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-					
-					Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
-					intent.putExtra("group", groupName);
-					startActivity(intent);
-					finish();
-				}
-			});
+
 		}
 		catch (Exception e) {}
 	}
@@ -109,5 +165,31 @@ public class PhotoReview extends Activity {
 	/** Generate new bmp */
 	private Bitmap setBogoPic() {
 		return BogoPicGen.generateBitmap(400, 400);
+	}
+
+	/** User enters in a new annotation of the photo */
+	private void requestAnnotation() {
+		AlertDialog.Builder annotationDialog = new AlertDialog.Builder(this);
+		annotationDialog.setTitle("Add Annotation");
+		annotationDialog.setMessage("Please enter an annotation: ");
+
+		final EditText inputName = new EditText(this);
+		annotationDialog.setView(inputName);
+
+		annotationDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				annotationText = inputName.getText().toString();
+				Toast.makeText(getApplicationContext(), "Annotation has been successfully added.", Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		annotationDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				//do nothing because user canceled
+			}
+		});
+
+		dialogs.put(0, annotationDialog);
+		annotationDialog.show();
 	}
 }

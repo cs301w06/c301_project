@@ -69,7 +69,6 @@ public class PhotoDetails extends Activity {
 		dateText.setText(photoEntry.getDate().toString());
 		
 		TextView tagText = (TextView) findViewById(R.id.tag_text);
-	
 		tagText.setText(photoEntry.getTagsForDatabase());
 	}
 	

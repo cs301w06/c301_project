@@ -147,6 +147,7 @@ public class PhotoModel {
 		entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDoctorTags, photo.getDoctorTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDate, photo.getDate().toString());
+		entry.put(photoModelHelper.photosTableAnnotation, photo.getAnnotation());
 		
 		long row = photoDatabase.insert(photoModelHelper.photosTable, null, entry);
 		
