@@ -20,6 +20,8 @@ public class PhotoEntry implements Serializable {
 	private String group; //associated groups
 	private Date date; //date of picture
 	private Bitmap bitmap; //temporarily store the bitmap for adding a new photo
+	private Vector<String> doctor; //tags for the doc
+	private String annotation; //description of the photo
 	
 	/**
 	 * Constructor for the PhotoEntry object. Generates all metadata for a photo. 
@@ -51,6 +53,48 @@ public class PhotoEntry implements Serializable {
 		bitmap = image;
 	}
 	
+	public void addDoctorTag(String tag) {
+		if (!doctor.contains(tag)) {
+			doctor.add(tag);
+		}
+	}
+	
+	public void removeDoctorTag(String tag) {
+		if (doctor.contains(tag)) {
+			doctor.remove(tag);
+		}
+	}
+	
+	public void setDoctorTags(String tags) {
+		try {
+			StringTokenizer tokenizer = new StringTokenizer(tags, ",");
+			
+			while (tokenizer.hasMoreTokens()) {
+				addDoctorTag(tokenizer.nextToken());
+			}
+		}
+		
+		catch (Exception e) {}
+	}
+	
+	public String getDoctorTagsForDatabase() {
+		String tagConstruct = "";
+		
+		for (int i = 0; i < doctor.size(); i++) {
+			tagConstruct += doctor.elementAt(i) + ",";
+		}
+		
+		return tagConstruct.substring(0, tagConstruct.length() - 1);
+	}
+	
+	public void setAnnotation(String annotation) {
+		this.annotation = annotation;
+	}
+	
+	public String getAnnotation() {
+		return annotation;
+	}
+	
 	/**
 	 * Checks if the given tag already exists for the photo, and adds it to the tag
 	 * list if it does not.
@@ -75,11 +119,15 @@ public class PhotoEntry implements Serializable {
 	}
 	
 	public void setTags(String tags) {
-		StringTokenizer tokenizer = new StringTokenizer(tags, ",");
-		
-		while (tokenizer.hasMoreTokens()) {
-			addTag(tokenizer.nextToken());
+		try {
+			StringTokenizer tokenizer = new StringTokenizer(tags, ",");
+			
+			while (tokenizer.hasMoreTokens()) {
+				addTag(tokenizer.nextToken());
+			}
 		}
+		
+		catch (Exception e) {}
 	}
 	
 	public String getTagsForDatabase() {
