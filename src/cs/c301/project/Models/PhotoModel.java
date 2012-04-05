@@ -50,6 +50,42 @@ public class PhotoModel {
 		photoDatabase.close();
 	}
 	
+	public PhotoEntry getPhotoByID(int id) {
+		Cursor cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable + " WHERE " + photoModelHelper.photosTableID + " = ?", new String[] {"" + id});
+		
+		PhotoEntry entry = new PhotoEntry();
+		
+		if (cursor.moveToNext()) {
+			
+			int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
+			byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
+			Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
+			String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
+			String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
+			String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+			String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
+			Date date = new Date();
+			
+			try {
+				date = DateFormat.getTimeInstance().parse(cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)));
+			} 
+			
+			catch (ParseException e) {}
+			
+			entry.setID(ID);
+			entry.setAnnotation(annotation);
+			entry.setGroup(group);
+			entry.setTags(tags);
+			entry.setDoctorTags(doctorTags);
+			entry.setBitmap(image);
+			entry.setDate(date);
+		} 
+
+		cursor.close();
+		
+		return entry;
+	}
+	
 	public boolean addGroup(String group) {
 		Vector<String> existingGroups = getGroups();
 		

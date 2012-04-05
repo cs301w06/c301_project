@@ -35,6 +35,10 @@ public class PhotoApplication extends Application {
 		model = new PhotoModel(this);
 	}
 	
+	public static PhotoEntry getPhotoByID(int id) {
+		return model.getPhotoByID(id);
+	}
+	
 	public static boolean login(String username, String password) {
 		boolean attempt = loginModel.login(username, password);
 		
