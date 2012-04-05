@@ -77,7 +77,7 @@ public class PhotoSubView extends Activity {
 		for (int i = 0; i < photos.size(); i++){
 			bmpArray[i] = photos.elementAt(i).getBitmap();
 		}
-		//isMultiSelected = true;
+
 		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
