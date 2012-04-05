@@ -6,13 +6,16 @@ import java.util.Vector;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Listeners.PhotoModelListener;
 
@@ -30,6 +33,11 @@ public class PhotoSubView extends Activity{
 
 	private String[] imagePaths;
 	private Bitmap[] bmpArray;
+	private Vector<Integer> multiselect;
+	private String multipleSelection;
+	private Vector<PhotoEntry> photos;
+	private Vector<PhotoEntry> multiPhotos;
+	private GridView gridview;
 	
 	/**
 	 * onCreate method is called when the activity starts. It initializes the grid view and
@@ -50,15 +58,14 @@ public class PhotoSubView extends Activity{
 		
 		Vector<String> groupV = new Vector<String>();
 		Vector<String> tagsV = new Vector<String>();
+		multiPhotos = new Vector<PhotoEntry>();
+		multiselect = new Vector<Integer>();
 		
 		groupV.add(group);
 		tagsV.add(tags);
 		
-		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
-//		Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupV);
-		
-		//Grab the folder name to display as a title
-		//File file = new File(filepath);
+		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
 		
@@ -68,20 +75,36 @@ public class PhotoSubView extends Activity{
 			bmpArray[i] = photos.elementAt(i).getBitmap();
 		}
 		
-		//Create an array of our photos
-		//imageBmp = new BitmapArrayController(filepath);
-		//imagePaths = imageBmp.getPaths();
-		//bmpArray = imageBmp.imageGallery(imagePaths);
-		
-		GridView gridview = (GridView) findViewById(R.id.sub_list);
+		gridview = (GridView) findViewById(R.id.sub_list);
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
-	    
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	System.out.print("123123123123\n");
-	        	Intent intent = new Intent(PhotoSubView.this, PhotoDetails.class);
-	        	//intent.putExtra("path", imagePaths[position]);
-				startActivity(intent);
+	        	ImageView imageview = (ImageView) v;
+	        	
+	        	int matcher = -1;
+	        	int pos = 0;
+	        	for (int i = 0; i < multiselect.size(); i++){
+	        		if (position == multiselect.elementAt(i)){
+	        			matcher = position;
+	        			pos = i;
+	        			continue;
+	        		}
+	        	}
+	        	if (matcher == position){
+	        		multiselect.removeElementAt(pos);
+		        	multiPhotos.removeElementAt(pos);
+		        	
+	        		imageview.setAlpha(255);
+	        		imageview.setPadding(0, 0, 0, 0);
+	        	}
+	        	else{
+	        		multiselect.add(position);
+	        		multiPhotos.add(photos.elementAt(position));
+
+	        		imageview.setAlpha(150);
+	        		imageview.setPadding(8, 8, 8, 8);
+	        	    
+	        	}
 	        }
 	    });
 	}
