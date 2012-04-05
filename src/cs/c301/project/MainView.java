@@ -75,6 +75,22 @@ public class MainView extends Activity {
 			}
 
 		});
+		
+		
+		Button settingButton = (Button) findViewById(R.id.setting);
+		settingButton.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v)
+			{
+
+				Intent intent = new Intent(MainView.this, settingView.class);
+				startActivity(intent);
+				
+			}
+			
+			
+			
+		});
 	}
 	
 	/**
