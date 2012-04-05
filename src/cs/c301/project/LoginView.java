@@ -33,6 +33,14 @@ public class LoginView extends Activity {
 						if (success) {
 							Toast.makeText(getApplicationContext(), "Welcome back " + username + "!", Toast.LENGTH_SHORT).show();
 							Intent intent = new Intent(getApplicationContext(), MainView.class);
+							
+							if (username.equals("doctor")) {
+								intent.putExtra("isDoctor", true);
+								PhotoApplication.toggleDoctor();
+								usernameField.setText("");
+								passwordField.setText("");
+							}
+							
 							startActivity(intent);
 						} else {
 							Toast.makeText(getApplicationContext(), "The username or password is incorrect.", Toast.LENGTH_SHORT).show();
@@ -55,6 +63,9 @@ public class LoginView extends Activity {
 					if (success) {
 						Toast.makeText(getApplicationContext(), "Welcome to your new account " + username + "!", Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(getApplicationContext(), MainView.class);
+						usernameField.setText("");
+						passwordField.setText("");
+						
 						startActivity(intent);
 					} else {
 						Toast.makeText(getApplicationContext(), "This account could not be created.", Toast.LENGTH_SHORT).show();

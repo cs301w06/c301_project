@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import cs.c301.project.Utilities.TagListLayout;
 
@@ -41,6 +42,7 @@ public class TagList extends Activity {
 	private TextWatcher filterWatcher;
 	private String filterString;
 	private Vector<String> tags;
+	private boolean isPatient, isDoctor;
 	
 	public WeakHashMap<Integer, AlertDialog.Builder> dialogs;
 
@@ -74,7 +76,26 @@ public class TagList extends Activity {
 		catch (Exception e) {
 			isUnderReview = false;
 		}
+		
+		try {
+			isPatient = extra.getBoolean("isPatient");
+		}
 
+		catch (Exception e) {
+			isPatient = false;
+		}
+		
+		try {
+			isDoctor = extra.getBoolean("isDoctor");
+			tags = PhotoApplication.getDoctorTags();
+			TextView tagTextView = (TextView)findViewById(R.id.tagTextView);
+			tagTextView.setText("Doctor Tags");
+		}
+
+		catch (Exception e) {
+			isDoctor = false;
+		}
+		
 		lv = (ListView)findViewById(R.id.tagListView);
 		lv.setTextFilterEnabled(true);
 
@@ -201,6 +222,11 @@ public class TagList extends Activity {
 	    });
 		
 		TagListLayout.setFilterActivity(this);
+		
+		if (isPatient) {
+			LinearLayout panel = (LinearLayout)findViewById(R.id.tagButtonPaneWrapper);
+			panel.setVisibility(View.INVISIBLE);
+		}
 	}	
 
 	/**

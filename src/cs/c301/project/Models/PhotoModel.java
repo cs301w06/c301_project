@@ -29,8 +29,17 @@ public class PhotoModel {
 	}
 	
 	public void setUser(String username) {
-		photoModelHelper.setUser(username);
-		open();
+		if (!username.equals("doctor")) {
+			photoModelHelper.setUser(username);
+			
+			try {
+				photoDatabase.close();
+			}
+			
+			catch (Exception e) {}
+			
+			open();
+		}
 	}
 	
 	public void open() throws SQLException {
@@ -71,6 +80,21 @@ public class PhotoModel {
 		return false;
 	}
 	
+	public boolean addDoctorTag(String tag) {
+		Vector<String> existingTags = getDoctorTags();
+		
+		if (!existingTags.contains(tag)) {
+			ContentValues entry = new ContentValues();
+			entry.put(photoModelHelper.doctorTagsTableName, tag);
+			long row = photoDatabase.insert(photoModelHelper.doctorTagsTable, null, entry);
+			
+			if (row != -1)
+				return true;
+		}
+		
+		return false;
+	}
+	
 	public boolean addPhoto(PhotoEntry photo) {
 		ContentValues entry = new ContentValues();
 		ByteArrayOutputStream photoOutput = new ByteArrayOutputStream();
@@ -84,7 +108,8 @@ public class PhotoModel {
 		catch (IOException e) {}
 		
 		entry.put(photoModelHelper.photosTableGroup, photo.getGroup());
-		//entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
+		entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
+		entry.put(photoModelHelper.photosTableDoctorTags, photo.getDoctorTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDate, photo.getDate().toString());
 		
 		long row = photoDatabase.insert(photoModelHelper.photosTable, null, entry);
@@ -107,6 +132,16 @@ public class PhotoModel {
 	
 	public boolean removeTag(String tag) {
 		int row = photoDatabase.delete(photoModelHelper.tagsTable, photoModelHelper.tagsTableName + " = ?", new String[] {tag});
+		//need to refactor and remove tags from photo entries
+		
+		if (row != 0)
+			return true;
+		
+		return false;
+	}
+	
+	public boolean removeDoctorTag(String tag) {
+		int row = photoDatabase.delete(photoModelHelper.doctorTagsTable, photoModelHelper.doctorTagsTableName + " = ?", new String[] {tag});
 		//need to refactor and remove tags from photo entries
 		
 		if (row != 0)
@@ -164,6 +199,26 @@ public class PhotoModel {
 		return s;
 	}
 	
+	public Vector<String> getDoctorTags() {
+		Vector<String> s = new Vector<String>();
+		
+		Cursor cursor = photoDatabase.query(true, photoModelHelper.doctorTagsTable, new String[] {photoModelHelper.doctorTagsTableID, photoModelHelper.doctorTagsTableName}, null, null, null, null, null, null);
+		
+		boolean loop = true;
+		
+		while (loop) {
+			if (cursor.moveToNext()) {
+				s.add(cursor.getString(cursor.getColumnIndex(photoModelHelper.tagsTableName)));
+			} else {
+				loop = false;
+			}
+		}
+		
+		cursor.close();
+		
+		return s;
+	}
+	
 	public Vector<PhotoEntry> getAllPhotos() {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		
@@ -177,8 +232,10 @@ public class PhotoModel {
 				int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
 				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
+				String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
 				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+				String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
 				Date date = new Date();
 				
 				try {
@@ -188,8 +245,10 @@ public class PhotoModel {
 				catch (ParseException e) {}
 				
 				entry.setID(ID);
+				entry.setAnnotation(annotation);
 				entry.setGroup(group);
 				entry.setTags(tags);
+				entry.setDoctorTags(doctorTags);
 				entry.setBitmap(image);
 				entry.setDate(date);
 				
@@ -265,8 +324,10 @@ public class PhotoModel {
 				int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
 				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
+				String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
 				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
+				String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
 				Date date = new Date();
 				
 				try {
@@ -276,8 +337,10 @@ public class PhotoModel {
 				catch (ParseException e) {}
 				
 				entry.setID(ID);
+				entry.setAnnotation(annotation);
 				entry.setGroup(group);
-				//entry.setTags(tags);
+				entry.setTags(tags);
+				entry.setDoctorTags(doctorTags);
 				entry.setBitmap(image);
 				entry.setDate(date);
 				
@@ -307,6 +370,8 @@ public class PhotoModel {
 		entry.put(photoModelHelper.photosTableGroup, photoEntry.getGroup());
 		entry.put(photoModelHelper.photosTableTags, photoEntry.getTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDate, photoEntry.getDate().toString());
+		entry.put(photoModelHelper.photosTableAnnotation, photoEntry.getAnnotation());
+		entry.put(photoModelHelper.photosTableDoctorTags, photoEntry.getDoctorTagsForDatabase());
 		
 		int row = photoDatabase.update(photoModelHelper.photosTable, entry, photoModelHelper.photosTableID + " = ?", new String[] {"" + photoEntry.getID()});
 		

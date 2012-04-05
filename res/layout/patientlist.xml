@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cs.c301.project.Utilities.PatientListLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/patientPanel"
+    android:descendantFocusability="beforeDescendants"
+android:focusableInTouchMode="true">
+	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/patientTextViewWrapper">
+    <TextView
+        android:id="@+id/patientTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Patients"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        	android:layout_marginBottom="5dp" />
+</LinearLayout>
+
+	<EditText
+	    android:id="@+id/patientEditText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Type here to filter patients."
+   	android:layout_margin="2dp"
+   >
+	    
+	</EditText>
+	
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+         android:id="@+id/patientListView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1.0"
+    android:padding="5dp"
+    android:textSize="16sp" >
+</ListView>
+</cs.c301.project.Utilities.PatientListLayout>

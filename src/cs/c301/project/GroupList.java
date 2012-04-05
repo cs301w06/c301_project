@@ -41,6 +41,7 @@ public class GroupList extends Activity {
 	private TextWatcher filterWatcher;
 	private String filterString;
 	private Vector<String> groups;
+	private boolean isPatient;
 	
 	public WeakHashMap<Integer, AlertDialog.Builder> dialogs;
 
@@ -74,6 +75,15 @@ public class GroupList extends Activity {
 		catch (Exception e) {
 			isUnderReview = false;
 		}
+		
+		try {
+			isPatient = extra.getBoolean("isPatient");
+		}
+
+		catch (Exception e) {
+			isPatient = false;
+		}
+
 
 		lv = (ListView)findViewById(R.id.groupListView);
 		lv.setTextFilterEnabled(true);
@@ -201,7 +211,11 @@ public class GroupList extends Activity {
 	    });
 		
 		GroupListLayout.setFilterActivity(this);
-//		PhotoApplication.addPhotoModelListener(this);
+		
+		if (isPatient) {
+			LinearLayout panel = (LinearLayout)findViewById(R.id.groupButtonPaneWrapper);
+			panel.setVisibility(View.INVISIBLE);
+		}
 	}	
 
 	/**
@@ -294,30 +308,6 @@ public class GroupList extends Activity {
 			lv.setAdapter(adapter);
 		}
 	}
-
-//	
-//	/**
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#photosChanged(Vector)
-//	 */
-//	public void photosChanged(Vector<PhotoEntry> photos) {
-//	}
-//
-//	/**
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#tagsChanged(Vector)
-//	 */
-//	public void tagsChanged(Vector<String> tags) {
-//	}
-//
-//	/** 
-//	 * @see cs.c301.project.Listeners.PhotoModelListener#groupsChanged(Vector)
-//	 */
-//	public void groupsChanged(Vector<String> groups) {
-//		//get the group data from the listener and use data for content
-//		
-//		this.groups = groups;
-//		
-//		onStart();
-//	}
 
 	@Override
 	public void onBackPressed() {

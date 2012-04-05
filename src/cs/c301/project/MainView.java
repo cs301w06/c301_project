@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * The main page of they project, gives choices for user to chose from.  
@@ -20,6 +21,8 @@ public class MainView extends Activity {
 	
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private boolean isToLogout;
+	private boolean isDoctor;
+	private boolean isPatient;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -30,26 +33,54 @@ public class MainView extends Activity {
 		setContentView(R.layout.main);
 		
 		isToLogout = false;
+		isDoctor = false;
+		
+		Bundle extra = getIntent().getExtras();
+		
+		try {	
+			isDoctor = extra.getBoolean("isDoctor");
+		}
+		
+		catch (Exception e) {}
+		
+		try {	
+			isPatient = extra.getBoolean("isPatient");
+		
+			if (isPatient)
+				isToLogout = true;
+		}
+		
+		catch (Exception e) {}
 		
 		Button cameraButton = (Button) findViewById(R.id.main_camera);
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
-					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
-					
-					startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);	
+					if (!isPatient) {
+						if (!isDoctor) {
+							Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+							intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
+							
+							startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+						} else if (isDoctor) {
+							Intent intent = new Intent(getApplicationContext(), PatientList.class);
+							startActivity(intent);
+						}
+					} else if (isPatient) { //this is to view doctor tags
+						Intent intent = new Intent(MainView.this, TagList.class);
+						intent.putExtra("isDoctor", true);
+						startActivity(intent);
+					}
 			}
 			
 		});
-
+		
 		Button listButton = (Button) findViewById(R.id.view_by_group);
 		listButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				
-				System.out.println("I am here!!!");
 				Intent intent = new Intent(MainView.this, GroupList.class);
+				intent.putExtra("isPatient", true);
 				startActivity(intent);
 			}
 		});
@@ -69,11 +100,11 @@ public class MainView extends Activity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, TagList.class);
+				intent.putExtra("isPatient", true);
 				startActivity(intent);				
 			}
 
 		});
-		
 		
 		Button settingButton = (Button) findViewById(R.id.setting);
 		settingButton.setOnClickListener(new OnClickListener(){
@@ -81,10 +112,24 @@ public class MainView extends Activity {
 			public void onClick(View v)
 			{
 				Intent intent = new Intent(MainView.this, settingView.class);
-				startActivity(intent);	
-
+				startActivity(intent);
 			}
 		});
+		
+		if (isDoctor) {
+			cameraButton.setText("View Patients");
+			tagsButton.setVisibility(View.INVISIBLE);
+			listButton.setVisibility(View.INVISIBLE);
+			searchButton.setText("Remove Patients");
+		}
+		
+		if (isPatient) {
+			tagsButton.setText("View By Patient Tags");
+			settingButton.setVisibility(View.INVISIBLE);
+			cameraButton.setText("View by Doctor Tags");
+			TextView mainView = (TextView)findViewById(R.id.mainTitle);
+			mainView.setText(extra.getString("patientName"));
+		}
 	}
 	
 	/**
@@ -108,6 +153,10 @@ public class MainView extends Activity {
 
 	@Override
 	public void onBackPressed() {
+		if (isPatient) {
+			PhotoApplication.toggleDoctor();
+		}
+		
 		if (isToLogout)
 			super.onBackPressed();
 		else {

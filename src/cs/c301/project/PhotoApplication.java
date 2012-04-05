@@ -19,7 +19,8 @@ public class PhotoApplication extends Application {
 	private static LoginModel loginModel;
 	private static PhotoModel model;
 	private static String databaseName;
-	
+	private static boolean isDoctor;
+
 	/**
 	 * Creates a new photo model 
 	 * @return 
@@ -28,7 +29,8 @@ public class PhotoApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
+
+		isDoctor = false;
 		loginModel = new LoginModel(this);
 		model = new PhotoModel(this);
 	}
@@ -52,6 +54,14 @@ public class PhotoApplication extends Application {
 		return attempt;
 	}
 	
+	public static boolean isDoctor() {
+		return isDoctor;
+	}
+	
+	public static void toggleDoctor() {
+		isDoctor = !isDoctor;
+	}
+	
 	private static void initializePhotoDatabase() {
 		model.setUser(loginModel.getCurrentUser());
 	}
@@ -63,6 +73,10 @@ public class PhotoApplication extends Application {
 	 */
 	public static boolean addPhoto(PhotoEntry entry) {
 		return model.addPhoto(entry);
+	}
+	
+	public static Vector<String> getPatients() {
+		return loginModel.getPatients();
 	}
 	
 	/**
@@ -83,6 +97,10 @@ public class PhotoApplication extends Application {
 		return model.addTag(tag.trim());
 	}
 	
+	public static boolean addDoctorTag(String tag) {
+		return model.addDoctorTag(tag.trim());
+	}
+	
 	/**
 	 * Remove a tag from photo
 	 * 
@@ -92,13 +110,17 @@ public class PhotoApplication extends Application {
 		return model.removeTag(tag.trim());
 	}
 	
+	public static boolean removeDoctorTag(String tag) {
+		return model.removeDoctorTag(tag.trim());
+	}
+	
 	/**
 	 * Add group from photo
 	 * 
 	 * @param group Body part that photo is grouped to 
 	 */
 	public static boolean addGroup(String group) {
-		return model.addGroup(group);
+		return model.addGroup(group.trim());
 	}
 	
 	/**
@@ -121,6 +143,10 @@ public class PhotoApplication extends Application {
 	
 	public static Vector<String> getTags() {
 		return model.getTags();
+	}
+	
+	public static Vector<String> getDoctorTags() {
+		return model.getDoctorTags();
 	}
 	
 	public static Vector<String> getGroups() {
