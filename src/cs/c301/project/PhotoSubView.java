@@ -30,13 +30,12 @@ import cs.c301.project.Data.PhotoEntry;
  */
 public class PhotoSubView extends Activity {
 
-	private String[] imagePaths;
 	private Bitmap[] bmpArray;
 	private Vector<Integer> multiselect;
-	private String multipleSelection;
 	private Vector<PhotoEntry> photos;
 	private Vector<PhotoEntry> multiPhotos;
 	private GridView gridview;
+	private boolean isMultiSelected;
 	
 	/**
 	 * onCreate method is called when the activity starts. It initializes the grid view and
@@ -55,13 +54,18 @@ public class PhotoSubView extends Activity {
 		String group = extra.getString("group"); //grabbing the file path, should be stored as an absolute path
 		String tags = extra.getString("tag");
 		
+		
 		Vector<String> groupV = new Vector<String>();
 		Vector<String> tagsV = new Vector<String>();
+		
 		multiPhotos = new Vector<PhotoEntry>();
 		multiselect = new Vector<Integer>();
 		
 		groupV.add(group);
 		tagsV.add(tags);
+		
+		isMultiSelected = extra.getBoolean("isMultiSelected");
+	
 		
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 
@@ -79,32 +83,38 @@ public class PhotoSubView extends Activity {
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
+	        	
 	        	ImageView imageview = (ImageView) v;
 	        	
-	        	int matcher = -1;
-	        	int pos = 0;
-	        	for (int i = 0; i < multiselect.size(); i++){
-	        		if (position == multiselect.elementAt(i)){
-	        			matcher = position;
-	        			pos = i;
-	        			continue;
-	        		}
-	        	}
-	        	if (matcher == position){
-	        		multiselect.removeElementAt(pos);
-		        	multiPhotos.removeElementAt(pos);
-		        	
-	        		imageview.setAlpha(255);
-	        		imageview.setPadding(0, 0, 0, 0);
+	        	if (!isMultiSelected){
+	        		Intent intent = new Intent(v.getContext(), PhotoDetails.class);	        		
+					intent.putExtra("photo", photos.elementAt(position));
+					startActivity(intent);
 	        	}
 	        	else{
-	        		multiselect.add(position);
-	        		multiPhotos.add(photos.elementAt(position));
+	        		int matcher = -1;
+	        		int pos = 0;
+	        		for (int i = 0; i < multiselect.size(); i++){
+	        			if (position == multiselect.elementAt(i)){
+	        				matcher = position;
+	        				pos = i;
+	        				continue;
+	        			}
+	        		}
+	        		if (matcher == position){
+	        			multiselect.removeElementAt(pos);
+	        			multiPhotos.removeElementAt(pos);
+		        	
+	        			imageview.setAlpha(255);
+	        			imageview.setPadding(0, 0, 0, 0);
+	        		}
+	        		else{
+	        			multiselect.add(position);
+	        			multiPhotos.add(photos.elementAt(position));
 
-	        		imageview.setAlpha(150);
-	        		imageview.setPadding(8, 8, 8, 8);
-	        	    
+	        			imageview.setAlpha(150);
+	        			imageview.setPadding(8, 8, 8, 8);   
+	        		}
 	        	}
 	        }
 	    });
