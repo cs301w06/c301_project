@@ -70,8 +70,9 @@ public class PhotoSubView extends Activity{
 	    
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	        	System.out.print("123123123123\n");
 	        	Intent intent = new Intent(PhotoSubView.this, PhotoDetails.class);
-	        	intent.putExtra("path", imagePaths[position]);
+	        	//intent.putExtra("path", imagePaths[position]);
 				startActivity(intent);
 	        }
 	    });

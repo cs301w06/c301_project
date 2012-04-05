@@ -17,9 +17,9 @@ public class PhotoDetails extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details);
 		
-		Bundle extra = getIntent().getExtras();
+		//Bundle extra = getIntent().getExtras();
 		
-		filepath = extra.getString("path");
+		//filepath = extra.getString("path");
 	}
 	
 	protected void onStart() {

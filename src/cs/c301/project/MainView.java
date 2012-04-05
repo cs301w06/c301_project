@@ -49,6 +49,8 @@ public class MainView extends Activity {
 		listButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+				System.out.println("I am here!!!");
 				Intent intent = new Intent(MainView.this, GroupList.class);
 				startActivity(intent);
 			}
@@ -72,6 +74,22 @@ public class MainView extends Activity {
 				startActivity(intent);				
 			}
 
+		});
+		
+		
+		Button settingButton = (Button) findViewById(R.id.setting);
+		settingButton.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v)
+			{
+
+				Intent intent = new Intent(MainView.this, settingView.class);
+				startActivity(intent);
+				
+			}
+			
+			
+			
 		});
 	}
 	
