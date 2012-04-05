@@ -137,18 +137,7 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
 		secondPhoto.setImageResource(photoImageIds[position]);
 		
 		
-        
-        if(flag == 2){
-        this.setCount(this.getCount()+1);
-
-        if (this.getCount() % 2 == 1) {mSwitcher.setImageResource(mImageIds[position]);}
-        //mSwitcher.setImageResource(mImageIds[position]);  
-        else {
-        	mSwitcher1.setImageResource(mImageIds[position]);
-        	flag = 3;
-        }
-        }
-        mSwitcher1.setImageResource(mImageIds[position]);
+		
 	}
 	
 	
