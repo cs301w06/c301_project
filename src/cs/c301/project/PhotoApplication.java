@@ -6,6 +6,7 @@ import java.util.Vector;
 import android.app.Application;
 import android.net.Uri;
 import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Models.LoginModel;
 import cs.c301.project.Models.PhotoModel;
 
 /**
@@ -15,7 +16,9 @@ import cs.c301.project.Models.PhotoModel;
  */
 public class PhotoApplication extends Application {
 
+	private static LoginModel loginModel;
 	private static PhotoModel model;
+	private static String databaseName;
 	
 	/**
 	 * Creates a new photo model 
@@ -26,7 +29,31 @@ public class PhotoApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		
+		loginModel = new LoginModel(this);
 		model = new PhotoModel(this);
+	}
+	
+	public static boolean login(String username, String password) {
+		boolean attempt = loginModel.login(username, password);
+		
+		if (attempt)
+			initializePhotoDatabase();
+		
+		return attempt;
+	}
+	
+	
+	public static boolean newAccount(String username, String password) {
+		boolean attempt = loginModel.create(username, password);
+		
+		if (attempt)
+			initializePhotoDatabase();
+		
+		return attempt;
+	}
+	
+	private static void initializePhotoDatabase() {
+		model.setUser(loginModel.getCurrentUser());
 	}
 	
 	/**
@@ -103,10 +130,7 @@ public class PhotoApplication extends Application {
 	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		return model.getPhotosByValues(groupsQuery, tagsQuery);
 	}
-//	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery) {
-//		return model.getPhotosByValues(groupsQuery);
-//	}
-	
+
 	public static Vector<PhotoEntry> getAllPhotos() {
 		return model.getAllPhotos();
 	}

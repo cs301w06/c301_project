@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 
 /**
  * PhotoSubView is the activity class and view for listing the images
@@ -29,7 +28,7 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * @author esteckle
  *
  */
-public class PhotoSubView extends Activity{
+public class PhotoSubView extends Activity {
 
 	private String[] imagePaths;
 	private Bitmap[] bmpArray;
@@ -64,7 +63,10 @@ public class PhotoSubView extends Activity{
 		groupV.add(group);
 		tagsV.add(tags);
 		
+
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+
+
 
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
@@ -75,10 +77,15 @@ public class PhotoSubView extends Activity{
 			bmpArray[i] = photos.elementAt(i).getBitmap();
 		}
 		
+
 		gridview = (GridView) findViewById(R.id.sub_list);
+
+		gridview = (GridView) findViewById(R.id.sub_list);
+
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
 	        	ImageView imageview = (ImageView) v;
 	        	
 	        	int matcher = -1;

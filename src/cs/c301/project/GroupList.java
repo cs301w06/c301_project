@@ -236,7 +236,7 @@ public class GroupList extends Activity {
 
     	newGroupDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog, int whichButton) {
-    			//do nothing because user cancelled
+    			//do nothing because user canceled
     		}
     	});
     	
