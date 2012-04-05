@@ -1,20 +1,15 @@
 package cs.c301.project;
 
-import java.io.File;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import cs.c301.project.Data.PhotoEntry;
 
 /**
  * The main page of they project, gives choices for user to chose from.  
@@ -24,7 +19,8 @@ import cs.c301.project.Data.PhotoEntry;
 public class MainView extends Activity {
 	
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-
+	private boolean isToLogout;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +28,8 @@ public class MainView extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		setContentView(R.layout.main);
+		
+		isToLogout = false;
 		
 		Button cameraButton = (Button) findViewById(R.id.main_camera);
 		cameraButton.setOnClickListener(new OnClickListener() {
@@ -105,6 +103,32 @@ public class MainView extends Activity {
 				Intent aIntent = new Intent(getApplication(), PhotoReview.class);
 				startActivity(aIntent);
 			}
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (isToLogout)
+			super.onBackPressed();
+		else {
+			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog, int which) {
+			        switch (which){
+			        case DialogInterface.BUTTON_POSITIVE:
+			        	isToLogout = true;
+			        	onBackPressed();
+			            break;
+	
+			        case DialogInterface.BUTTON_NEGATIVE:
+			            
+			            break;
+			        }
+			    }
+			};
+	
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
+			    .setNegativeButton("No", dialogClickListener).show();
 		}
 	}
 }
