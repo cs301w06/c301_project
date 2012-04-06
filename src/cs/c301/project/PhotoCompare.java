@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewSwitcher.ViewFactory;
 import cs.c301.project.Data.PhotoEntry;
 
@@ -50,7 +51,7 @@ public class PhotoCompare extends Activity implements ViewFactory, OnItemSelecte
 	private PhotoEntry photoEntry;
 	private ImageView firstPhoto;
 	private ImageView secondPhoto;
-
+	private TextView groupText;
 	private Bitmap[] photoThumbIds ; 
 	private Bitmap[] photoImageIds ;  
 
@@ -80,6 +81,10 @@ public class PhotoCompare extends Activity implements ViewFactory, OnItemSelecte
 
 		photoEntry = PhotoApplication.getPhotoByID(photoId);
 		group.add(photoEntry.getGroup());
+		
+		groupText = (TextView) findViewById(R.id.comp_group);
+		groupText.setText(photoEntry.getGroup().toString());
+		
 		photo = PhotoApplication.getPhotosByValues(group, null);
 
 		photoThumbIds = new Bitmap[photo.size()];
@@ -155,9 +160,8 @@ public class PhotoCompare extends Activity implements ViewFactory, OnItemSelecte
 			super.onStart();
 
 			firstPhoto.setImageBitmap(photoEntry.getBitmap());
-			System.out.println("123123123!!!\n");
+			
 			secondPhoto.setImageBitmap(photoThumbIds[position]);
-
 		}
 
 	}

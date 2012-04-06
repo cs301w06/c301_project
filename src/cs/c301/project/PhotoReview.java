@@ -152,8 +152,8 @@ public class PhotoReview extends Activity {
 	/** User enters in a new annotation of the photo */
 	private void requestAnnotation() {
 		AlertDialog.Builder annotationDialog = new AlertDialog.Builder(this);
-		annotationDialog.setTitle("Add Annotation");
-		annotationDialog.setMessage("Would you like to add a description? ");
+		annotationDialog.setTitle("Add Description");
+		annotationDialog.setMessage("Add a description ");
 
 		final EditText inputName = new EditText(this);
 		annotationDialog.setView(inputName);
@@ -172,7 +172,7 @@ public class PhotoReview extends Activity {
 			}
 		});
 
-		annotationDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		annotationDialog.setNegativeButton("Skip", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				PhotoApplication.addPhoto(newPhoto);
 				Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();

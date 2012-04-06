@@ -18,7 +18,10 @@
     <string name="group">Select Group</string>
     <string name="keep">Keep Photo</string>
     <string name="photoreview">Photo Review</string>
-	<string name="annotation">Add Annotation</string>
-	<string name="Yes">Yes</string>
-	
+    <string name="annotation">Add Annotation</string>
+    <string name="Yes">Yes</string>
+    <string name="datetaken">Date Taken: </string>
+    <string name="tags">Tags: </string>
+    <string name="description">Description</string>
+
 </resources>
