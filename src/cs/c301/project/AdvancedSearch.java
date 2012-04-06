@@ -5,6 +5,7 @@ import java.util.Vector;
 import cs.c301.project.Data.PhotoEntry;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,12 +14,22 @@ import android.widget.EditText;
 
 public class AdvancedSearch extends Activity {
 
+	//private Vector<String> groupV;
+	//private Vector<String> tagV;
+	private String group;
+	private String tag;
+	
 	EditText dateTextField, groupTextField, tagTextField;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adv_search);
+		
+		//groupV = new Vector<String>();
+		//tagV = new Vector<String>();
+		
+		
 		
 		dateTextField = (EditText) findViewById(R.id.date_field);
 		
@@ -30,12 +41,17 @@ public class AdvancedSearch extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Vector<String> groupVector = new Vector<String>();
+				 
+				group = groupTextField.getText().toString();
+				tag = tagTextField.getText().toString();
 				
-				groupVector.add(groupTextField.getText().toString());
-				
-				Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupVector, null);
-				
+				//groupV.add(groupTextField.getText().toString());
+				//tagV.add(tagTextField.getText().toString());
+				//Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupVector, null);
+				Intent intent = new Intent(AdvancedSearch.this, PhotoSubView.class);
+				intent.putExtra("group", group);
+				intent.putExtra("tag", tag);
+				startActivity(intent);
 			}
 			
 		});

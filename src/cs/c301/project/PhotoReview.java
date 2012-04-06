@@ -41,7 +41,8 @@ public class PhotoReview extends Activity {
 
 		newBMP = setBogoPic();
 		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
-
+		newPhoto = new PhotoEntry();
+		
 		Button discardButton = (Button) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
 
@@ -90,11 +91,16 @@ public class PhotoReview extends Activity {
 
 		try {
 			Bundle extra = intent.getExtras();
-			newPhoto = new PhotoEntry();
-			groupName = extra.getString("group");
-			tagName = extra.getString("tag");
+			
+			if (extra.getString("group") != null)
+				groupName = extra.getString("group");
+				
+			if (extra.getString("tag") != null)
+				tagName = extra.getString("tag");
 
-			newPhoto.setTags(tagName);
+			if (tagName != null)
+				//newPhoto.setTags(tagName);
+				newPhoto.addTag(tagName);
 
 			if (groupName != null) {
 				newPhoto.setGroup(groupName);
