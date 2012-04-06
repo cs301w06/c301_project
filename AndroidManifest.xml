@@ -39,6 +39,8 @@
         </activity>
         <activity android:name="PhotoDetails" >
         </activity>
+        <activity android:name="settingView" >
+        </activity>
         <activity android:name="LoginView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
