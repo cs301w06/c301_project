@@ -7,14 +7,23 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
+/**
+ * Allows for searching for groups and tags specifically, rather than together.
+ * Currently it will search for both tags and groups simultaneously,
+ * so it will return items that have either the tag term AND/OR the group term.
+ * 
+ * @author esteckle
+ *
+ */
 public class AdvancedSearch extends Activity {
 
 	private String group;
 	private String tag;
 	
 	EditText dateTextField, groupTextField, tagTextField;
-	
+	/**
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

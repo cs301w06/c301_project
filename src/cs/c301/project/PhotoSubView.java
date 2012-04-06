@@ -16,12 +16,16 @@ import android.widget.TextView;
 import cs.c301.project.Data.PhotoEntry;
 
 /**
- * PhotoSubView is the activity class and view for listing the images
- * within a given group folder. It is passed the file path of the folder,
- * and then passes the path to a controller. The controller creates an
- * array of the images within the folder in the form of bitmaps. It then
- * calls the image adapter to put the images in the array into the grid view.
+ * PhotoSubView is the activity class and view for listing the photos
+ * within a given group folder. It is given search parameters by the
+ * calling activity, and it searches the databases for any photos with
+ * those terms contained within. A grid view is then populated with
+ * the bitmaps of the photos. The photos can be selected which will redirect
+ * to a detail view showing meta data and options for the photo.
+ * <p>
+ * Also allows for selection of multiple photos at once when the isMultiSelected
  * 
+ * boolean value is true.
  * @author esteckle
  *
  */
@@ -40,7 +44,7 @@ public class PhotoSubView extends Activity {
 	
 	/**
 	 * onCreate method is called when the activity starts. It initializes the grid view and
-	 * populates it with our images from a given folder. 
+	 * populates it with our images from a given set of search terms.
 	 * 
 	 * @param savedInstanceState The instance state from the calling activity
 	 */
@@ -119,6 +123,11 @@ public class PhotoSubView extends Activity {
 	    });
 	}
 	
+	/**
+	 * Refreshes the photo list every time we return to this activity.
+	 * 
+	 * @see android.app.Activity#onStart()
+	 */
 	protected void onStart() {
 		super.onStart();
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);

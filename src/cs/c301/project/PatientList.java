@@ -34,7 +34,7 @@ public class PatientList extends Activity {
 	
 	private Vector<Integer> matchingPositions;
 	private boolean isUnderReview, isInFilterState;
-	private ListView lv;
+	private ListView listView;
 	private TextWatcher filterWatcher;
 	private String filterString;
 	private Vector<String> patients;
@@ -61,10 +61,10 @@ public class PatientList extends Activity {
 		isInFilterState = false;
 		matchingPositions = new Vector<Integer>(0, 1);
 		
-		lv = (ListView)findViewById(R.id.patientListView);
-		lv.setTextFilterEnabled(true);
+		listView = (ListView)findViewById(R.id.patientListView);
+		listView.setTextFilterEnabled(true);
 
-		lv.setOnItemClickListener(new OnItemClickListener() {
+		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				//start a new activity with the file path of the subpatient in the intent
 				Intent intent = new Intent(view.getContext(), MainView.class);
@@ -167,7 +167,7 @@ public class PatientList extends Activity {
 			
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, names);
 
-			lv.setAdapter(adapter);
+			listView.setAdapter(adapter);
 		} else {
 
 			matchingPositions.removeAllElements();
@@ -185,7 +185,7 @@ public class PatientList extends Activity {
 			
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, names);
 
-			lv.setAdapter(adapter);
+			listView.setAdapter(adapter);
 		}
 	}
 
