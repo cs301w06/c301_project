@@ -1,5 +1,6 @@
 package cs.c301.project;
 
+import java.util.Date;
 import java.util.Vector;
 
 import android.app.Application;
@@ -233,7 +234,11 @@ public class PhotoApplication extends Application {
 	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		return model.getPhotosByValues(groupsQuery, tagsQuery);
 	}
-
+	
+	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery, Date startDate, Date endDate) {
+		return model.getPhotosByValues(groupsQuery, tagsQuery, startDate, endDate);
+	}
+	
 	/**
 	 * Grabs the temporary image uri 
 	 * 

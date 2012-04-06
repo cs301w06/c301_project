@@ -255,52 +255,62 @@ public class PhotoModel {
 	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
-		Vector<String> selectionArgs = new Vector<String>();
+		boolean searchAll = false;
+		Cursor cursor = null;
 		
-		if (groupsQuery != null && groupsQuery.size() > 0) {
-			if (groupsQuery.elementAt(0) != null) {
-				query = photoModelHelper.photosTableGroup + " = ? ";
-				selectionArgs.add(groupsQuery.elementAt(0));
-				
-				if (groupsQuery.size() > 1) {
-					for (int i = 1; i < groupsQuery.size(); i++) {
-						query += "AND " + photoModelHelper.photosTableGroup + " = ? ";
-						selectionArgs.add(groupsQuery.elementAt(i));
+		if ((groupsQuery.size() == 0 || groupsQuery == null) && (tagsQuery.size() == 0 || tagsQuery == null))
+			searchAll = true;
+		
+		if (!searchAll) {
+			Vector<String> selectionArgs = new Vector<String>();
+			
+			if (groupsQuery != null && groupsQuery.size() > 0) {
+				if (groupsQuery.elementAt(0) != null) {
+					query = photoModelHelper.photosTableGroup + " = ? ";
+					selectionArgs.add(groupsQuery.elementAt(0));
+					
+					if (groupsQuery.size() > 1) {
+						for (int i = 1; i < groupsQuery.size(); i++) {
+							query += "AND " + photoModelHelper.photosTableGroup + " = ? ";
+							selectionArgs.add(groupsQuery.elementAt(i));
+						}
 					}
 				}
 			}
-		}
-		
-		if (tagsQuery != null && tagsQuery.size() > 0) {
-			if (tagsQuery.elementAt(0) != null) {
-				if (query.equals(""))
-					query = photoModelHelper.photosTableTags + " = ? ";
-				else
-					query += "AND " + photoModelHelper.photosTableTags + " = ? ";
-				
-				selectionArgs.add(tagsQuery.elementAt(0));
-				
-				if (tagsQuery.size() > 1) {
-					for (int i = 1; i < tagsQuery.size(); i++) {
+			
+			if (tagsQuery != null && tagsQuery.size() > 0) {
+				if (tagsQuery.elementAt(0) != null) {
+					if (query.equals(""))
+						query = photoModelHelper.photosTableTags + " = ? ";
+					else
 						query += "AND " + photoModelHelper.photosTableTags + " = ? ";
-						selectionArgs.add(tagsQuery.elementAt(i));
+					
+					selectionArgs.add(tagsQuery.elementAt(0));
+					
+					if (tagsQuery.size() > 1) {
+						for (int i = 1; i < tagsQuery.size(); i++) {
+							query += "AND " + photoModelHelper.photosTableTags + " = ? ";
+							selectionArgs.add(tagsQuery.elementAt(i));
+						}
 					}
 				}
 			}
+			
+			String[] arguments = new String[selectionArgs.size()];
+			String logging = "";
+			
+			for (int j = 0; j < selectionArgs.size(); j++) {
+				arguments[j] = selectionArgs.elementAt(j);
+				logging += arguments[j] + " ";
+			}
+			
+			Log.e("PhotoModel", query);
+			Log.e("PhotoModel", logging);
+			
+			cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable + " WHERE " + query, arguments);
+		} else {
+			cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable, null);
 		}
-		
-		String[] arguments = new String[selectionArgs.size()];
-		String logging = "";
-		
-		for (int j = 0; j < selectionArgs.size(); j++) {
-			arguments[j] = selectionArgs.elementAt(j);
-			logging += arguments[j] + " ";
-		}
-		
-		Log.e("PhotoModel", query);
-		Log.e("PhotoModel", logging);
-		
-		Cursor cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable + " WHERE " + query, arguments);
 		
 		boolean loop = true;
 		
@@ -344,20 +354,23 @@ public class PhotoModel {
 	
 	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery, Date startDate, Date endDate) {
 		Vector<PhotoEntry> photos = getPhotosByValues(groupsQuery, tagsQuery);
-		Vector<Integer> toRemove = new Vector<Integer>(0, 1);
 		
-		for (int i = 0; i < photos.size(); i++) {
-			PhotoEntry entry = photos.elementAt(i);
+		if (startDate != null && endDate != null && startDate.compareTo(endDate) <= 0) {
+			Vector<Integer> toRemove = new Vector<Integer>(0, 1);
 			
-			if (entry.getDate().before(startDate) || entry.getDate().after(endDate))
-				toRemove.add(i);
+			for (int i = 0; i < photos.size(); i++) {
+				PhotoEntry entry = photos.elementAt(i);
+				
+				if (entry.getDate().before(startDate) || entry.getDate().after(endDate))
+					toRemove.add(i);
+			}
+			
+			for (int j = toRemove.size() - 1; j >= 0; j--) {
+				photos.remove(toRemove.elementAt(j));
+			}
+			
+			photos.trimToSize();
 		}
-		
-		for (int j = toRemove.size() - 1; j >= 0; j--) {
-			photos.remove(toRemove.elementAt(j));
-		}
-		
-		photos.trimToSize();
 		
 		return photos;
 	}

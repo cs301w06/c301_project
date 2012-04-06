@@ -90,7 +90,7 @@ public class PhotoCompare extends Activity implements ViewFactory, OnItemSelecte
 		photoThumbIds = new Bitmap[photo.size()];
 		for (int i = 0; i < photo.size(); i++){
 
-			photoThumbIds[i] = photo.elementAt(i).getBitmap();
+			photoThumbIds[i] = photo.elementAt(i).getThumbnail();
 		}
 
 		photoImageIds = new Bitmap[photo.size()];

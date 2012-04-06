@@ -133,7 +133,7 @@ public class GroupList extends Activity {
 		
 		searchButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent intent = new Intent(view.getContext(), SearchPhotoView.class);
+				Intent intent = new Intent(view.getContext(), AdvancedSearch.class);
 				startActivity(intent);
 			}
 		});

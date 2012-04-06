@@ -120,4 +120,31 @@ public class LoginModel {
 		
 		return false;
 	}
+	
+	public boolean changePassword(String password) {
+		try {
+			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {currentUser});
+			
+			if (cursor.moveToNext()) {
+				cursor.close();
+				return false;
+			}
+			
+			int id = cursor.getInt(cursor.getColumnIndex(loginModelHelper.usersTableID));
+			cursor.close();
+			
+			ContentValues entry = new ContentValues();
+			entry.put(LoginModelHelper.usersTablePassword, SimpleCrypto.encrypt("LolAndroidKey", password));
+			
+			int row = loginDatabase.update(loginModelHelper.usersTable, entry, loginModelHelper.usersTableID + " = ?", new String[] {"" + id});
+			
+			if (row != -1) {
+				return true;
+			}
+		}
+		
+		catch (Exception e) {}
+		
+		return false;
+	}
 }

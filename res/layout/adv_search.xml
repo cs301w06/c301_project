@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" 
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/adv_title"
@@ -19,17 +20,11 @@
         android:layout_below="@+id/adv_title"
         android:text="Group"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/group_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/group_title" >
 
-        <requestFocus />
-    </EditText>
+    <Spinner
+        android:id="@+id/groupSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tag_title"
@@ -39,21 +34,48 @@
         android:layout_below="@+id/group_field"
         android:text="Tags"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/tag_field"
+
+    <Spinner
+        android:id="@+id/tagSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tag_title" />
+        android:layout_below="@+id/tag_field"
+        android:text="Date Range"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.03"
+            android:text="Starting From Date" />
+
+        <Button
+            android:id="@+id/endDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_weight="0.16"
+            android:text="Till This Date" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/adv_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tag_field"
+        android:layout_marginTop="16dp"
         android:text="Search" />
 
-</RelativeLayout>
+</LinearLayout>

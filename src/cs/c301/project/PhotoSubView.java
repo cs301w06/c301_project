@@ -1,5 +1,6 @@
 package cs.c301.project;
 
+import java.util.Date;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -40,6 +41,7 @@ public class PhotoSubView extends Activity {
 	private GridView gridview;
 	private String tags;
 	private String group;
+	private Date startDate, endDate;
 	private boolean isMultiSelected;
 	
 	/**
@@ -55,17 +57,30 @@ public class PhotoSubView extends Activity {
 		setContentView(R.layout.sub_list);
 		
 		Bundle extra = getIntent().getExtras();
-
+		
 		group = extra.getString("group");
 		tags = extra.getString("tag");
-
+		
+		try {
+			startDate = (Date)extra.getSerializable("startDate");
+			endDate = (Date)extra.getSerializable("endDate");
+		}
+		
+		catch (Exception e) {
+			startDate = null;
+			endDate = null;
+		}
+		
 		groupV = new Vector<String>();
 		tagsV = new Vector<String>();
 		
 		multiPhotos = new Vector<PhotoEntry>();
 		multiselect = new Vector<Integer>();
 		
+		if (group != null)
 		groupV.add(group);
+		
+		if (tags != null)
 		tagsV.add(tags);
 		
 		isMultiSelected = extra.getBoolean("isMultiSelected");
@@ -122,7 +137,7 @@ public class PhotoSubView extends Activity {
 	 */
 	protected void onStart() {
 		super.onStart();
-		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+		photos = PhotoApplication.getPhotosByValues(groupV, tagsV, startDate, endDate);
 		bmpArray = new Bitmap[photos.size()];
 		
 		for (int i = 0; i < photos.size(); i++){

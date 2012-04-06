@@ -90,8 +90,8 @@ public class MainView extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Intent intent = new Intent(MainView.this, SearchPhotoView.class);
-				startActivity(intent);				
+				Intent intent = new Intent(MainView.this, AdvancedSearch.class);
+				startActivity(intent);	
 			}
 
 		});

@@ -47,6 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name="PatientList"></activity>
+        <activity android:name="settingView"></activity>
     </application>
 
 </manifest>
