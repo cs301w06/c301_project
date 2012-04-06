@@ -51,7 +51,7 @@ public class PhotoSubView extends Activity {
 		
 		Bundle extra = getIntent().getExtras();
 		
-		String group = extra.getString("group"); //grabbing the file path, should be stored as an absolute path
+		String group = extra.getString("group");
 		String tags = extra.getString("tag");
 		
 		
