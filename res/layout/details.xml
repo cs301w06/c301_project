@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/description_text"
         android:layout_width="fill_parent"
-        android:layout_height="124dp"
+        android:layout_height="70dp"
         android:text="TextView" />
 
     <LinearLayout
@@ -79,25 +79,24 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/det_delete"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.3"
-            android:text="@string/delete" />
-
-        <Button
             android:id="@+id/det_tag_button"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.33"
             android:text="@string/tag" />
 
         <Button
             android:id="@+id/det_compare"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.33"
             android:text="@string/compare" />
+        <Button
+            android:id="@+id/det_del"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.33"
+            android:text="@string/delete" />
     </LinearLayout>
 
 </LinearLayout>
