@@ -37,6 +37,8 @@ public class PhotoSubView extends Activity {
 	private Vector<String> groupV;
 	private Vector<String> tagsV;
 	private GridView gridview;
+	private String tags;
+	private String group;
 	private boolean isMultiSelected;
 	
 	/**
@@ -53,9 +55,9 @@ public class PhotoSubView extends Activity {
 		
 		Bundle extra = getIntent().getExtras();
 		
-		String group = extra.getString("group");
-		String tags = extra.getString("tag");
-		
+		group = extra.getString("group");
+		tags = extra.getString("tag");
+		Boolean advSearch = extra.getBoolean("advsearch");
 		
 		groupV = new Vector<String>();
 		tagsV = new Vector<String>();
@@ -71,6 +73,9 @@ public class PhotoSubView extends Activity {
 		
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 
+		if (advSearch)
+			advSearch();
+		
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
 		
@@ -121,6 +126,7 @@ public class PhotoSubView extends Activity {
 	        }
 	    });
 	}
+	
 	protected void onStart() {
 		super.onStart();
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
@@ -133,5 +139,13 @@ public class PhotoSubView extends Activity {
 		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
+	}
+	
+	private void advSearch(){
+		Vector<PhotoEntry> tempPhotos = new Vector<PhotoEntry>();
+		for (int i = 0; i < photos.size(); i++){
+			if (photos.elementAt(i).getGroup() == group && photos.elementAt(i).getTagsForDatabase() == tags)
+				tempPhotos.add(photos.elementAt(i));		
+		}
 	}
 }

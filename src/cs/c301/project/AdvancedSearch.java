@@ -57,6 +57,7 @@ public class AdvancedSearch extends Activity {
 				//tagV.add(tagTextField.getText().toString());
 				//Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupVector, null);
 				Intent intent = new Intent(AdvancedSearch.this, PhotoSubView.class);
+				intent.putExtra("advsearch", true);
 				intent.putExtra("group", group);
 				intent.putExtra("tag", tag);
 				startActivity(intent);
