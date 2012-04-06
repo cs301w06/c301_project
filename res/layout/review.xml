@@ -47,20 +47,9 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/review_annotation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/review_photo"
-            android:text="@string/annotation" />
-
-        <Button
             android:id="@+id/review_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/review_annotation"
-            android:layout_alignBottom="@+id/review_annotation"
-            android:layout_toRightOf="@+id/review_annotation"
             android:text="@string/tag" />
     </LinearLayout>
 

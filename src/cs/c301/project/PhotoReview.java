@@ -60,15 +60,6 @@ public class PhotoReview extends Activity {
 			}
 		});
 
-		annotationButton = (Button) findViewById(R.id.review_annotation);
-		annotationButton.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				requestAnnotation();
-			}
-
-		});
-		
 		tagButton = (Button) findViewById(R.id.review_tag);
 		tagButton.setOnClickListener(new OnClickListener() {
 
@@ -122,34 +113,16 @@ public class PhotoReview extends Activity {
 				keepButton.setOnClickListener(new Button.OnClickListener() {
 
 					public void onClick(View v) {
-						PhotoApplication.addPhoto(newPhoto);
-						Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
-
-						Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
-						intent.putExtra("group", groupName);
-						startActivity(intent);
-						finish();
-					}
-				});
-				
-				annotationButton = (Button) findViewById(R.id.review_annotation);
-				annotationButton.setOnClickListener(new OnClickListener() {
-
-					public void onClick(View v) {
 						requestAnnotation();
 					}
-
 				});
 			}
 
 			newPhoto.setBitmap(newBMP);
-			newPhoto.setAnnotation(annotationText);
 
 			if (newPhoto.getBitmap() == null) {
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
 			}
-
-
 		}
 		catch (Exception e) {}
 	}
@@ -171,7 +144,7 @@ public class PhotoReview extends Activity {
 	private void requestAnnotation() {
 		AlertDialog.Builder annotationDialog = new AlertDialog.Builder(this);
 		annotationDialog.setTitle("Add Annotation");
-		annotationDialog.setMessage("Please enter an annotation: ");
+		annotationDialog.setMessage("Would you like to add a description? ");
 
 		final EditText inputName = new EditText(this);
 		annotationDialog.setView(inputName);
@@ -179,13 +152,25 @@ public class PhotoReview extends Activity {
 		annotationDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				annotationText = inputName.getText().toString();
+				newPhoto.setAnnotation(annotationText);
 				Toast.makeText(getApplicationContext(), "Annotation has been successfully added.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
+				PhotoApplication.addPhoto(newPhoto);
+				Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
+				intent.putExtra("group", groupName);
+				startActivity(intent);
+				finish();
 			}
 		});
 
-		annotationDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		annotationDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				//do nothing because user canceled
+				PhotoApplication.addPhoto(newPhoto);
+				Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
+				intent.putExtra("group", groupName);
+				startActivity(intent);
+				finish();
 			}
 		});
 
