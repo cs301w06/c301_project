@@ -43,10 +43,6 @@ public class SearchPhotoView extends Activity {
 				else
 					search = null;
 				
-				
-				//groupV.add(groupTextField.getText().toString());
-				//tagV.add(tagTextField.getText().toString());
-				//Vector<PhotoEntry> photos = PhotoApplication.getPhotosByValues(groupVector, null);
 				Intent intent = new Intent(SearchPhotoView.this, PhotoSubView.class);
 				intent.putExtra("group", search);
 				intent.putExtra("tag", search);

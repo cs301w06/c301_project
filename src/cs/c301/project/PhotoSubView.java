@@ -71,10 +71,12 @@ public class PhotoSubView extends Activity {
 		isMultiSelected = extra.getBoolean("isMultiSelected");
 	
 		
-		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+		
 
-		if (advSearch)
-			advSearch();
+		if (advSearch && tags != null && group != null)
+			photos = advSearch();
+		else
+			photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 		
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
@@ -141,11 +143,26 @@ public class PhotoSubView extends Activity {
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	}
 	
-	private void advSearch(){
+	private Vector<PhotoEntry> advSearch(){
+		Vector<PhotoEntry> tagPhotos = new Vector<PhotoEntry>();
+		Vector<PhotoEntry> groupPhotos = new Vector<PhotoEntry>();
 		Vector<PhotoEntry> tempPhotos = new Vector<PhotoEntry>();
-		for (int i = 0; i < photos.size(); i++){
-			if (photos.elementAt(i).getGroup() == group && photos.elementAt(i).getTagsForDatabase() == tags)
-				tempPhotos.add(photos.elementAt(i));		
+		
+		tagPhotos = PhotoApplication.getPhotosByValues(null, tagsV);
+		groupPhotos = PhotoApplication.getPhotosByValues(groupV, null);
+		
+		for (int i = 0; i < tagPhotos.size(); i++){
+			PhotoEntry tagPhoto = tagPhotos.elementAt(i);
+			int pID = tagPhoto.getID();
+			
+			for (int j = 0; j < groupPhotos.size(); j++){
+				if (pID == groupPhotos.elementAt(j).getID())
+					tempPhotos.add(tagPhoto);
+			}
+			
+			//if (groupPhotos.contains(tagPhoto))
+			//	tempPhotos.add(tagPhoto);
 		}
+		return tempPhotos;
 	}
 }
