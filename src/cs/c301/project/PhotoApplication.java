@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import android.app.Application;
 import android.net.Uri;
+import android.util.Log;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Models.LoginModel;
 import cs.c301.project.Models.PhotoModel;
@@ -20,7 +21,8 @@ public class PhotoApplication extends Application {
 	private static PhotoModel model;
 	private static String databaseName;
 	private static boolean isDoctor;
-
+	public static final String ENCRYPTION_KEY = "LolAndroidKey";
+	
 	/**
 	 * Creates a new photo model 
 	 * @return 
@@ -36,7 +38,14 @@ public class PhotoApplication extends Application {
 	}
 	
 	public static PhotoEntry getPhotoByID(int id) {
-		return model.getPhotoByID(id);
+		try {
+			return model.getPhotoByID(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("PhotoApplication", e.getMessage());
+		}
+		
+		return null;
 	}
 	
 	public static boolean login(String username, String password) {
@@ -74,9 +83,17 @@ public class PhotoApplication extends Application {
 	 * Add a new photo 
 	 * 
 	 * @param entry photo information
+	 * @throws Exception 
 	 */
 	public static boolean addPhoto(PhotoEntry entry) {
-		return model.addPhoto(entry);
+		try {
+			return model.addPhoto(entry);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("PhotoApplication", e.getMessage());
+		}
+		
+		return false;
 	}
 	
 	public static Vector<String> getPatients() {
@@ -158,11 +175,14 @@ public class PhotoApplication extends Application {
 	}
 	
 	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
-		return model.getPhotosByValues(groupsQuery, tagsQuery);
-	}
-
-	public static Vector<PhotoEntry> getAllPhotos() {
-		return model.getAllPhotos();
+		try {
+			return model.getPhotosByValues(groupsQuery, tagsQuery);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("PhotoApplication", e.getMessage());
+		}
+		
+		return null;
 	}
 	
 	public static Uri getTemporaryImage() {

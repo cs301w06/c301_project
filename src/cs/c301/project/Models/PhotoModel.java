@@ -18,7 +18,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import cs.c301.project.PhotoApplication;
 import cs.c301.project.Data.PhotoEntry;
+import cs.c301.project.Utilities.SimpleCrypto;
 
 public class PhotoModel {
 	private PhotoModelHelper photoModelHelper;
@@ -59,25 +61,26 @@ public class PhotoModel {
 			
 			int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
 			byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
-			Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
+			byte[] thumbBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTableThumbnail));
 			String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
 			String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
 			String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
 			String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
-			Date date = new Date();
+			Date date = null;
 			
 			try {
-				date = DateFormat.getTimeInstance().parse(cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)));
+				date = new Date(Long.parseLong((cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)))));
 			} 
 			
-			catch (ParseException e) {}
+			catch (Exception e) {}
 			
 			entry.setID(ID);
 			entry.setAnnotation(annotation);
 			entry.setGroup(group);
 			entry.setTags(tags);
 			entry.setDoctorTags(doctorTags);
-			entry.setBitmap(image);
+			entry.setBitmapBytes(imageBlob);
+			entry.setThumbnailBytes(thumbBlob);
 			entry.setDate(date);
 		} 
 
@@ -133,21 +136,13 @@ public class PhotoModel {
 	
 	public boolean addPhoto(PhotoEntry photo) {
 		ContentValues entry = new ContentValues();
-		ByteArrayOutputStream photoOutput = new ByteArrayOutputStream();
-		photo.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, photoOutput);
-		entry.put(photoModelHelper.photosTablePhoto, photoOutput.toByteArray());
-		
-		try {
-			photoOutput.close();
-		} 
-		
-		catch (IOException e) {}
-		
+		entry.put(photoModelHelper.photosTablePhoto, photo.getBitmapBytes());		
 		entry.put(photoModelHelper.photosTableGroup, photo.getGroup());
 		entry.put(photoModelHelper.photosTableTags, photo.getTagsForDatabase());
 		entry.put(photoModelHelper.photosTableDoctorTags, photo.getDoctorTagsForDatabase());
-		entry.put(photoModelHelper.photosTableDate, photo.getDate().toString());
+		entry.put(photoModelHelper.photosTableDate, "" + photo.getDate().getTime());
 		entry.put(photoModelHelper.photosTableAnnotation, photo.getAnnotation());
+		entry.put(photoModelHelper.photosTableThumbnail, photo.getThumbnailBytes());
 		
 		long row = photoDatabase.insert(photoModelHelper.photosTable, null, entry);
 		
@@ -256,50 +251,6 @@ public class PhotoModel {
 		return s;
 	}
 	
-	public Vector<PhotoEntry> getAllPhotos() {
-		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
-		
-		Cursor cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable, null);
-		
-		boolean loop = true;
-		
-		while (loop) {
-			if (cursor.moveToNext()) {
-				PhotoEntry entry = new PhotoEntry();
-				int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
-				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
-				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
-				String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
-				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
-				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
-				String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
-				Date date = new Date();
-				
-				try {
-					date = DateFormat.getTimeInstance().parse(cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)));
-				} 
-				
-				catch (ParseException e) {}
-				
-				entry.setID(ID);
-				entry.setAnnotation(annotation);
-				entry.setGroup(group);
-				entry.setTags(tags);
-				entry.setDoctorTags(doctorTags);
-				entry.setBitmap(image);
-				entry.setDate(date);
-				
-				photoEntries.add(entry);
-			} else {
-				loop = false;
-			}
-		}
-
-		cursor.close();
-		
-		return photoEntries;
-	}
-	
 	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
@@ -337,9 +288,6 @@ public class PhotoModel {
 			}
 		}
 		
-		if (query.equals(""))
-			return getAllPhotos();
-		
 		String[] arguments = new String[selectionArgs.size()];
 		String logging = "";
 		
@@ -360,25 +308,26 @@ public class PhotoModel {
 				PhotoEntry entry = new PhotoEntry();
 				int ID = cursor.getInt(cursor.getColumnIndex(photoModelHelper.photosTableID));
 				byte[] imageBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTablePhoto));
-				Bitmap image = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
+				byte[] thumbBlob = cursor.getBlob(cursor.getColumnIndex(photoModelHelper.photosTableThumbnail));
 				String annotation = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableAnnotation));
 				String group = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableGroup));
 				String tags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableTags));
 				String doctorTags = cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDoctorTags));
-				Date date = new Date();
+				Date date = null;
 				
 				try {
-					date = DateFormat.getTimeInstance().parse(cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)));
+					date = new Date(Long.parseLong((cursor.getString(cursor.getColumnIndex(photoModelHelper.photosTableDate)))));
 				} 
 				
-				catch (ParseException e) {}
+				catch (Exception e) {}
 				
 				entry.setID(ID);
 				entry.setAnnotation(annotation);
 				entry.setGroup(group);
 				entry.setTags(tags);
 				entry.setDoctorTags(doctorTags);
-				entry.setBitmap(image);
+				entry.setBitmapBytes(imageBlob);
+				entry.setThumbnailBytes(thumbBlob);
 				entry.setDate(date);
 				
 				photoEntries.add(entry);
@@ -394,19 +343,9 @@ public class PhotoModel {
 	
 	public boolean updatePhoto(PhotoEntry photoEntry) {
 		ContentValues entry = new ContentValues();
-		ByteArrayOutputStream photoOutput = new ByteArrayOutputStream();
-		photoEntry.getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, photoOutput);
-		entry.put(photoModelHelper.photosTablePhoto, photoOutput.toByteArray());
-		
-		try {
-			photoOutput.close();
-		} 
-		
-		catch (IOException e) {}
-		
 		entry.put(photoModelHelper.photosTableGroup, photoEntry.getGroup());
 		entry.put(photoModelHelper.photosTableTags, photoEntry.getTagsForDatabase());
-		entry.put(photoModelHelper.photosTableDate, photoEntry.getDate().toString());
+		entry.put(photoModelHelper.photosTableDate, "" + photoEntry.getDate().getTime());
 		entry.put(photoModelHelper.photosTableAnnotation, photoEntry.getAnnotation());
 		entry.put(photoModelHelper.photosTableDoctorTags, photoEntry.getDoctorTagsForDatabase());
 		

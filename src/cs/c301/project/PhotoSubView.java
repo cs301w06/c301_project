@@ -56,7 +56,6 @@ public class PhotoSubView extends Activity {
 		String group = extra.getString("group");
 		String tags = extra.getString("tag");
 		
-		
 		groupV = new Vector<String>();
 		tagsV = new Vector<String>();
 		
@@ -68,21 +67,11 @@ public class PhotoSubView extends Activity {
 		
 		isMultiSelected = extra.getBoolean("isMultiSelected");
 	
-		
-		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
-
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
-		
-		bmpArray = new Bitmap[photos.size()];
-		
-		for (int i = 0; i < photos.size(); i++){
-			bmpArray[i] = photos.elementAt(i).getBitmap();
-		}
 
 		gridview = (GridView) findViewById(R.id.sub_list);
 
-	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	
@@ -121,16 +110,16 @@ public class PhotoSubView extends Activity {
 	        }
 	    });
 	}
+	
+	@Override
 	protected void onStart() {
 		super.onStart();
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 		bmpArray = new Bitmap[photos.size()];
 		
 		for (int i = 0; i < photos.size(); i++){
-			bmpArray[i] = photos.elementAt(i).getBitmap();
+			bmpArray[i] = photos.elementAt(i).getThumbnail();
 		}
-
-		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	}

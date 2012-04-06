@@ -1,11 +1,17 @@
 package cs.c301.project.Data;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import cs.c301.project.PhotoApplication;
+import cs.c301.project.Utilities.SimpleCrypto;
+
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 /**
  * This class contains all the information which is attached to a specific photo, and all
  * methods which interact with that information.
@@ -19,9 +25,10 @@ public class PhotoEntry implements Serializable {
 	private Vector<String> tags; //associated tags
 	private String group; //associated groups
 	private Date date; //date of picture
-	private Bitmap bitmap; //temporarily store the bitmap for adding a new photo
+	private byte[] encryptedImage; //temporarily store the bitmap for adding a new photo
 	private Vector<String> doctor; //tags for the doc
 	private String annotation; //description of the photo
+	private byte[] encryptedThumbnail; //for sub view efficiency
 	
 	/**
 	 * Constructor for the PhotoEntry object. Generates all metadata for a photo. 
@@ -35,6 +42,7 @@ public class PhotoEntry implements Serializable {
 		tags = new Vector<String>(0, 1);
 		doctor = new Vector<String>(0, 1);
 		group = "";
+		annotation = "";
 		date = new Date();
 	}
 	
@@ -44,6 +52,18 @@ public class PhotoEntry implements Serializable {
 	 * @return Bitmap of the photo
 	 */
 	public Bitmap getBitmap() {
+		Bitmap bitmap = null;
+		
+		byte[] decryptedBlob;
+		
+		try {
+			decryptedBlob = SimpleCrypto.decrypt(SimpleCrypto.getRawKey(PhotoApplication.ENCRYPTION_KEY.getBytes()), encryptedImage);
+			bitmap = BitmapFactory.decodeByteArray(decryptedBlob, 0, decryptedBlob.length);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		return bitmap;
 	}
 	
@@ -51,7 +71,55 @@ public class PhotoEntry implements Serializable {
 	 * Deletes the photo from the data by setting it null
 	 */
 	public void setBitmap(Bitmap image) {
-		bitmap = image;
+		try {
+		Bitmap thumbnail = Bitmap.createScaledBitmap(image, 100, 100, true);
+		ByteArrayOutputStream photoOutput = new ByteArrayOutputStream();
+		image.compress(Bitmap.CompressFormat.JPEG, 100, photoOutput);
+		byte[] bytes = photoOutput.toByteArray();
+		photoOutput.flush();
+		thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, photoOutput);
+		byte[] thumbbytes = photoOutput.toByteArray();
+		photoOutput.flush();
+		
+		encryptedImage = SimpleCrypto.encrypt(SimpleCrypto.getRawKey(PhotoApplication.ENCRYPTION_KEY.getBytes()), bytes);
+		encryptedThumbnail = SimpleCrypto.encrypt(SimpleCrypto.getRawKey(PhotoApplication.ENCRYPTION_KEY.getBytes()), thumbbytes);
+		
+		photoOutput.close();
+		} 
+		
+		catch (Exception e) {}
+	}
+	
+	public byte[] getThumbnailBytes() {
+		return encryptedThumbnail;
+	}
+	
+	public void setThumbnailBytes(byte[] thumbnail) {
+		encryptedThumbnail = thumbnail;
+	}
+	
+	public Bitmap getThumbnail() {
+		Bitmap bitmap = null;
+		
+		byte[] decryptedBlob;
+		
+		try {
+			decryptedBlob = SimpleCrypto.decrypt(SimpleCrypto.getRawKey(PhotoApplication.ENCRYPTION_KEY.getBytes()), encryptedThumbnail);
+			bitmap = BitmapFactory.decodeByteArray(decryptedBlob, 0, decryptedBlob.length);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return bitmap;
+	}
+	
+	public byte[] getBitmapBytes() {
+		return encryptedImage;
+	}
+	
+	public void setBitmapBytes(byte[] bytes) {
+		encryptedImage = bytes;
 	}
 	
 	public void addDoctorTag(String tag) {

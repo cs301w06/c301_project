@@ -34,6 +34,7 @@ public class MainView extends Activity {
 		
 		isToLogout = false;
 		isDoctor = false;
+		isPatient = false;
 		
 		Bundle extra = getIntent().getExtras();
 		
@@ -80,7 +81,7 @@ public class MainView extends Activity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, GroupList.class);
-				intent.putExtra("isPatient", true);
+				intent.putExtra("isPatient", isPatient);
 				startActivity(intent);
 			}
 		});
@@ -100,7 +101,7 @@ public class MainView extends Activity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(MainView.this, TagList.class);
-				intent.putExtra("isPatient", true);
+				intent.putExtra("isPatient", isPatient);
 				startActivity(intent);				
 			}
 

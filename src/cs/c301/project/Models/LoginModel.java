@@ -97,7 +97,7 @@ public class LoginModel {
 			
 			Date date = new Date();
 			
-			entry.put(loginModelHelper.usersTableCreationDate, date.toString());
+			entry.put(loginModelHelper.usersTableCreationDate, SimpleCrypto.encrypt("LolAndroidKey", date.toString()));
 			
 			long row = loginDatabase.insert(LoginModelHelper.usersTable, null, entry);
 			
