@@ -41,9 +41,17 @@ public class AdvancedSearch extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				 
-				group = groupTextField.getText().toString();
-				tag = tagTextField.getText().toString();
+				int check = groupTextField.getText().toString().compareTo("");
+				if (check != 0)
+					group = groupTextField.getText().toString();
+				else
+					group = null;
+				
+				check = tagTextField.getText().toString().compareTo("");
+				if (check != 0)
+					tag = tagTextField.getText().toString();
+				else
+					tag = null;
 				
 				//groupV.add(groupTextField.getText().toString());
 				//tagV.add(tagTextField.getText().toString());
