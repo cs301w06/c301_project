@@ -9,14 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- * SearchPhotoView will allow the user to search photo by tag
- * group and date of the photo. Currently not implemented and used
- * as a place holder.  Will be completed for part 4.
+ * SearchPhotoView allows the user to search all groups and tags
+ * by any text. A search will be run on the tags and groups with the
+ * same parameter, so it will return everything in both tags and groups
+ * containing the parameter
+ * 
+ * @author esteckle
  */
 public class SearchPhotoView extends Activity {
 	EditText searchTextField;
 	private String search;
 	
+	/**
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
