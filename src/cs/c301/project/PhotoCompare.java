@@ -18,7 +18,6 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Listeners.PhotoModelListener;
 
 
 /** 
@@ -26,7 +25,7 @@ import cs.c301.project.Listeners.PhotoModelListener;
  * there is no implementation for the time being
  *
  */
-public class PhotoCompare extends Activity implements PhotoModelListener, ViewFactory, OnItemSelectedListener {
+public class PhotoCompare extends Activity implements ViewFactory, OnItemSelectedListener {
 	
 	
 	private static int count;
@@ -161,34 +160,6 @@ public class PhotoCompare extends Activity implements PhotoModelListener, ViewFa
 		
 	}
 	
-	
-	
-	
-	/**
-	 * Place holder
-	 */
-	public void photosChanged(Vector<PhotoEntry> photos) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Place holder
-	 */
-	public void tagsChanged(Vector<String> tags) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Place holder
-	 */
-	public void groupsChanged(Vector<String> groups) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	public View makeView()
 	{
 		ImageView tempImage = new ImageView(this);
