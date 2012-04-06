@@ -1,12 +1,10 @@
 package cs.c301.project;
 
-import java.io.File;
 import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +13,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
 
 /**
@@ -57,7 +54,6 @@ public class PhotoSubView extends Activity {
 		
 		group = extra.getString("group");
 		tags = extra.getString("tag");
-		Boolean advSearch = extra.getBoolean("advsearch");
 		
 		groupV = new Vector<String>();
 		tagsV = new Vector<String>();
@@ -70,13 +66,7 @@ public class PhotoSubView extends Activity {
 		
 		isMultiSelected = extra.getBoolean("isMultiSelected");
 	
-		
-		
-
-		if (advSearch && tags != null && group != null)
-			photos = advSearch();
-		else
-			photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
 		
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
@@ -141,28 +131,5 @@ public class PhotoSubView extends Activity {
 		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
-	}
-	
-	private Vector<PhotoEntry> advSearch(){
-		Vector<PhotoEntry> tagPhotos = new Vector<PhotoEntry>();
-		Vector<PhotoEntry> groupPhotos = new Vector<PhotoEntry>();
-		Vector<PhotoEntry> tempPhotos = new Vector<PhotoEntry>();
-		
-		tagPhotos = PhotoApplication.getPhotosByValues(null, tagsV);
-		groupPhotos = PhotoApplication.getPhotosByValues(groupV, null);
-		
-		for (int i = 0; i < tagPhotos.size(); i++){
-			PhotoEntry tagPhoto = tagPhotos.elementAt(i);
-			int pID = tagPhoto.getID();
-			
-			for (int j = 0; j < groupPhotos.size(); j++){
-				if (pID == groupPhotos.elementAt(j).getID())
-					tempPhotos.add(tagPhoto);
-			}
-			
-			//if (groupPhotos.contains(tagPhoto))
-			//	tempPhotos.add(tagPhoto);
-		}
-		return tempPhotos;
 	}
 }

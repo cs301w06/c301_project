@@ -71,8 +71,6 @@ public class PhotoDetails extends Activity {
 					public void onClick(DialogInterface dialog, int which) {
 						PhotoApplication.removePhoto(photoId);
 						Toast.makeText(getApplicationContext(), "Photo has been deleted", Toast.LENGTH_SHORT).show();
-						Intent intent = new Intent(PhotoDetails.this, MainView.class);
-						startActivity(intent);
 						finish();
 					}
 				})
