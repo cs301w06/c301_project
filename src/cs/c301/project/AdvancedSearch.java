@@ -18,6 +18,8 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 /**
+ * This activity implements the necessary UI and logic to do advanced searches
+ * by group, tags, and date range or the combination of.
  * @author yhu3
  */
 public class AdvancedSearch extends Activity {

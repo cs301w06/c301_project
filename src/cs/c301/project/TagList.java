@@ -33,6 +33,8 @@ import cs.c301.project.Utilities.TagListLayout;
  * under a group.
  * <p>
  * Also allows the addition of new groups, which are immediately added to the list.
+ * 
+ * @author yhu3
  */
 public class TagList extends Activity {
 	

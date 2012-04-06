@@ -6,6 +6,11 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.LinearLayout;
 
+/*
+* @author yhu3
+*
+*/
+
 public class GroupListLayout extends LinearLayout {
 
 	private static Activity activity;

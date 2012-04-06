@@ -15,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
  * String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)
  * </pre>
  * @author ferenc.hechler (www.androidsnippets.com/encryptdecrypt-strings)
+ * @author yhu3, modified functionality to work with photos
  */
 public class SimpleCrypto {
 

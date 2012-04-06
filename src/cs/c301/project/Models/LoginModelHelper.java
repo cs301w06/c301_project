@@ -8,6 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import cs.c301.project.Utilities.SimpleCrypto;
 
+/**
+ * Login database helper to handle database upgrades and creates.
+ * @author yhu3
+ */
+
 public class LoginModelHelper extends SQLiteOpenHelper {	
 	public static final String databaseName = "admin.db";
 	

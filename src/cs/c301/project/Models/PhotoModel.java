@@ -1,10 +1,6 @@
 package cs.c301.project.Models;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.Vector;
 
@@ -13,14 +9,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import cs.c301.project.PhotoApplication;
 import cs.c301.project.Data.PhotoEntry;
-import cs.c301.project.Utilities.SimpleCrypto;
+
+/**
+ * This is the model that holds the sqlite database handlers for our photos.
+ * It supports fully encryption of photos as well as advanced features such as date search
+ * @author yhu3
+ */
 
 @SuppressWarnings("static-access")
 public class PhotoModel {

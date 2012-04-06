@@ -16,6 +16,7 @@ import android.widget.TextView;
  * The main page of they project, gives choices for user to chose from.  
  * User can choose to take a photo, list the photos already taken, and search
  * the environment (saved data) for saved photos
+ * @author yhu3
  */
 public class MainView extends Activity {
 	
@@ -38,7 +39,7 @@ public class MainView extends Activity {
 		
 		Bundle extra = getIntent().getExtras();
 		
-		try {	
+		try {
 			isDoctor = extra.getBoolean("isDoctor");
 		}
 		

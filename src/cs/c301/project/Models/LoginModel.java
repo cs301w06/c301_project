@@ -11,6 +11,12 @@ import android.database.sqlite.SQLiteDatabase;
 import cs.c301.project.PhotoApplication;
 import cs.c301.project.Utilities.SimpleCrypto;
 
+/**
+ * This is the model that holds the sqlite database handlers for our accounts.
+ * It supports fully encryption of data as well as advanced features such as doctor view
+ * @author yhu3
+ */
+
 public class LoginModel {
 	private LoginModelHelper loginModelHelper;
 	private SQLiteDatabase loginDatabase;

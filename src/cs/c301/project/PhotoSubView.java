@@ -28,6 +28,8 @@ import cs.c301.project.Data.PhotoEntry;
  * 
  * boolean value is true.
  * @author esteckle
+ * 
+ * Bug fixes by yhu3
  *
  */
 public class PhotoSubView extends Activity {

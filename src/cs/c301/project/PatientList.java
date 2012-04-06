@@ -29,6 +29,8 @@ import cs.c301.project.Utilities.PatientListLayout;
  * under a patient.
  * <p>
  * Also allows the addition of new patients, which are immediately added to the list.
+ * 
+ * @author yhu3
  */
 public class PatientList extends Activity {
 	

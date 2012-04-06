@@ -14,6 +14,8 @@ import cs.c301.project.Models.PhotoModel;
  * Getters and setters for the photos generated, each 
  * photo will be able to delete, add, and update the
  * tags, groups and the file path
+ * 
+ * @author yhu3
  */
 public class PhotoApplication extends Application {
 

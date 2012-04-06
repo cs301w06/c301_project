@@ -17,6 +17,8 @@ import android.graphics.BitmapFactory;
  * methods which interact with that information.
  * <p>
  * Javadoc by esteckle
+ * 
+ * 
  * @author yhu3
  *
  */
