@@ -56,7 +56,9 @@ public class PhotoDetails extends Activity {
 		tagButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				//TODO add tag
+				Intent intent = new Intent(PhotoDetails.this, TagList.class);
+				intent.putExtra("isUnderReview", true);
+				startActivityForResult(intent, 0);
 			}
 			
 		});
@@ -140,5 +142,22 @@ public class PhotoDetails extends Activity {
 		super.onStart();
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.det_photo);
 		reviewPhoto.setImageBitmap(photoEntry.getBitmap());
+		
+		TextView tagText = (TextView) findViewById(R.id.tag_text);
+		tagText.setText(photoEntry.getTagsForDatabase());
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		try{
+		Bundle extra = intent.getExtras();
+		String tagName = null;
+		if (extra.getString("tag") != null)
+			tagName = extra.getString("tag");
+		if (tagName != null)
+			photoEntry.addTag(tagName);
+			PhotoApplication.updatePhoto(photoEntry);
+		}
+		catch(Exception e){}
 	}
 }

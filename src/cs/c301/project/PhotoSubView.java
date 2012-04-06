@@ -34,6 +34,8 @@ public class PhotoSubView extends Activity {
 	private Vector<Integer> multiselect;
 	private Vector<PhotoEntry> photos;
 	private Vector<PhotoEntry> multiPhotos;
+	private Vector<String> groupV;
+	private Vector<String> tagsV;
 	private GridView gridview;
 	private boolean isMultiSelected;
 	
@@ -55,8 +57,8 @@ public class PhotoSubView extends Activity {
 		String tags = extra.getString("tag");
 		
 		
-		Vector<String> groupV = new Vector<String>();
-		Vector<String> tagsV = new Vector<String>();
+		groupV = new Vector<String>();
+		tagsV = new Vector<String>();
 		
 		multiPhotos = new Vector<PhotoEntry>();
 		multiselect = new Vector<Integer>();
@@ -118,5 +120,18 @@ public class PhotoSubView extends Activity {
 	        	}
 	        }
 	    });
+	}
+	protected void onStart() {
+		super.onStart();
+		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);
+		bmpArray = new Bitmap[photos.size()];
+		
+		for (int i = 0; i < photos.size(); i++){
+			bmpArray[i] = photos.elementAt(i).getBitmap();
+		}
+
+		gridview = (GridView) findViewById(R.id.sub_list);
+
+	    gridview.setAdapter(new ImageAdapter(this, bmpArray));
 	}
 }
