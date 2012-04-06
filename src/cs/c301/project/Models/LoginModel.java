@@ -1,5 +1,6 @@
 package cs.c301.project.Models;
 
+import java.util.Date;
 import java.util.Vector;
 
 import android.content.ContentValues;
@@ -91,6 +92,12 @@ public class LoginModel {
 			ContentValues entry = new ContentValues();
 			entry.put(loginModelHelper.usersTableName, username);
 			entry.put(LoginModelHelper.usersTablePassword, SimpleCrypto.encrypt("LolAndroidKey", password));
+			entry.put(loginModelHelper.usersTableFirstName, SimpleCrypto.encrypt("LolAndroidKey", "Temp First Name"));
+			entry.put(loginModelHelper.usersTableLastName, SimpleCrypto.encrypt("LolAndroidKey", "Temp Last Name"));
+			
+			Date date = new Date();
+			
+			entry.put(loginModelHelper.usersTableCreationDate, date.toString());
 			
 			long row = loginDatabase.insert(LoginModelHelper.usersTable, null, entry);
 			

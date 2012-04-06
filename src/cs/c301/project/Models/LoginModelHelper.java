@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import cs.c301.project.Utilities.SimpleCrypto;
 
 public class LoginModelHelper extends SQLiteOpenHelper {	
 	public static final String databaseName = "admin.db";
@@ -32,7 +33,14 @@ public class LoginModelHelper extends SQLiteOpenHelper {
 		
 		ContentValues entry = new ContentValues();
 		entry.put(usersTableName, "doctor");
-		entry.put(usersTablePassword, "doctor");
+		
+		try {
+			entry.put(usersTablePassword, SimpleCrypto.encrypt("LolAndroidKey", "doctor"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		entry.put(usersTableFirstName, "");
 		entry.put(usersTableLastName, "");
 		
