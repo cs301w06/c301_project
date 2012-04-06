@@ -20,12 +20,15 @@ import cs.c301.project.Data.PhotoEntry;
 /**
  * Take recent taken photo from file and draws the photo up on screen
  * for the user to review and decide whether to put into group and then keep
- * the photo or user can discard the photo if it is unwanted
+ * the photo or user can discard the photo if it is unwanted, also allows the 
+ * user to add annotations and tags to the photos
+ * 
+ * @author wjtran
  *
  */
 public class PhotoReview extends Activity {
 
-	private Button groupButton, keepButton, tagButton, annotationButton;
+	private Button groupButton, keepButton, tagButton;
 	private String groupName, tagName, annotationText;
 	private Bitmap newBMP;
 	private PhotoEntry newPhoto;
