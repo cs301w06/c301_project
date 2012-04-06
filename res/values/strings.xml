@@ -19,5 +19,6 @@
     <string name="keep">Keep Photo</string>
     <string name="photoreview">Photo Review</string>
 	<string name="annotation">Add Annotation</string>
+	<string name="Yes">Yes</string>
 	
 </resources>
