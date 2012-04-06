@@ -12,32 +12,14 @@
         android:text="Advanced Search" />
 
     <TextView
-        android:id="@+id/date_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/adv_title"
-        android:text="Date"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/date_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/date_title"
-        android:inputType="date" />
-
-    <TextView
         android:id="@+id/group_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/date_field"
+        android:layout_below="@+id/adv_title"
         android:text="Group"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/group_field"
         android:layout_width="wrap_content"
@@ -57,7 +39,7 @@
         android:layout_below="@+id/group_field"
         android:text="Tags"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/tag_field"
         android:layout_width="wrap_content"

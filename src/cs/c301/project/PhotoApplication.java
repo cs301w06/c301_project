@@ -1,6 +1,5 @@
 package cs.c301.project;
 
-
 import java.util.Vector;
 
 import android.app.Application;
@@ -27,7 +26,7 @@ public class PhotoApplication extends Application {
 	 * Creates a new photo model 
 	 * @return 
 	 */
-	
+	/** Creates a new photo model */
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -37,6 +36,7 @@ public class PhotoApplication extends Application {
 		model = new PhotoModel(this);
 	}
 	
+	/** Grab all photos by their id */
 	public static PhotoEntry getPhotoByID(int id) {
 		try {
 			return model.getPhotoByID(id);
@@ -48,6 +48,14 @@ public class PhotoApplication extends Application {
 		return null;
 	}
 	
+	/** 
+	 * Intitializes the database depending on the user account used
+	 * given by the user
+	 * 
+	 *  @param username	account name of the user
+	 *  @param password	password for the given account 
+	 *  @return true if successful log in
+	 */
 	public static boolean login(String username, String password) {
 		boolean attempt = loginModel.login(username, password);
 		
@@ -57,7 +65,13 @@ public class PhotoApplication extends Application {
 		return attempt;
 	}
 	
-	
+	/**
+	 * Creates a new account if the account does not exist 
+	 * 
+	 * @param username account name of the user
+	 * @param password password for the given account
+	 * @return true if successful in adding account
+	 */
 	public static boolean newAccount(String username, String password) {
 		boolean attempt = loginModel.create(username, password);
 		
@@ -67,14 +81,25 @@ public class PhotoApplication extends Application {
 		return attempt;
 	}
 	
+	/**
+	 * Checks if the account is a doctor
+	 * 
+	 * @return if the account is a doctor
+	 */
 	public static boolean isDoctor() {
 		return isDoctor;
 	}
 	
+	/**
+	 * Makes the account a doctor account
+	 */
 	public static void toggleDoctor() {
 		isDoctor = !isDoctor;
 	}
 	
+	/**
+	 * Initializes the database of the given user account
+	 */
 	private static void initializePhotoDatabase() {
 		model.setUser(loginModel.getCurrentUser());
 	}
@@ -96,6 +121,10 @@ public class PhotoApplication extends Application {
 		return false;
 	}
 	
+	/**
+	 * Allows the doctor account to grab all patients database
+	 * @return all patients allocated to the doctor
+	 */
 	public static Vector<String> getPatients() {
 		return loginModel.getPatients();
 	}
@@ -131,6 +160,12 @@ public class PhotoApplication extends Application {
 		return model.removeTag(tag.trim());
 	}
 	
+	/**
+	 * Allows the doctor to remove tags 
+	 * 
+	 * @param tag removes all tags used by the doctor
+	 * @return removes the given tag
+	 */
 	public static boolean removeDoctorTag(String tag) {
 		return model.removeDoctorTag(tag.trim());
 	}
@@ -162,29 +197,49 @@ public class PhotoApplication extends Application {
 		return model.updatePhoto(entry);
 	}
 	
+	/**
+	 * Grab the tags from the photo model
+	 * 
+	 * @return tags from the photo model
+	 */
 	public static Vector<String> getTags() {
 		return model.getTags();
 	}
 	
+	/**
+	 * Grab doctor tags from the photo model
+	 * 
+	 * @return doctor tags from the photo model
+	 */
 	public static Vector<String> getDoctorTags() {
 		return model.getDoctorTags();
 	}
 	
+	/**
+	 * Grab vecotrs of groups from the photo model 
+	 * 
+	 * @return groups from the photo model
+	 */
 	public static Vector<String> getGroups() {
 		return model.getGroups();
 	}
 	
+	/**
+	 * Finds the photos with given group and tag string values
+	 * 
+	 * @param groupsQuery a group string that shows photos with that attached string
+	 * @param tagsQuery a tag string that shows photos with that attached string
+	 * @return all photos by the given photos
+	 */
 	public static Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
-		try {
-			return model.getPhotosByValues(groupsQuery, tagsQuery);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			Log.e("PhotoApplication", e.getMessage());
-		}
-		
-		return null;
+		return model.getPhotosByValues(groupsQuery, tagsQuery);
 	}
-	
+
+	/**
+	 * Grabs the temporary image uri 
+	 * 
+	 * @return the temporary image file
+	 */
 	public static Uri getTemporaryImage() {
 		return model.getTemporaryImage();
 	}

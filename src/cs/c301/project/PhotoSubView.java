@@ -1,12 +1,10 @@
 package cs.c301.project;
 
-import java.io.File;
 import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,16 +13,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import cs.c301.project.Data.PhotoEntry;
 
 /**
- * PhotoSubView is the activity class and view for listing the images
- * within a given group folder. It is passed the file path of the folder,
- * and then passes the path to a controller. The controller creates an
- * array of the images within the folder in the form of bitmaps. It then
- * calls the image adapter to put the images in the array into the grid view.
+ * PhotoSubView is the activity class and view for listing the photos
+ * within a given group folder. It is given search parameters by the
+ * calling activity, and it searches the databases for any photos with
+ * those terms contained within. A grid view is then populated with
+ * the bitmaps of the photos. The photos can be selected which will redirect
+ * to a detail view showing meta data and options for the photo.
+ * <p>
+ * Also allows for selection of multiple photos at once when the isMultiSelected
  * 
+ * boolean value is true.
  * @author esteckle
  *
  */
@@ -37,11 +38,13 @@ public class PhotoSubView extends Activity {
 	private Vector<String> groupV;
 	private Vector<String> tagsV;
 	private GridView gridview;
+	private String tags;
+	private String group;
 	private boolean isMultiSelected;
 	
 	/**
 	 * onCreate method is called when the activity starts. It initializes the grid view and
-	 * populates it with our images from a given folder. 
+	 * populates it with our images from a given set of search terms.
 	 * 
 	 * @param savedInstanceState The instance state from the calling activity
 	 */
@@ -52,10 +55,10 @@ public class PhotoSubView extends Activity {
 		setContentView(R.layout.sub_list);
 		
 		Bundle extra = getIntent().getExtras();
-		
-		String group = extra.getString("group");
-		String tags = extra.getString("tag");
-		
+
+		group = extra.getString("group");
+		tags = extra.getString("tag");
+
 		groupV = new Vector<String>();
 		tagsV = new Vector<String>();
 		
@@ -66,7 +69,7 @@ public class PhotoSubView extends Activity {
 		tagsV.add(tags);
 		
 		isMultiSelected = extra.getBoolean("isMultiSelected");
-	
+
 		TextView tv = (TextView)findViewById(R.id.sub_group);
 		tv.setText(group);
 
@@ -112,6 +115,11 @@ public class PhotoSubView extends Activity {
 	}
 	
 	@Override
+	/**
+	 * Refreshes the photo list every time we return to this activity.
+	 * 
+	 * @see android.app.Activity#onStart()
+	 */
 	protected void onStart() {
 		super.onStart();
 		photos = PhotoApplication.getPhotosByValues(groupV, tagsV);

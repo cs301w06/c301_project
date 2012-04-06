@@ -18,6 +18,12 @@
         android:scrollbars="vertical" >
     </ListView>
 
+    <Button
+        android:id="@+id/search_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search" />
+
     <EditText
         android:id="@+id/search_text"
         android:layout_width="fill_parent"
