@@ -18,7 +18,6 @@ public class PhotoApplication extends Application {
 
 	private static LoginModel loginModel;
 	private static PhotoModel model;
-	private static String databaseName;
 	private static boolean isDoctor;
 	public static final String ENCRYPTION_KEY = "LolAndroidKey";
 	

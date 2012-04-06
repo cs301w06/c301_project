@@ -22,6 +22,7 @@ import cs.c301.project.PhotoApplication;
 import cs.c301.project.Data.PhotoEntry;
 import cs.c301.project.Utilities.SimpleCrypto;
 
+@SuppressWarnings("static-access")
 public class PhotoModel {
 	private PhotoModelHelper photoModelHelper;
 	private SQLiteDatabase photoDatabase;
@@ -258,12 +259,12 @@ public class PhotoModel {
 		
 		if (groupsQuery != null && groupsQuery.size() > 0) {
 			if (groupsQuery.elementAt(0) != null) {
-				query = photoModelHelper.photosTableGroup + " LIKE ? ";
+				query = photoModelHelper.photosTableGroup + " = ? ";
 				selectionArgs.add(groupsQuery.elementAt(0));
 				
 				if (groupsQuery.size() > 1) {
 					for (int i = 1; i < groupsQuery.size(); i++) {
-						query += "OR " + photoModelHelper.photosTableGroup + " LIKE ? ";
+						query += "AND " + photoModelHelper.photosTableGroup + " = ? ";
 						selectionArgs.add(groupsQuery.elementAt(i));
 					}
 				}
@@ -273,15 +274,15 @@ public class PhotoModel {
 		if (tagsQuery != null && tagsQuery.size() > 0) {
 			if (tagsQuery.elementAt(0) != null) {
 				if (query.equals(""))
-					query = photoModelHelper.photosTableTags + " LIKE ? ";
+					query = photoModelHelper.photosTableTags + " = ? ";
 				else
-					query += "OR " + photoModelHelper.photosTableTags + " LIKE ? ";
+					query += "AND " + photoModelHelper.photosTableTags + " = ? ";
 				
 				selectionArgs.add(tagsQuery.elementAt(0));
 				
 				if (tagsQuery.size() > 1) {
 					for (int i = 1; i < tagsQuery.size(); i++) {
-						query += "OR " + photoModelHelper.photosTableTags + " LIKE ? ";
+						query += "AND " + photoModelHelper.photosTableTags + " = ? ";
 						selectionArgs.add(tagsQuery.elementAt(i));
 					}
 				}
@@ -292,7 +293,7 @@ public class PhotoModel {
 		String logging = "";
 		
 		for (int j = 0; j < selectionArgs.size(); j++) {
-			arguments[j] = "%" + selectionArgs.elementAt(j) + "%";
+			arguments[j] = selectionArgs.elementAt(j);
 			logging += arguments[j] + " ";
 		}
 		
@@ -339,6 +340,26 @@ public class PhotoModel {
 		cursor.close();
 		
 		return photoEntries;
+	}
+	
+	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery, Date startDate, Date endDate) {
+		Vector<PhotoEntry> photos = getPhotosByValues(groupsQuery, tagsQuery);
+		Vector<Integer> toRemove = new Vector<Integer>(0, 1);
+		
+		for (int i = 0; i < photos.size(); i++) {
+			PhotoEntry entry = photos.elementAt(i);
+			
+			if (entry.getDate().before(startDate) || entry.getDate().after(endDate))
+				toRemove.add(i);
+		}
+		
+		for (int j = toRemove.size() - 1; j >= 0; j--) {
+			photos.remove(toRemove.elementAt(j));
+		}
+		
+		photos.trimToSize();
+		
+		return photos;
 	}
 	
 	public boolean updatePhoto(PhotoEntry photoEntry) {
