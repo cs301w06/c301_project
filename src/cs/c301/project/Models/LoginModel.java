@@ -2,13 +2,13 @@ package cs.c301.project.Models;
 
 import java.util.Vector;
 
-import cs.c301.project.PhotoApplication;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import cs.c301.project.PhotoApplication;
+import cs.c301.project.Utilities.SimpleCrypto;
 
 public class LoginModel {
 	private LoginModelHelper loginModelHelper;
@@ -56,42 +56,51 @@ public class LoginModel {
 	}
 	
 	public boolean login(String username, String password) {
-		Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
-		
-		if (cursor.moveToNext()) {
-			String databasePassword =  cursor.getString(cursor.getColumnIndex(loginModelHelper.usersTablePassword));
+		try {
+			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
 			
-			if (databasePassword.equals(password) || PhotoApplication.isDoctor()) {
-				currentUser = username;
-				cursor.close();
-				return true;
+			if (cursor.moveToNext()) {
+				String databasePassword =  cursor.getString(cursor.getColumnIndex(loginModelHelper.usersTablePassword));
+				
+				if (SimpleCrypto.decrypt("LolAndroidKey", databasePassword).equals(password) || PhotoApplication.isDoctor()) {
+					currentUser = username;
+					cursor.close();
+					return true;
+				}
 			}
+			
+			cursor.close();
 		}
 		
-		cursor.close();
+		catch (Exception e) {}
+		
 		return false;
 	}
 	
 	public boolean create(String username, String password) {
-		Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
-		
-		if (cursor.moveToNext()) {
+		try {
+			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
+			
+			if (cursor.moveToNext()) {
+				cursor.close();
+				return false;
+			}
+			
 			cursor.close();
-			return false;
+			
+			ContentValues entry = new ContentValues();
+			entry.put(loginModelHelper.usersTableName, username);
+			entry.put(LoginModelHelper.usersTablePassword, SimpleCrypto.encrypt("LolAndroidKey", password));
+			
+			long row = loginDatabase.insert(LoginModelHelper.usersTable, null, entry);
+			
+			if (row != -1) {
+				currentUser = username;
+				return true;
+			}
 		}
 		
-		cursor.close();
-		
-		ContentValues entry = new ContentValues();
-		entry.put(loginModelHelper.usersTableName, username);
-		entry.put(LoginModelHelper.usersTablePassword, password);
-		
-		long row = loginDatabase.insert(LoginModelHelper.usersTable, null, entry);
-		
-		if (row != -1) {
-			currentUser = username;
-			return true;
-		}
+		catch (Exception e) {}
 		
 		return false;
 	}
