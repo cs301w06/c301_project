@@ -7,9 +7,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class LoginModelHelper extends SQLiteOpenHelper {
-//	private Vector<PhotoModelListener> listeners;
-	
+public class LoginModelHelper extends SQLiteOpenHelper {	
 	public static final String databaseName = "admin.db";
 	
 	public static final String usersTable = "users";
