@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
@@ -20,125 +19,123 @@ import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
 import cs.c301.project.Data.PhotoEntry;
 
-
 /** 
- * PhotoCompare is mainly used as a place holder for now
- * there is no implementation for the time being
- *
+ * Photocompare shows two different photos from file, user will be allowed to select 
+ * the second photo to compare to the selected photo
+ * 
  */
 public class PhotoCompare extends Activity implements ViewFactory, OnItemSelectedListener {
-	
-	
+
 	private static int count;
 
-	public int getCount()
-	{
-		
+	public int getCount() {
+
 		return count;
-		
 	}
-	
-	
-	public void setCount(int count){
-		
+
+	public void setCount(int count) {
+
 		PhotoCompare.count = count;
 	}
+
 	private PhotoEntry photoEntry;
 	private ImageView firstPhoto;
 	private ImageView secondPhoto;
-	
-	
+
 	private Bitmap[] photoThumbIds ; 
 	private Bitmap[] photoImageIds ;  
-	
+
 	private int flag = 2;
-	
-	
+
+	/**
+	 * On the start of the activity use the selected photo
+	 * and compare to the next closest photo by default and then
+	 * allow the user to select the second photo to compare to 
+	 * 
+	 * @param savedInstanceState all extras passed from the previous intents
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		this.setCount(0);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
+
 		setContentView(R.layout.photo_comp);
-		
-		
+
 		Vector<String> group = new Vector<String>();
 		Vector<PhotoEntry> photo = new Vector<PhotoEntry>();
-		
-		
-		
+
 		Bundle extra = getIntent().getExtras();
-		
+
 		final int photoId = (Integer) extra.get("photo");
-		
+
 		photoEntry = PhotoApplication.getPhotoByID(photoId);
 		group.add(photoEntry.getGroup());
 		photo = PhotoApplication.getPhotosByValues(group, null);
-		
+
 		photoThumbIds = new Bitmap[photo.size()];
 		for (int i = 0; i < photo.size(); i++){
-			
+
 			photoThumbIds[i] = photo.elementAt(i).getBitmap();
-			
 		}
-		
+
 		photoImageIds = new Bitmap[photo.size()];
 		for (int i = 0; i < photo.size(); i++){
-			
-			photoThumbIds[i] = photo.elementAt(i).getBitmap();
-			
-		}
-		
 
-	    firstPhoto = (ImageView) findViewById(R.id.Photo1);
+			photoThumbIds[i] = photo.elementAt(i).getBitmap();
+		}
+
+		firstPhoto = (ImageView) findViewById(R.id.Photo1);
 		secondPhoto = (ImageView) findViewById(R.id.Photo2);
-		
+
 		Gallery compGallery = (Gallery) findViewById(R.id.compGallery);
-		
+
 		compGallery.setAdapter(new ImageAdapter(this));
 		compGallery.setOnItemSelectedListener(this);
-		
-		
 	}
-	public class ImageAdapter extends BaseAdapter{
-		public ImageAdapter(Context c){
+
+	/**
+	 * Image adapter that gets the position of the second photo
+	 * that is selected by the user
+	 *
+	 */
+	public class ImageAdapter extends BaseAdapter {
+		public ImageAdapter(Context c) {
+
 			mContext = c;
-			
 		}
 
-		public int getCount()
-		{
+		public int getCount() {
+
 			return photoThumbIds.length;
 		}
 
-		public Object getItem(int position)
-		{
+		public Object getItem(int position)	{
+
 			return position;
 		}
 
-		public long getItemId(int position)
-		{
+		public long getItemId(int position) {
+
 			return position;
 		}
 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
+		public View getView(int position, View convertView, ViewGroup parent) {
 			ImageView tempImage = new ImageView(mContext);
-			
+
 			tempImage.setImageBitmap(photoThumbIds[position]);
 			tempImage.setAdjustViewBounds(true);
 			tempImage.setLayoutParams(new Gallery.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			tempImage.setBackgroundResource(R.drawable.picture_frame);
-			
+
 			return tempImage;
 		}
 		private Context mContext;
-		
+
 	}
-	
-	
+
+
 	public void onItemSelected(AdapterView<?> adapter, View v, int position,
 			long id){
 		System.out.println("Iam here!!!\n");
@@ -146,22 +143,22 @@ public class PhotoCompare extends Activity implements ViewFactory, OnItemSelecte
 		System.out.println("\n");
 
 		if(flag == 2){
-				super.onStart();
-				
-				firstPhoto.setImageBitmap(photoEntry.getBitmap());
-				System.out.println("123123123!!!\n");
-				secondPhoto.setImageBitmap(photoThumbIds[position]);
+			super.onStart();
 
-			}
-			
+			firstPhoto.setImageBitmap(photoEntry.getBitmap());
+			System.out.println("123123123!!!\n");
+			secondPhoto.setImageBitmap(photoThumbIds[position]);
+
+		}
+
 	}
-	
-	
+
+
 	public void onNothingSelected(AdapterView<?> arg0){
-		
-		
+
+
 	}
-	
+
 	public View makeView()
 	{
 		ImageView tempImage = new ImageView(this);
