@@ -95,6 +95,10 @@ public class PhotoDetails extends Activity {
 		tagText.setText(photoEntry.getTagsForDatabase());
 	}
 
+	/**
+	 * overrides the onstart of the intent that will show the most recent photo
+	 * captured to be reviewed by the user to take action
+	 */
 	protected void onStart() {
 		super.onStart();
 		ImageView reviewPhoto = (ImageView) findViewById(R.id.det_photo);
@@ -104,6 +108,13 @@ public class PhotoDetails extends Activity {
 		tagText.setText(photoEntry.getTagsForDatabase());
 	}
 
+	/**
+	 * Grab the group name of the photo from the group list intent
+	 * @param requestCode Integer request code originally supplied, allowing you to identify who
+	 * this result came from
+	 * @param resultCode Integer result code returned by child activity through its setResult()
+	 * @param intent Intent, which can return result data to caller
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		try{

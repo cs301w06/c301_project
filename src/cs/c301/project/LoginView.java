@@ -10,6 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Allows multiple users for the application, user is allowed to 
+ * register a new account or log into a previous account where the
+ * user can edit their photos by adding, adding annotations, adding
+ * tags and choosing the group of where the photo belongs to 
+ * 
+ * @author yhu3
+ *
+ */
 public class LoginView extends Activity {
 	
 	@Override
