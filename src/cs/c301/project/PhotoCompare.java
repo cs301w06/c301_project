@@ -22,9 +22,18 @@ import cs.c301.project.Data.PhotoEntry;
 
 
 /** 
- * PhotoCompare is mainly used as a place holder for now
- * there is no implementation for the time being
- *
+ * PhotoCompare is the interface to allow user to compare the current
+ * selected photo, with the other photos under the same group. This 
+ * function is implemented from the detail view of a saved photo.
+ * 
+ * @parameter firstPhoto imageView for the selected photo
+ * @parameter secondPhoto imageView for the comparing photo
+ * @parameter photoThumbIds gallery for all the other photos
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 public class PhotoCompare extends Activity implements ViewFactory, OnItemSelectedListener {
 	
