@@ -119,7 +119,7 @@ public class PhotoReview extends Activity {
 			}
 
 			newPhoto.setBitmap(newBMP);
-			
+
 			if (newPhoto.getBitmap() == null) {
 				Toast.makeText(getApplicationContext(), "Photo Null", Toast.LENGTH_SHORT).show();
 			}
@@ -153,6 +153,7 @@ public class PhotoReview extends Activity {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				annotationText = inputName.getText().toString();
 				newPhoto.setAnnotation(annotationText);
+				Toast.makeText(getApplicationContext(), "Annotation has been successfully added.", Toast.LENGTH_SHORT).show();
 				Toast.makeText(getApplicationContext(), "Photo Saved", Toast.LENGTH_SHORT).show();
 				PhotoApplication.addPhoto(newPhoto);
 				Intent intent = new Intent(PhotoReview.this, PhotoSubView.class);
