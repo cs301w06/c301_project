@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/currentPassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -22,21 +22,21 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/newPassword1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" 
         android:hint="New Password"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/newPassword2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" 
         android:hint="Retype New Password"/>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/changePasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Password" />

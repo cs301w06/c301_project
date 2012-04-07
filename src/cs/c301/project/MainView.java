@@ -29,8 +29,7 @@ public class MainView extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
+
 		setContentView(R.layout.main);
 		
 		isToLogout = false;
@@ -58,23 +57,16 @@ public class MainView extends Activity {
 		cameraButton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View arg0) {
-					if (!isPatient) {
-						if (!isDoctor) {
-							Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-							intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
-							
-							startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-						} else if (isDoctor) {
-							Intent intent = new Intent(getApplicationContext(), PatientList.class);
-							startActivity(intent);
-						}
-					} else if (isPatient) { //this is to view doctor tags
-						Intent intent = new Intent(MainView.this, TagList.class);
-						intent.putExtra("isDoctor", true);
+					if (!isDoctor) {
+						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+						intent.putExtra(MediaStore.EXTRA_OUTPUT, PhotoApplication.getTemporaryImage());
+						
+						startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+					} else if (isDoctor) {
+						Intent intent = new Intent(getApplicationContext(), PatientList.class);
 						startActivity(intent);
 					}
 			}
-			
 		});
 		
 		Button listButton = (Button) findViewById(R.id.view_by_group);
@@ -122,13 +114,12 @@ public class MainView extends Activity {
 			cameraButton.setText("View Patients");
 			tagsButton.setVisibility(View.INVISIBLE);
 			listButton.setVisibility(View.INVISIBLE);
-			searchButton.setText("Remove Patients");
+			searchButton.setVisibility(View.INVISIBLE);
 		}
 		
 		if (isPatient) {
 			tagsButton.setText("View By Patient Tags");
 			settingButton.setVisibility(View.INVISIBLE);
-			cameraButton.setText("View by Doctor Tags");
 			TextView mainView = (TextView)findViewById(R.id.mainTitle);
 			mainView.setText(extra.getString("patientName"));
 		}

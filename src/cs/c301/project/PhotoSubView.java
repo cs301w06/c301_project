@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -29,7 +30,7 @@ import cs.c301.project.Data.PhotoEntry;
  * boolean value is true.
  * @author esteckle
  * 
- * Bug fixes by yhu3
+ * Significant bug fixes by yhu3
  *
  */
 public class PhotoSubView extends Activity {
@@ -60,12 +61,16 @@ public class PhotoSubView extends Activity {
 		
 		Bundle extra = getIntent().getExtras();
 		
+		group = null;
+		tags = null;
+		
 		group = extra.getString("group");
 		tags = extra.getString("tag");
 		
 		try {
 			startDate = (Date)extra.getSerializable("startDate");
 			endDate = (Date)extra.getSerializable("endDate");
+			Log.e("PhotoSubView", "dates " + startDate.toString() + ", " + endDate.toString());
 		}
 		
 		catch (Exception e) {
@@ -88,8 +93,15 @@ public class PhotoSubView extends Activity {
 		isMultiSelected = extra.getBoolean("isMultiSelected");
 
 		TextView tv = (TextView)findViewById(R.id.sub_group);
+		
+		if (group != null)
 		tv.setText(group);
-
+		else if (tags != null)
+		tv.setText(tags);
+		else {
+			tv.setText("Search Result");
+		}
+		
 		gridview = (GridView) findViewById(R.id.sub_list);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {

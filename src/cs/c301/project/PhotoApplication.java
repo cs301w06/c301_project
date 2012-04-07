@@ -50,6 +50,19 @@ public class PhotoApplication extends Application {
 		return null;
 	}
 	
+	public static boolean changePassword(String username, String password) {
+		return loginModel.changePassword(username, password);
+	}
+	
+	public static String whoAmI() {
+		String user = loginModel.getCurrentUser();
+		
+		if (isDoctor())
+			user = "doctor";
+		
+		return user;
+	}
+	
 	/** 
 	 * Intitializes the database depending on the user account used
 	 * given by the user

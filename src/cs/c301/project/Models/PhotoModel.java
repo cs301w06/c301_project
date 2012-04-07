@@ -43,7 +43,7 @@ public class PhotoModel {
 		}
 	}
 	
-	public void open() throws SQLException {
+	private void open() throws SQLException {
 		photoDatabase = photoModelHelper.getWritableDatabase();
 	}
 	
@@ -51,6 +51,12 @@ public class PhotoModel {
 		photoDatabase.close();
 	}
 	
+	/** 
+	 * Returns the photo requested by the id
+	 * 
+	 *  @param id The id number of the photo
+	 *  @return PhotoEntry with the photo
+	 */
 	public PhotoEntry getPhotoByID(int id) {
 		Cursor cursor = photoDatabase.rawQuery("SELECT * FROM " + photoModelHelper.photosTable + " WHERE " + photoModelHelper.photosTableID + " = ?", new String[] {"" + id});
 		
@@ -88,6 +94,12 @@ public class PhotoModel {
 		return entry;
 	}
 	
+	/** 
+	 * Adds a group to the group table, if it doesn't already exist.
+	 * 
+	 *  @param group The name of the group
+	 *  @return true if successful addition
+	 */
 	public boolean addGroup(String group) {
 		Vector<String> existingGroups = getGroups();
 		
@@ -103,6 +115,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Adds a tag to the tag table, if it doesn't already exist.
+	 * 
+	 *  @param tag The name of the tag
+	 *  @return true if successful addition
+	 */
 	public boolean addTag(String tag) {
 		Vector<String> existingTags = getTags();
 		
@@ -118,6 +136,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Adds a doctor tag to the doctor tag table, if it doesn't already exist.
+	 * 
+	 *  @param tag The name of the tag
+	 *  @return true if successful addition
+	 */
 	public boolean addDoctorTag(String tag) {
 		Vector<String> existingTags = getDoctorTags();
 		
@@ -133,6 +157,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Adds a photo to the user database.
+	 * 
+	 *  @param photo The name of the PhotoEntry
+	 *  @return true if successful addition
+	 */
 	public boolean addPhoto(PhotoEntry photo) {
 		ContentValues entry = new ContentValues();
 		entry.put(photoModelHelper.photosTablePhoto, photo.getBitmapBytes());		
@@ -151,6 +181,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Removes a group from the groups table
+	 * 
+	 *  @param group The name of the group
+	 *  @return true if successful addition
+	 */
 	public boolean removeGroup(String group) {
 		int row = photoDatabase.delete(photoModelHelper.groupsTable, photoModelHelper.groupsTableName + " = ?", new String[] {group});
 		//need to refactor and remove photos with this group associated
@@ -161,6 +197,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Removes a tags from the tags table
+	 * 
+	 *  @param tag The name of the tag
+	 *  @return true if successful addition
+	 */
 	public boolean removeTag(String tag) {
 		int row = photoDatabase.delete(photoModelHelper.tagsTable, photoModelHelper.tagsTableName + " = ?", new String[] {tag});
 		//need to refactor and remove tags from photo entries
@@ -171,6 +213,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Removes doctor tags from the doctor tags table
+	 * 
+	 *  @param tag The name of the tag
+	 *  @return true if successful addition
+	 */
 	public boolean removeDoctorTag(String tag) {
 		int row = photoDatabase.delete(photoModelHelper.doctorTagsTable, photoModelHelper.doctorTagsTableName + " = ?", new String[] {tag});
 		//need to refactor and remove tags from photo entries
@@ -181,6 +229,12 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Removes a photo from the database
+	 * 
+	 *  @param id The id of the photo
+	 *  @return true if successful removal
+	 */
 	public boolean removePhoto(int id) {
 		int row = photoDatabase.delete(photoModelHelper.photosTable, photoModelHelper.photosTableID + " = ?", new String[] {"" + id});
 		
@@ -190,6 +244,11 @@ public class PhotoModel {
 		return false;
 	}
 	
+	/** 
+	 * Returns all groups from the group table
+	 * 
+	 *  @return Vector<String> return groups
+	 */
 	public Vector<String> getGroups() {
 		Vector<String> s = new Vector<String>();
 		
@@ -210,6 +269,11 @@ public class PhotoModel {
 		return s;
 	}
 	
+	/** 
+	 * Returns all tags from the tag table
+	 * 
+	 *  @return Vector<String> return tags
+	 */
 	public Vector<String> getTags() {
 		Vector<String> s = new Vector<String>();
 		
@@ -230,6 +294,11 @@ public class PhotoModel {
 		return s;
 	}
 	
+	/** 
+	 * Returns all doctor tags from the doctor tags table
+	 * 
+	 *  @return Vector<String> return doctor tags
+	 */
 	public Vector<String> getDoctorTags() {
 		Vector<String> s = new Vector<String>();
 		
@@ -250,6 +319,13 @@ public class PhotoModel {
 		return s;
 	}
 	
+	/** 
+	 * Returns photos that match the groups and tags requested
+	 * 	
+	 * @param groupsQuery a vector of groups that you want to query by, this is an advanced feature
+	 * @param tagsQuery a vector of tags that you want to query by, this is an advanced feature
+	 *  @return Vector<PhotoEntry> photos that match the queries
+	 */
 	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery) {
 		Vector<PhotoEntry> photoEntries = new Vector<PhotoEntry>();
 		String query = "";
@@ -350,21 +426,34 @@ public class PhotoModel {
 		return photoEntries;
 	}
 	
+	/** 
+	 * Returns photos that match the groups, tags, and date range requested
+	 * 
+	 * @param groupsQuery a vector of groups that you want to query by, this is an advanced feature
+	 * @param tagsQuery a vector of tags that you want to query by, this is an advanced feature
+	 * @param startDate the from date range
+	 * @param endDate the end date range
+	 *  @return Vector<PhotoEntry> photos that match the queries
+	 */
 	public Vector<PhotoEntry> getPhotosByValues(Vector<String> groupsQuery, Vector<String> tagsQuery, Date startDate, Date endDate) {
 		Vector<PhotoEntry> photos = getPhotosByValues(groupsQuery, tagsQuery);
-		
-		if (startDate != null && endDate != null && startDate.compareTo(endDate) <= 0) {
+
+		if (startDate != null && endDate != null) {
 			Vector<Integer> toRemove = new Vector<Integer>(0, 1);
 			
 			for (int i = 0; i < photos.size(); i++) {
 				PhotoEntry entry = photos.elementAt(i);
-				
-				if (entry.getDate().before(startDate) || entry.getDate().after(endDate))
+				Date photoDate = entry.getDate();
+
+				if (photoDate.getDate() < startDate.getDate() && photoDate.getYear() <= startDate.getYear() && photoDate.getMonth() <= startDate.getMonth()) {
 					toRemove.add(i);
+				} else if (photoDate.getDate() > endDate.getDate() && photoDate.getYear() >= endDate.getYear() && photoDate.getMonth() >= endDate.getMonth()) {
+					toRemove.add(i);
+				}
 			}
 			
 			for (int j = toRemove.size() - 1; j >= 0; j--) {
-				photos.remove(toRemove.elementAt(j));
+				photos.removeElementAt(toRemove.elementAt(j));
 			}
 			
 			photos.trimToSize();
@@ -373,6 +462,12 @@ public class PhotoModel {
 		return photos;
 	}
 	
+	/** 
+	 * Passing an existing photo into this function with its changes will store it into the database as an update
+	 * 
+	 * @param photoEntry The photo that you want to update
+	 *  @return true if successful update
+	 */
 	public boolean updatePhoto(PhotoEntry photoEntry) {
 		ContentValues entry = new ContentValues();
 		entry.put(photoModelHelper.photosTableGroup, photoEntry.getGroup());

@@ -22,24 +22,37 @@ public class LoginModel {
 	private SQLiteDatabase loginDatabase;
 	private String currentUser;
 	
+	/** 
+	 * Initializes the login helper
+	 * 
+	 *  @param context The program's context
+	 */
 	public LoginModel(Context context) {
 		currentUser = null;
 		loginModelHelper = new LoginModelHelper(context);
 		open();
 	}
 	
-	public void open() throws SQLException {
+	private void open() throws SQLException {
 		loginDatabase = loginModelHelper.getWritableDatabase();
 	}
 	
-	public void close() {
+	private void close() {
 		loginDatabase.close();
 	}
 	
+	/** 
+	 * Returns the current username
+	 * @return the current user
+	 */
 	public String getCurrentUser() {
 		return currentUser;
 	}
 	
+	/** 
+	 *  Returns the list of patients for the doctor 
+	 *  @return Vector<String> containing patient names
+	 */
 	public Vector<String> getPatients() {
 		Vector<String> patients = new Vector<String>(0, 1);
 		
@@ -62,6 +75,13 @@ public class LoginModel {
 		return patients;
 	}
 	
+	/** 
+	 * Login method, returns true if login is successful
+	 * 
+	 *  @param username	account name of the user
+	 *  @param password	password for the given account 
+	 *  @return true if successful log in
+	 */
 	public boolean login(String username, String password) {
 		try {
 			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
@@ -84,6 +104,13 @@ public class LoginModel {
 		return false;
 	}
 	
+	/** 
+	 * Creates accounts, returns true if the account is not taken and is successfully created.
+	 * 
+	 *  @param username	account name of the user
+	 *  @param password	password for the given account 
+	 *  @return true if successful creation
+	 */
 	public boolean create(String username, String password) {
 		try {
 			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username.trim()});
@@ -118,6 +145,12 @@ public class LoginModel {
 		return false;
 	}
 	
+	/** 
+	 * Deletes accounts.
+	 * 
+	 *  @param username	account name of the user
+	 *  @return true if successful deletion
+	 */
 	public boolean delete(String username) {
 		int row = loginDatabase.delete(loginModelHelper.usersTable, loginModelHelper.usersTableName + " = ?", new String[] {username});
 		
@@ -127,20 +160,28 @@ public class LoginModel {
 		return false;
 	}
 	
-	public boolean changePassword(String password) {
+	/** 
+	 * Changes passwords for accounts.
+	 * 
+	 *  @param username	account name of the user
+	 *  @param password	password for the given account 
+	 *  @return true if successful change
+	 */
+	public boolean changePassword(String username, String password) {
 		try {
-			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {currentUser});
+			Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable + " WHERE " + loginModelHelper.usersTableName +  " = ?", new String[] {username});
+			
+			int id = -1;
 			
 			if (cursor.moveToNext()) {
+				id = cursor.getInt(cursor.getColumnIndex(loginModelHelper.usersTableID));
 				cursor.close();
+			} else {
 				return false;
 			}
 			
-			int id = cursor.getInt(cursor.getColumnIndex(loginModelHelper.usersTableID));
-			cursor.close();
-			
 			ContentValues entry = new ContentValues();
-			entry.put(LoginModelHelper.usersTablePassword, SimpleCrypto.encrypt("LolAndroidKey", password));
+			entry.put(LoginModelHelper.usersTablePassword, SimpleCrypto.encrypt(PhotoApplication.ENCRYPTION_KEY, password));
 			
 			int row = loginDatabase.update(loginModelHelper.usersTable, entry, loginModelHelper.usersTableID + " = ?", new String[] {"" + id});
 			

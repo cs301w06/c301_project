@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -47,6 +48,8 @@ public class AdvancedSearch extends Activity {
 		List<String> groupList = new ArrayList<String>();
 		Vector<String> groups = PhotoApplication.getGroups();
 		
+		groupList.add("No group selected.");
+		
 		for (int i = 0; i < groups.size(); i++) {
 			groupList.add(groups.elementAt(i));
 		}
@@ -58,6 +61,8 @@ public class AdvancedSearch extends Activity {
 		
 		List<String> tagsList = new ArrayList<String>();
 		Vector<String> tags = PhotoApplication.getTags();
+		
+		tagsList.add("No tag selected.");
 		
 		for (int i = 0; i < tags.size(); i++) {
 			tagsList.add(tags.elementAt(i));
@@ -77,26 +82,42 @@ public class AdvancedSearch extends Activity {
 		final Button pickEndDate = (Button)findViewById(R.id.endDate);
 		
 		startDate = new Date();
+		startDate.setSeconds(0);
+        startDate.setHours(0);
+        startDate.setMinutes(0);
 		endDate = new Date();
-		
+		endDate.setHours(23);
+        endDate.setMinutes(59);
+        endDate.setSeconds(59);
+        
+        Log.e("AdvancedSearch", "init " + startDate.toString());
+        Log.e("AdvancedSearch", "init " + endDate.toString());
+        
 		startDateListener = new DatePickerDialog.OnDateSetListener() {
 	                public void onDateSet(DatePicker view, int year, 
 	                                      int monthOfYear, int dayOfMonth) {
-	                	Date tempDate = new Date();
-	                	tempDate.setYear(year);
-	                	tempDate.setDate(dayOfMonth);
-	                	tempDate.setMonth(monthOfYear);
 	                	
-	                	if (tempDate.compareTo(endDate) <= 0) {
+	                	Log.e("AdvancedSearch", "year " + year + ", month " + monthOfYear + ", day " + dayOfMonth);
+	                	
+	                	//cant use compare to time because it compares the relative milliseconds which will be off from user input delay
+	                	if (dayOfMonth <= endDate.getDate() && monthOfYear <= endDate.getMonth() && year <= (endDate.getYear() + 1900)) {
 		                    pickStartDate.setText(new StringBuilder()
 		                    // Month is 0 based so add 1
 		                    .append(getMonth(monthOfYear + 1)).append(" ")
-		                    .append(dayOfMonth).append(",")
+		                    .append(dayOfMonth).append(", ")
 		                    .append(year));
-		                    startDate = tempDate;
+		                    
+		                    startDate.setDate(dayOfMonth);
+		                    startDate.setMonth(monthOfYear);
+		                    startDate.setYear(year - 1900);
+		                    
+		                    Log.e("AdvancedSearch", startDate.toString());
+		                    
 		                    startSelected = true;
 	                	} else {
 	                		Toast.makeText(getApplicationContext(), "The start date cannot be after the end date.", Toast.LENGTH_SHORT).show();
+	                		
+	                		Log.e("AdvancedSearch", "error " + startDate.getMonth() + " " + startDate.getDate() + " " + startDate.getYear());
 	                	}
 	                }
 	            };
@@ -104,21 +125,26 @@ public class AdvancedSearch extends Activity {
         endDateListener = new DatePickerDialog.OnDateSetListener() {
 	                public void onDateSet(DatePicker view, int year, 
 	                                      int monthOfYear, int dayOfMonth) {
-	                	Date tempDate = new Date();
-	                	tempDate.setYear(year);
-	                	tempDate.setDate(dayOfMonth);
-	                	tempDate.setMonth(monthOfYear);
 	                	
-	                	if (tempDate.compareTo(endDate) > 0) {
+	                	Log.e("AdvancedSearch", "year " + year + ", month " + monthOfYear + ", day " + dayOfMonth);
+	                	
+	                	if (dayOfMonth >= startDate.getDate() && monthOfYear >= startDate.getMonth() && year >= (startDate.getYear() - 1900)) {
 		                    pickEndDate.setText(new StringBuilder()
 		                    // Month is 0 based so add 1
 		                    .append(getMonth(monthOfYear + 1)).append(" ")
-		                    .append(dayOfMonth).append(",")
+		                    .append(dayOfMonth).append(", ")
 		                    .append(year));
-		                    endDate = tempDate;
+		                    
+		                    endDate.setYear(year - 1900);
+		                    endDate.setMonth(monthOfYear);
+		                    endDate.setDate(dayOfMonth);
+		                    
+		                    Log.e("AdvancedSearch", endDate.toString());
+		                    
 		                    endSelected = true;
 	                	} else {
 	                		Toast.makeText(getApplicationContext(), "The end date cannot be before the start date.", Toast.LENGTH_SHORT).show();
+	                		Log.e("AdvancedSearch", "error " + endDate.toString());
 	                	}
 	                }
 	            };
@@ -143,13 +169,13 @@ public class AdvancedSearch extends Activity {
 				Intent intent = new Intent(AdvancedSearch.this, PhotoSubView.class);
 				String group = String.valueOf(groupSpinner.getSelectedItem());
 				
-				if (groupSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION) {
+				if (groupSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION && groupSpinner.getSelectedItemPosition() != 0) {
 					intent.putExtra("group", group);
 				}
 				
 				String tag = String.valueOf(tagsSpinner.getSelectedItem());
 				
-				if (tagsSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION) {
+				if (tagsSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION && tagsSpinner.getSelectedItemPosition() != 0) {
 					intent.putExtra("tag", tag);
 				}
 				
@@ -161,13 +187,23 @@ public class AdvancedSearch extends Activity {
 					intent.putExtra("endDate", endDate);
 				}
 				
-				if (tagsSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION && groupSpinner.getSelectedItemPosition() != Spinner.INVALID_POSITION && (!startSelected && !endSelected)) {
-					submit = false;
-					Toast.makeText(getApplicationContext(), "Please select a search query.", Toast.LENGTH_SHORT).show();
+				boolean groupCheck = false, tagCheck = false, dateCheck = false;
+				
+				if (!group.equals("") && group != null && groupSpinner.getSelectedItemPosition() != 0)
+					groupCheck = true;
+				
+				if (!tag.equals("") && tag != null && tagsSpinner.getSelectedItemPosition() != 0)
+					tagCheck = true;
+				
+				if (startSelected && endSelected)
+					dateCheck = true;
+				
+				if (groupCheck || tagCheck || dateCheck) {
+					if (submit)
+					startActivity(intent);
+				} else {
+					Toast.makeText(getApplicationContext(), "Please complete your search query with at least one parameter.", Toast.LENGTH_SHORT).show();
 				}
-					
-				if (submit)
-				startActivity(intent);
 			}
 			
 		});
