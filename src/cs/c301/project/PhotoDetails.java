@@ -42,7 +42,7 @@ public class PhotoDetails extends Activity {
 
 		photoEntry = PhotoApplication.getPhotoByID(photoId);
 
-		Button tagButton = (Button) findViewById(R.id.det_tag_button);
+		ImageView tagButton = (ImageView) findViewById(R.id.det_tag_button);
 		tagButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -53,7 +53,7 @@ public class PhotoDetails extends Activity {
 
 		});
 
-		Button compareButton = (Button) findViewById(R.id.det_compare);
+		ImageView compareButton = (ImageView) findViewById(R.id.det_compare);
 		compareButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -64,7 +64,7 @@ public class PhotoDetails extends Activity {
 
 		});
 
-		Button delButton = (Button) findViewById(R.id.det_del);
+		ImageView delButton = (ImageView) findViewById(R.id.det_del);
 		delButton.setOnClickListener(new Button.OnClickListener(){
 
 			public void onClick(View v)	{

@@ -28,7 +28,8 @@ import cs.c301.project.Data.PhotoEntry;
  */
 public class PhotoReview extends Activity {
 
-	private Button groupButton, keepButton, tagButton;
+	private Button groupButton;
+	private ImageView keepButton, tagButton;
 	private String groupName, tagName, annotationText;
 	private Bitmap newBMP;
 	private PhotoEntry newPhoto;
@@ -46,7 +47,7 @@ public class PhotoReview extends Activity {
 		dialogs = new WeakHashMap<Integer, AlertDialog.Builder>();
 		newPhoto = new PhotoEntry();
 		
-		Button discardButton = (Button) findViewById(R.id.review_disc);
+		ImageView discardButton = (ImageView) findViewById(R.id.review_disc);
 		discardButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -64,7 +65,7 @@ public class PhotoReview extends Activity {
 			}
 		});
 
-		tagButton = (Button) findViewById(R.id.review_tag);
+		tagButton = (ImageView) findViewById(R.id.review_tag);
 		tagButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -73,7 +74,7 @@ public class PhotoReview extends Activity {
 
 		});
 
-		keepButton = (Button) findViewById(R.id.review_keep);
+		keepButton = (ImageView) findViewById(R.id.review_keep);
 		keepButton.setOnClickListener(new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -108,7 +109,7 @@ public class PhotoReview extends Activity {
 			if (groupName != null) {
 				newPhoto.setGroup(groupName);
 
-				tagButton = (Button) findViewById(R.id.review_tag);
+				tagButton = (ImageView) findViewById(R.id.review_tag);
 				tagButton.setOnClickListener(new OnClickListener() {
 
 					public void onClick(View arg0) {

@@ -2,26 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#B2C0C1" >
 
     <TextView
-        android:id="@+id/comp_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/photocompare" />
+            android:id="@+id/patientTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="Photo Compare"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#647373" />
 
     <TextView
         android:id="@+id/comp_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="10dp"
-        android:layout_weight="0.5" >
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,26 +42,20 @@
             android:layout_weight="0.5"
             android:src="@drawable/ic_launcher" />
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:layout_weight="1.0"
+        android:layout_height="15dp"
+        android:layout_weight="0.40"
         android:orientation="horizontal" >
-
+
         <Gallery
             android:id="@+id/compGallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.50" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="horizontal" >
-    </LinearLayout>
 
 </LinearLayout>

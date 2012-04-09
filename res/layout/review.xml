@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#B2C0C1" >
 
     <TextView
         android:id="@+id/review_title"
@@ -12,54 +13,81 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:background="#EEEEEE"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageView
             android:id="@+id/review_disc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="@string/discard" />
+            android:contentDescription="@string/photoreview"
+            android:src="@drawable/trash" />
 
-        <Button
-            android:id="@+id/review_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/group" />
-
-        <Button
-            android:id="@+id/review_keep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/keep" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignParentLeft="true"
-        android:orientation="horizontal" >
-
-        <Button
+        <ImageView
             android:id="@+id/review_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tag" />
+            android:layout_weight="0.25"
+            android:contentDescription="@string/photoreview"
+            android:src="@drawable/tag" />
+
+        <ImageView
+            android:id="@+id/review_keep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:contentDescription="@string/photoreview"
+            android:src="@drawable/accept" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/patientTextViewWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" >
+
+        <TextView
+            android:id="@+id/patientTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="Your Latest Photo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#647373" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/review_group"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_toRightOf="@+id/review_title"
+        android:text="Please select a group."
+        android:textColor="#5E7271" />
 
     <ImageView
         android:id="@+id/review_photo"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_below="@+id/det_title"
+        android:layout_above="@+id/review_group"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="14dp"
         android:contentDescription="@string/photoreview"
         android:src="@drawable/ic_launcher" />
 

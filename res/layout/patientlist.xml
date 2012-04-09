@@ -1,43 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cs.c301.project.Utilities.PatientListLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<cs.c301.project.Utilities.PatientListLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/patientPanel"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/patientPanel"
+    android:background="#B2C0C1"
     android:descendantFocusability="beforeDescendants"
-android:focusableInTouchMode="true">
-	
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/patientTextViewWrapper">
-    <TextView
-        android:id="@+id/patientTextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Patients"
-        android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        	android:layout_marginBottom="5dp" />
-</LinearLayout>
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
 
-	<EditText
-	    android:id="@+id/patientEditText"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:hint="Type here to filter patients."
-   	android:layout_margin="2dp"
-   >
-	    
-	</EditText>
-	
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-         android:id="@+id/patientListView"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1.0"
-    android:padding="5dp"
-    android:textSize="16sp" >
-</ListView>
+    <TextView
+        android:id="@+id/mainTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp"
+        android:text="YouTrack"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#647373"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/patientTextViewWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/mainTitle" >
+
+        <TextView
+            android:id="@+id/patientTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="Patients"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#647373" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/patientEditText"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        android:hint="Type here to filter patients." >
+
+        <requestFocus />
+    </EditText>
+
+    <ListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/patientListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.93"
+        android:padding="5dp"
+        android:textSize="16sp" >
+    </ListView>
+
 </cs.c301.project.Utilities.PatientListLayout>

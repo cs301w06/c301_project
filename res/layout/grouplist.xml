@@ -1,72 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cs.c301.project.Utilities.GroupListLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<cs.c301.project.Utilities.GroupListLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/groupPanel"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/groupPanel"
+    android:background="#B2C0C1"
     android:descendantFocusability="beforeDescendants"
-android:focusableInTouchMode="true">
-	
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/groupTextViewWrapper">
-    <TextView
-        android:id="@+id/groupTextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Groups"
-        android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        	android:layout_marginBottom="5dp" />
-</LinearLayout>
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
 
-	<EditText
-	    android:id="@+id/groupEditText"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:hint="Type here to filter groups."
-   	android:layout_margin="2dp"
-   >
-	    
-	</EditText>
-	
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-         android:id="@+id/groupListView"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1.0"
-    android:padding="5dp"
-    android:textSize="16sp" >
-</ListView>
+    <LinearLayout
+        android:id="@+id/groupTextViewWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-     <LinearLayout
+        <TextView
+            android:id="@+id/groupTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="Groups"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#647373" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/groupEditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/groupButtonPaneWrapper"
-        >
-    <LinearLayout
+        android:layout_margin="2dp"
+        android:hint="Type here to filter groups." >
+    </EditText>
+
+    <ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/groupListView"
         android:layout_width="fill_parent"
-        android:layout_height="54dp"
-        android:orientation="horizontal" 
-        android:id="@+id/groupButtonPane">
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:padding="5dp"
+        android:textSize="16sp"
+        android:textColor="#647373" >
+    </ListView>
 
-        <Button
-            android:id="@+id/addGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.37"
-            android:text="Add Group" />
-
-        <Button
-            android:id="@+id/searchGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.19"
-            android:text="Advanced Search" />
+    <LinearLayout
+        android:id="@+id/groupButtonPaneWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/groupButtonPane"
+            android:layout_width="fill_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/addGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.37"
+                android:text="Add Group" />
+
+            <Button
+                android:id="@+id/searchGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.19"
+                android:text="Advanced Search" />
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+
 </cs.c301.project.Utilities.GroupListLayout>

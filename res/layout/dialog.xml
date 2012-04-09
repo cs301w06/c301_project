@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    android:background="#B2C0C1" >
 
-    android:orientation="vertical" android:layout_width="fill_parent"
+    <ListView
+        android:id="@+id/listpart"
+        android:layout_width="wrap_content"
+        android:layout_height="396dp"
+        android:scrollbars="vertical" />
 
-    android:layout_height="fill_parent" android:scrollbars="vertical">
-
-      <ListView
-          android:id="@+id/listpart"
-          android:layout_width="wrap_content"
-          android:layout_height="396dp"
-          android:scrollbars="vertical" />
-
-      <Button
-          android:id="@+id/addFolder"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:text="Button" />
+    <Button
+        android:id="@+id/addFolder"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Button" />
 
 </LinearLayout>

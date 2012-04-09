@@ -2,43 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#B2C0C1"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp"
         android:text="Change Password"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#647373" />
 
     <EditText
         android:id="@+id/currentPassword"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Current Password" >
-		
+        android:layout_gravity="center_horizontal"
+        android:hint="Current Password"
+        android:inputType="textPassword" >
+
         <requestFocus />
     </EditText>
 
     <EditText
         android:id="@+id/newPassword1"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword" 
-        android:hint="New Password"/>
+        android:layout_gravity="center_horizontal"
+        android:hint="New Password"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/newPassword2"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword" 
-        android:hint="Retype New Password"/>
+        android:layout_gravity="center_horizontal"
+        android:hint="Retype New Password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/changePasswordButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Password" />
+        android:layout_height="37dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Change Password"
+        android:textColor="#5E7271" />
 
 </LinearLayout>
